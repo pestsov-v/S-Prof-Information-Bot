@@ -1,0 +1,95 @@
+{
+    "projects": [
+        {
+            "name": "Школа №15",
+            "type": "Школа",
+            "adress": "Новороссийская ул., 12, Мариуполь, Донецкая область, 87500",
+            "location": {
+                "latitude": 47.06730836042795,
+                "longitude": 37.48559818311948
+            },
+            "file_id": "BQACAgIAAxkBAAIRsWDWCrfgfMOM_ChpebZfF5QZWRlwAAJQDgAC1cCwSjcLJJFnuaKTIAQ",
+            "district": "Другие",
+            "stamp": "П-001-2021",
+            "uuid": "k0001",
+            "technologicalEquipment": 22,
+            "stainlessSteelEquipment": 22,
+            "allCommunications": 69,
+            "Electrical": {
+                "rosette": 16,
+                "cabel": 5
+            },
+            "waterSupply": {
+                "crane_1_2": 2,
+                "crane_3_4": 17
+            },
+            "waterSewerage": {
+                "trumpet": 19,
+                "ladder": 6
+            },
+            "ventilation": {
+                "umbrella": 4
+            }
+        },
+        {
+            "name": "Київський спортивний ліцей-інтернат",
+            "type": "Cпортивный лицей интернат",
+            "adress": "вул. бульвар Вацлава Гавела буд. 46, м. Київ, Київська область",
+            "location": {
+                "latitude": 50.4238460903929,
+                "longitude": 30.42131690041462
+            },
+            "district": "Киев",
+            "stamp": "П-004-2021",
+            "uuid": "k0004",
+            "technologicalEquipment": 23,
+            "stainlessSteelEquipment": 68,
+            "allCommunications": 69,
+            "Electrical": {
+                "rosette": 17,
+                "cabel": 8
+            },
+            "waterSupply": {
+                "crane_1_2": 5,
+                "crane_3_4": 18
+            },
+            "waterSewerage": {
+                "trumpet": 21,
+                "ladder": 6
+            },
+            "ventilation": {
+                "umbrella": 10
+            }
+        },
+        {
+            "name": "Фундкорты",
+            "type": "Заведение общественного питания",
+            "adress": "Неизвестный",
+            "location": {
+                "latitude": 0,
+                "longitude": 0
+            },
+            "district": "Львов",
+            "stamp": "П-003-2021",
+            "uuid": "k0003",
+            "technologicalEquipment": 42,
+            "stainlessSteelEquipment": 15,
+            "allCommunications": 123,
+            "Electrical": {
+                "rosette": 38,
+                "cabel": 5
+            },
+            "waterSupply": {
+                "crane_1_2": 5,
+                "crane_3_4": 2
+            },
+            "waterSewerage": {
+                "trumpet": 21,
+                "ladder": 16
+            },
+            "ventilation": {
+                "umbrella": 6
+            }
+        }
+    ]
+}

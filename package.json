@@ -1,0 +1,21 @@
+{
+  "name": "avesels-static-bot",
+  "version": "1.0.0",
+  "description": "It`s bot about static and analytic in S-Prof projects",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.js"
+  },
+  "author": "Vladislav.pestsov <Vladislav.pestsov@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "mongoose": "^5.12.13",
+    "node-emoji": "^1.10.0",
+    "node-telegram-bot-api": "^0.53.0",
+    "ts-node": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  }
+}
