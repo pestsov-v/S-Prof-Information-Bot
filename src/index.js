@@ -98,6 +98,9 @@ require('./models/refrigerationEquipment/shockFreezer.model')
 const shockFreezer = mongoose.model('shockFreezer')
 
 
+// databaseProjects.projects.forEach(p => new Project(p).save().catch(e => console.log(e)))
+
+
 // create to require MongoDB NoSQL
 mongoose.connect(config.DB_URL, {
     useUnifiedTopology: true,
@@ -119,6 +122,7 @@ const ACTION_TYPE = {
     squareByTechnologist: 'arbtech',
     concreticate: 'cnc',
     oficialSite: 'ofs',
+    SHOW_PROJECTS_MAP: 'spm'
 }
 
 // create a bot with polling connection format
@@ -206,7 +210,7 @@ bot.on('message', msg => {
             sendProjectsByQuery(chatId, { district: 'Другие' })
             break
         case kb.projects.Exhibition:
-            sendProjectsByQuery(chatId, { district: 'Виставка' })
+            sendProjectsByQuery(chatId, { district: 'Выставки' })
             break
 
     }
@@ -279,8 +283,6 @@ bot.on('message', msg => {
             break
     }
 })
-
-
 
 // switch case keybard_markup to manufacturer categories
 bot.on('message', msg => {
@@ -425,141 +427,59 @@ bot.onText(/\/k(.+)/, (msg, [source]) => {
     const chatId = helper.getChatId(msg)
 
     Project.findOne({ uuid: projectUuid }).then(project => {
-        //Equipment
-        const projTechEquip = project.technologicalEquipment
-        const stSteelEquip = project.stainlessSteelEquipment
-        // communications
-        const projRos = project.Electrical.rosette
-        const projCabel = project.Electrical.cabel
-        const wC12 = project.waterSupply.crane_1_2
-        const wC34 = project.waterSupply.crane_3_4
-        const wT = project.waterSewerage.trumpet
-        const wL = project.waterSewerage.ladder
-        const vt = project.ventilation.umbrella
-        // allcommunication
-        const allCom = project.allCommunications
-        // squeares
-        const sq = project.square
-        const sqByTech = project.squareByTechnologist
-        
 
-        const projectText = `Название ${project.name}`
+        const projectText = `<i>Общие данные</i>
+Название объекта: <b>${project.name}</b>
+Тип объекта: <b>${project.type}</b>.
+Адрес: <b>${project.address}</b>.
+Штамп объекта: <b>${project.stamp}</b>.
+Площадь реализации технологии на объекте: <b>${project.squareByTechnology} м2</b>.
+Площадь объекта: <b>${project.squareByObject} м2</b>.
+
+<i>Количество единиц оборудования</i>
+Едениц технического оборудования: <b>${project.squareByTechnology} шт</b>.
+Едениц оборудования из нержавеющей стали: <b>${project.stainlessSteelEquipment} шт</b>.
+
+<i>Потребности по комуникациям</i>
+<b> - Електроснабжение:</b>
+Розеток: <b>${project.Electrical.rosette} шт.</b>
+Кабелей: <b>${project.Electrical.cabel} шт.</b>
+
+<b> - Водоснабжение:</b>
+Краны диаметром 1/2'': <b>${project.waterSupply.crane_1_2} шт.</b>
+Краны диаметром 3/4'': <b>${project.waterSupply.crane_3_4} шт.</b>
+   
+<b> - Канализация:</b>
+Трубы диаметром 50 мм: <b>${project.waterSewerage.trumpet} шт.</b>
+Трапы диаметром 100 мм: <b>${project.waterSewerage.ladder} шт.</b>
+
+<b> - Вентиляция:</b>
+Витяжных зонтов: <b>${project.ventilation.umbrella} шт.</b>`
         bot.sendMessage(chatId, projectText, {
             text: projectText,
+            parse_mode: 'HTML',
             reply_markup: {
                 inline_keyboard: [
                     [
                         {
                             text: 'DWG',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.DWG,
-                                projectUuid: projectUuid,
-                                
-                            })
+                            url: project.dwgLinks
                         },
                         {
                             text: 'PDF',
-                            url: 'https://drive.google.com/file/d/1gCDY3XOUMO4zRklaIJIoK8auXaF3QJml/view?usp=sharing',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.PDF,
-                                projectUuid: projectUuid,
-                                
-                            })
+                            url: project.pdfLinks
                         }
                     ],
                     [
                         {
-                            text: 'Спецификация технологического оборудования',
+                            text: 'Показать на карте',
                             callback_data: JSON.stringify({
-                                type: ACTION_TYPE.technologicalEquipmentPerObject,
-                                projectUuid: projectUuid,
-                                projTechEquip: projTechEquip
+                                type: ACTION_TYPE.SHOW_PROJECTS_MAP,
+                                lat: project.location.latitude,
+                                lon: project.location.longitude
                             })
                         }
                     ],
-                    [
-                        {
-                            text: 'Спецификация оборудования из нержавеющей стали',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.stainlessSteelEquipmentPerObject,
-                                projUuid: projectUuid,
-                                stSteelEquip: stSteelEquip
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Спецификация електроснабжение',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.electricalPerObject,
-                                projUuid: projectUuid,
-                                projRos: projRos,
-                                projCabel: projCabel
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Спецификация Водоснабжения',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.waterPerObject,
-                                projUuid: projectUuid,
-                                wC12: wC12,
-                                wC34: wC34
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Спецификация канализации',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.seweragePerObject,
-                                projUuid: projectUuid,
-                                wT: wT,
-                                wL: wL
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Спецификация вентиляции',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.ventilationPerObject,
-                                projectUuid: projectUuid,
-                                vt: vt
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Спецификация всех комуникаций',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.allCommunicationsPerObject,
-                                projectUuid: projectUuid,
-                                allCom: allCom
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Общая площадь объекта',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.square,
-                                projectUuid: projectUuid,
-                                sq: sq
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Площадь реализации технологии',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.squareByTechnologist,
-                                projectUuid: projectUuid,
-                                sqByTech: sqByTech
-                            })
-                        }
-                    ]
                 ]
             }
         })
@@ -944,8 +864,6 @@ bot.onText(/\/egw(.+)/, (msg, [source]) => {
     })
 })
 
-
-
 // elframo potWashingMachine command
 bot.onText(/\/eptm(.+)/, (msg, [source]) => {
     const productUuid = helper.getElframoPotWashingMachineUuid(source)
@@ -1125,6 +1043,13 @@ bot.onText(/\/sf(.+)/, (msg, [source]) => {
         })
     })
 })
+
+
+
+
+
+
+
 
 // -------------------------------------------------------------------------------------------------
 

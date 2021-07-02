@@ -10,7 +10,13 @@ const ProjectSchema = new Schema({
         type: String,
         required: true
     },
-    adress: {
+    address: {
+        type: String
+    },
+    dwgLinks: {
+        type: String
+    },
+    pdfLinks: {
         type: String
     },
     location: {
@@ -20,10 +26,6 @@ const ProjectSchema = new Schema({
         longitude: {
             type: Number
         }
-    },
-    file_id: {
-        type: String,
-        default: ''
     },
     district: {
         type: String,
@@ -84,6 +86,12 @@ const ProjectSchema = new Schema({
             type: Number,
             required: true
         }
+    },
+    squareByTechnology: {
+        type: Number
+    },
+    squareByObject: {
+        type: Number
     }
 })
 
