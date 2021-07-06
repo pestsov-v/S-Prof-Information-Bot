@@ -43,10 +43,6 @@ const foodBoilerSchema = new Schema({
         type: String,
         default: ''
     },
-    alternativeVolume: {
-        type: String,
-        default: ''
-    },
     width: {
         type: Number,
         required: true

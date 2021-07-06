@@ -13,21 +13,14 @@ module.exports = {
         [kb.back]
     ],
     manufacturer: [
-        [kb.manufacturer.angeloPo, kb.manufacturer.bartscher, kb.manufacturer.elframo],
-        [kb.manufacturer.rational, kb.manufacturer.rmGastro],
-        [kb.manufacturer.robotCoupe, kb.manufacturer.samaref],
+        [kb.manufacturer.elframo, kb.manufacturer.samaref],
+        [kb.manufacturer.rational, kb.manufacturer.robotCoupe],
+        [kb.manufacturer.rmGastro],
         [kb.back]
     ],
     rational: [
         [kb.rational.combiStemear],
         [kb.rational.muiltyPen],
-        [kb.backToMainManufacturer],
-        [kb.back]
-    ],
-    angeloPo: [
-        [kb.angeloPo.plate, kb.angeloPo.grill, kb.angeloPo.macaranCooker],
-        [kb.angeloPo.bainMarie, kb.angeloPo.pen],
-        [kb.angeloPo.foodBoiler, kb.angeloPo.deepFryer],
         [kb.backToMainManufacturer],
         [kb.back]
     ],
@@ -96,9 +89,9 @@ module.exports = {
         [kb.back]
     ],
     robotCoupe: [
-        [kb.robotCoupe.robotCook, kb.robotCoupe.blixer, kb.robotCoupe.cooter],
+        [kb.robotCoupe.robotCook, kb.robotCoupe.blixer],
         [kb.robotCoupe.foodCombine, kb.robotCoupe.mixer],
-        [kb.robotCoupe.vegetableCutter, kb.robotCoupe.juicer],
+        [kb.robotCoupe.vegetableCutter, kb.robotCoupe.cooter],
         [kb.backToMainManufacturer],
         [kb.back]
     ],

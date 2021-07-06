@@ -1,3 +1,3 @@
-const productsText = 'Необходимо добавить описание товаров'
+const productsText = 'Выберите желаемого производителя оборудования'
 
 module.exports = productsText

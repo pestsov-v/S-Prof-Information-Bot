@@ -18,6 +18,9 @@ const pastaCookerSchema = new Schema({
         type: String,
         required: true
     },
+    series: {
+        type: String
+    },
     name: {
         type: String,
         required: true

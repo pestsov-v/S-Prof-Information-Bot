@@ -26,30 +26,22 @@
 // const vegetableCutter = mongoose.model('vegetableCutter')
 
 // heating equipment model
-// require('./models/heatingEquipment/bainMarie.model')
-// const bainMarie = mongoose.model('bainMarie')
+
 // require('./models/heatingEquipment/bake.model')
 // const bake = mongoose.model('bake')
 require('./models/heatingEquipment/combiStreamer.model')
 const combiStreamer = mongoose.model('combiStreamer')
 // require('./models/heatingEquipment/eggCooker.model')
 // const eggCooker = mongoose.model('eggCooker')
-// require('./models/heatingEquipment/foodBoiler.model')
-// const foodBoiler = mongoose.model('foodBoiler')
-// require('./models/heatingEquipment/grill.model')
-// const grill = mongoose.model('grill')
+
+
 // require('./models/heatingEquipment/heatShowcase.model')
 // const heatShowcase = mongoose.model('heatShowcase')
 require('./models/heatingEquipment/multiPen.model')
 const multiPen = mongoose.model('multiPen')
 // require('./models/heatingEquipment/pancakeMaker.model')
 // const pancakeMaker = mongoose.model('pancakeMaker')
-// require('./models/heatingEquipment/pastaCooker.model')
-// const pastaCooker = mongoose.model('pastaCooker')
-// require('./models/heatingEquipment/pen.model')
-// const pen = mongoose.model('pen')
-// require('./models/heatingEquipment/plate.model')
-// const plate = mongoose.model('plate')
+
 // require('./models/heatingEquipment/riceCooker.model')
 // const riceCooker = mongoose.model('riceCooker')
 // require('./models/heatingEquipment/sausageCooker.model')

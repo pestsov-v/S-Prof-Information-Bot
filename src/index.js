@@ -27,6 +27,22 @@ const elframoDishwasherDatabase = require('../database/elframo/elframoDishwasher
 const elframoGlassWasherDatabase = require('../database/elframo/elframoGlassWasherDatabase.json')
 const elframoPotWashingMachineDatabase = require('../database/elframo/elframoPotWashingMachine.json')
 
+const rmGastroGrillDatabase = require('../database/rmGastro/grillDatabase.json')
+const rmGastroBainMarieDatabase = require('../database/rmGastro/bainMarieDatabase.json')
+const rmGastroDeepFryerDatabase = require('../database/rmGastro/deepFryerDatabase.json')
+const rmGastroFoodBoilerDatabase = require('../database/rmGastro/foodBoilerDatabase.json')
+const rmGastroPastaCookerDatabase = require('../database/rmGastro/pastaCookerDatabase.json')
+const rmGastroPenDatabase = require('../database/rmGastro/penDatabase.json')
+const rmGastroPlateDatabase = require('../database/rmGastro/plateDatabase.json')
+
+// robot_coupe__databases
+const robotCoupeBlixterDatabase = require('../database/robotCoupe/blixterDatabase.json')
+const robotCoupeCooterDatabase = require('../database/robotCoupe/cooterDatabase.json')
+const robotCoupeFoodCombineDatabase = require('../database/robotCoupe/foodCombine.json')
+const robotCoupeMixerDatabase = require('../database/robotCoupe/mixerDatabase.json')
+const robotCoupeJuicerDatabase = require('../database/robotCoupe/juicerDatabase.json')
+const robotCoupeRobotCookDatabase = require('../database/robotCoupe/robotCookDatabase.json')
+const robotCoupeVegetableCutterDatabase = require('../database/robotCoupe/vegetableCutter.json')
 
 
 // require message text 
@@ -85,17 +101,49 @@ const potWashingMachine = mongoose.model('potWashingMachine')
 
 require('./models/heatingEquipment/combiStreamer.model')
 const combiStreamer = mongoose.model('combiStreamer')
-
 require('./models/heatingEquipment/multiPen.model')
 const multiPen = mongoose.model('multiPen')
+require('./models/heatingEquipment/grill.model')
+const grill = mongoose.model('grill')
+require('./models/heatingEquipment/bainMarie.model')
+const bainMarie = mongoose.model('bainMarie')
+require('./models/heatingEquipment/deepFryer.model')
+const deepFryer = mongoose.model('deepFryer')
+require('./models/heatingEquipment/foodBoiler.model')
+const foodBoiler = mongoose.model('foodBoiler')
+require('./models/heatingEquipment/pastaCooker.model')
+const pastaCooker = mongoose.model('pastaCooker')
+require('./models/heatingEquipment/pen.model')
+const pen = mongoose.model('pen')
+require('./models/heatingEquipment/plate.model')
+const plate = mongoose.model('plate')
+
 
 require('./models/refrigerationEquipment/refrigeratedTable.model')
 const refrigeratedTable = mongoose.model('refrigeratedTable')
-
 require('./models/refrigerationEquipment/refrigeratiorCabinet.model')
 const refrigeratiorCabinet = mongoose.model('refrigeratiorCabinet')
 require('./models/refrigerationEquipment/shockFreezer.model')
 const shockFreezer = mongoose.model('shockFreezer')
+
+
+require('./models/electromechanicalEquipment/blixter.model')
+const blixter = mongoose.model('blixter')
+require('./models/electromechanicalEquipment/cooter.model')
+const cooter = mongoose.model('cooter')
+require('./models/electromechanicalEquipment/foodCombine.model')
+const foodCombine = mongoose.model('foodCombine')
+require('./models/electromechanicalEquipment/mixer.model')
+const mixer = mongoose.model('mixer')
+require('./models/electromechanicalEquipment/vegetableCutter.model')
+const vegetableCutter = mongoose.model('vegetableCutter')
+require ('./models/electromechanicalEquipment/robotCook.model')
+const robotCook = mongoose.model('robotCook')
+
+
+
+
+// databaseProjects.projects.forEach(p => new Project(p).save().catch(e => console.log(e)))
 
 
 // create to require MongoDB NoSQL
@@ -119,6 +167,7 @@ const ACTION_TYPE = {
     squareByTechnologist: 'arbtech',
     concreticate: 'cnc',
     oficialSite: 'ofs',
+    SHOW_PROJECTS_MAP: 'spm'
 }
 
 // create a bot with polling connection format
@@ -130,6 +179,22 @@ const bot = new TelegramBot(config.TOKEN, {
 // samarefRefrigeratiorCabinetDatabase.refrigeratiorCabinets.forEach(rfс => new refrigeratiorCabinet(rfс).save().catch(e => console.log(e)))
 // samarefShockFreezerDatabase.shockFreezers.forEach(sf => new shockFreezer(sf).save().catch(e => console.log(e)))
 
+// rmGastroGrillDatabase.grills.forEach(gr => new grill(gr).save().catch(e => console.log(e)))
+// rmGastroBainMarieDatabase.bainMaries.forEach(bmr => new bainMarie(bmr).save().catch(e => console.log(e)))
+// rmGastroDeepFryerDatabase.deepFryers.forEach(dfs => new deepFryer(dfs).save().catch(e => console.log(e)))
+// rmGastroFoodBoilerDatabase.foodBoilers.forEach(fbs => new foodBoiler(fbs).save().catch(e => console.log(e)))
+// rmGastroPastaCookerDatabase.pastaCookers.forEach(pcs => new pastaCooker(pcs).save().catch(e => console.log(e)))
+// rmGastroPenDatabase.pens.forEach(p => new pen(p).save().catch(e => console.log(e)))
+// rmGastroPlateDatabase.plates.forEach(plt => new plate(plt).save().catch(e => console.log(e)))
+
+
+// robotCoupeBlixterDatabase.blixters.forEach(blr => new blixter(blr).save().catch(e => console.log(e)))
+// robotCoupeCooterDatabase.cooters.forEach(сtr => new cooter(сtr).save().catch(e => console.log(e)))
+// robotCoupeFoodCombineDatabase.foodCombines.forEach(fce => new foodCombine(fce).save().catch(e => console.log(e)))
+// robotCoupeMixerDatabase.mixers.forEach(mxr => new mixer(mxr).save().catch(e => console.log(e)))
+
+// robotCoupeRobotCookDatabase.robotCooks.forEach(rck => new robotCook(rck).save().catch(e => console.log(e)))
+// robotCoupeVegetableCutterDatabase.vegetableCutters.forEach(vcr => new vegetableCutter(vcr).save().catch(e => console.log(e)))
 
 
 // // switch case keybard_markup to back buttons
@@ -206,7 +271,7 @@ bot.on('message', msg => {
             sendProjectsByQuery(chatId, { district: 'Другие' })
             break
         case kb.projects.Exhibition:
-            sendProjectsByQuery(chatId, { district: 'Виставка' })
+            sendProjectsByQuery(chatId, { district: 'Выставки' })
             break
 
     }
@@ -280,9 +345,63 @@ bot.on('message', msg => {
     }
 })
 
+// switch case keyboard_markup to rm gastro equipment product
+bot.on('message', msg => {
+    const chatId = helper.getChatId(msg)
+
+    switch (msg.text) {
+        case kb.rmGastro.grill:
+            sendRmGastroGrillByQuery(chatId, { form: 'Грили'})
+            break
+        case kb.rmGastro.pastaCooker:
+            sendRmGastroPastaCookerByQuery(chatId, { form: 'Макароноварки' })
+            break
+        case kb.rmGastro.bainMarie:
+            sendRmGastroBainMarieByQuery(chatId, { form: 'Мармиты' })
+            break
+        case kb.rmGastro.plate:
+            sendRmGastroPlateByQuery(chatId, { form: 'Плиты' })
+            break
+        case kb.rmGastro.pen:
+            sendRmGastroPenByQuery(chatId, { form: 'Сковороды' })
+            break
+        case kb.rmGastro.foodBoiler:
+            sendRmGastroFoodBoilerByQuery(chatId, { form: 'Пищевые котлы' })
+            break
+        case kb.rmGastro.deepFryer:
+            sendRmGastroDeepFryerByQuery(chatId, { form: 'Фритюрницы'})
+            break
+    }
+})
+
+// switch case keyboard_markup to Robot Coupe equipment product
+bot.on('message', msg => {
+    const chatId = helper.getChatId(msg)
+
+    switch (msg.text) {
+        case kb.robotCoupe.robotCook:
+            sendRobotCoupeRobotCookByQuery(chatId, { form: 'robot cook' })
+            break
+        case kb.robotCoupe.blixer:
+            sendRobotCoupeBlixerByQuery(chatId, { form: 'бликстер'})
+            break
+        case kb.robotCoupe.cooter:
+            sendRobotCoupeCooterByQuery(chatId, { form: 'куттер'})
+            break
+        case kb.robotCoupe.foodCombine:
+            sendRobotCoupeFoodCombineByQuery(chatId, { form: 'кухонный комбайн'})
+            break
+        case kb.robotCoupe.mixer:
+            sendRobotCoupeMixerByQuery(chatId, { form: 'миксер'})
+            break
+        case kb.robotCoupe.vegetableCutter:
+            sendRobotCoupeVegetableCutterByQuery(chatId, { form: 'овощерезка'})
+            break
+    }
+})
 
 
-// switch case keybard_markup to manufacturer categories
+// switch case keyboard_markup to manufacturer categories
 bot.on('message', msg => {
     const chatId = helper.getChatId(msg)
 
@@ -415,7 +534,8 @@ bot.onText(/\/start/, msg => {
 // help command
 bot.onText(/\/help/, msg => {
 
-    this.helpText = helpText
+    self = this
+    self.helpText = helpText
     bot.sendMessage(helper.getChatId(msg), helpText)
 })
 
@@ -423,143 +543,60 @@ bot.onText(/\/help/, msg => {
 bot.onText(/\/k(.+)/, (msg, [source]) => {
     const projectUuid = helper.getItemUuid(source)
     const chatId = helper.getChatId(msg)
-
     Project.findOne({ uuid: projectUuid }).then(project => {
-        //Equipment
-        const projTechEquip = project.technologicalEquipment
-        const stSteelEquip = project.stainlessSteelEquipment
-        // communications
-        const projRos = project.Electrical.rosette
-        const projCabel = project.Electrical.cabel
-        const wC12 = project.waterSupply.crane_1_2
-        const wC34 = project.waterSupply.crane_3_4
-        const wT = project.waterSewerage.trumpet
-        const wL = project.waterSewerage.ladder
-        const vt = project.ventilation.umbrella
-        // allcommunication
-        const allCom = project.allCommunications
-        // squeares
-        const sq = project.square
-        const sqByTech = project.squareByTechnologist
-        
 
-        const projectText = `Название ${project.name}`
+        const projectText = `<i>Общие данные</i>
+Название объекта: <b>${project.name}</b>
+Тип объекта: <b>${project.type}</b>.
+Адрес: <b>${project.address}</b>.
+Штамп объекта: <b>${project.stamp}</b>.
+Площадь реализации технологии на объекте: <b>${project.squareByTechnology} м2</b>.
+Площадь объекта: <b>${project.squareByObject} м2</b>.
+
+<i>Количество единиц оборудования</i>
+Едениц технического оборудования: <b>${project.squareByTechnology} шт</b>.
+Едениц оборудования из нержавеющей стали: <b>${project.stainlessSteelEquipment} шт</b>.
+
+<i>Потребности по комуникациям</i>
+<b> - Електроснабжение:</b>
+Розеток: <b>${project.Electrical.rosette} шт.</b>
+Кабелей: <b>${project.Electrical.cabel} шт.</b>
+
+<b> - Водоснабжение:</b>
+Краны диаметром 1/2'': <b>${project.waterSupply.crane_1_2} шт.</b>
+Краны диаметром 3/4'': <b>${project.waterSupply.crane_3_4} шт.</b>
+   
+<b> - Канализация:</b>
+Трубы диаметром 50 мм: <b>${project.waterSewerage.trumpet} шт.</b>
+Трапы диаметром 100 мм: <b>${project.waterSewerage.ladder} шт.</b>
+
+<b> - Вентиляция:</b>
+Витяжных зонтов: <b>${project.ventilation.umbrella} шт.</b>`
         bot.sendMessage(chatId, projectText, {
             text: projectText,
+            parse_mode: 'HTML',
             reply_markup: {
                 inline_keyboard: [
                     [
                         {
                             text: 'DWG',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.DWG,
-                                projectUuid: projectUuid,
-                                
-                            })
+                            url: project.dwgLinks
                         },
                         {
                             text: 'PDF',
-                            url: 'https://drive.google.com/file/d/1gCDY3XOUMO4zRklaIJIoK8auXaF3QJml/view?usp=sharing',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.PDF,
-                                projectUuid: projectUuid,
-                                
-                            })
+                            url: project.pdfLinks
                         }
                     ],
                     [
                         {
-                            text: 'Спецификация технологического оборудования',
+                            text: 'Показать на карте',
                             callback_data: JSON.stringify({
-                                type: ACTION_TYPE.technologicalEquipmentPerObject,
-                                projectUuid: projectUuid,
-                                projTechEquip: projTechEquip
+                                type: ACTION_TYPE.SHOW_PROJECTS_MAP,
+                                la: project.location.latitude,
+                                lo: project.location.longitude
                             })
                         }
                     ],
-                    [
-                        {
-                            text: 'Спецификация оборудования из нержавеющей стали',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.stainlessSteelEquipmentPerObject,
-                                projUuid: projectUuid,
-                                stSteelEquip: stSteelEquip
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Спецификация електроснабжение',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.electricalPerObject,
-                                projUuid: projectUuid,
-                                projRos: projRos,
-                                projCabel: projCabel
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Спецификация Водоснабжения',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.waterPerObject,
-                                projUuid: projectUuid,
-                                wC12: wC12,
-                                wC34: wC34
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Спецификация канализации',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.seweragePerObject,
-                                projUuid: projectUuid,
-                                wT: wT,
-                                wL: wL
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Спецификация вентиляции',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.ventilationPerObject,
-                                projectUuid: projectUuid,
-                                vt: vt
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Спецификация всех комуникаций',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.allCommunicationsPerObject,
-                                projectUuid: projectUuid,
-                                allCom: allCom
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Общая площадь объекта',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.square,
-                                projectUuid: projectUuid,
-                                sq: sq
-                            })
-                        }
-                    ],
-                    [
-                        {
-                            text: 'Площадь реализации технологии',
-                            callback_data: JSON.stringify({
-                                type: ACTION_TYPE.squareByTechnologist,
-                                projectUuid: projectUuid,
-                                sqByTech: sqByTech
-                            })
-                        }
-                    ]
                 ]
             }
         })
@@ -854,6 +891,7 @@ bot.onText(/\/mf(.+)/, (msg, [source]) => {
     })
 })
 
+// ----------------- elframo manufacturer commands ----------------------
 // elframo dishwasher command
 bot.onText(/\/edsw(.+)/, (msg, [source]) => {
     const productUuid = helper.getElframoDishwasherUuid(source)
@@ -944,8 +982,6 @@ bot.onText(/\/egw(.+)/, (msg, [source]) => {
     })
 })
 
-
-
 // elframo potWashingMachine command
 bot.onText(/\/eptm(.+)/, (msg, [source]) => {
     const productUuid = helper.getElframoPotWashingMachineUuid(source)
@@ -991,6 +1027,7 @@ bot.onText(/\/eptm(.+)/, (msg, [source]) => {
     })
 })
 
+// ----------------- samaref manufacturer commands ----------------------
 // samaref refrigeratedTable command
 bot.onText(/\/rt(.+)/, (msg, [source]) => {
     const productUuid = helper.getSamarefRefrigeratedTableUuid(source)
@@ -1126,8 +1163,561 @@ bot.onText(/\/sf(.+)/, (msg, [source]) => {
     })
 })
 
-// -------------------------------------------------------------------------------------------------
+// ----------------- rmGastro manufacturer commands ----------------------
+// rmGastro grill command
+bot.onText(/\/gr(.+)/, (msg, [source]) => {
+    const productUuid = helper.getRmGastroGrillUuid(source)
+    const chatId = helper.getChatId(msg)
 
+    grill.findOne({ uuid: productUuid }).then(grill => {
+        const caption = `Название товара: <b>${grill.name}.</b>
+Тип оборудования: <b>${grill.type}.</b>
+Вид оборудования: <b>${grill.form}.</b>
+Производитель: <b>${grill.manufacturer}.</b>
+Страна производителя: <b>${grill.countryManufacturer}.</b>
+Артикул: <b>${grill.article}.</b>
+Уровень напряжения: <b>${grill.voltage} кВ</b>
+Количество фаз: <b>${grill.numberPhases} шт.</b>
+Мощность оборудования: <b>${grill.power} кВт.</b>
+Габариты производителя: <b>Ш ${grill.width} x Г ${grill.depth} x В ${grill.weight} мм.</b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${grill.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, grill.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: grill.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.grill,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+// rmGastro bain marie command
+bot.onText(/\/bmr(.+)/, (msg, [source]) => {
+    const productUuid = helper.getRmGastroBainMarieUuid(source)
+    const chatId = helper.getChatId(msg)
+
+    bainMarie.findOne({ uuid: productUuid }).then(bainMarie => {
+        const caption = `Название товара: <b>${bainMarie.name}.</b>
+Тип оборудования: <b>${bainMarie.type}.</b>
+Вид оборудования: <b>${bainMarie.form}.</b>
+Производитель: <b>${bainMarie.manufacturer}.</b>
+Страна производителя: <b>${bainMarie.countryManufacturer}.</b>
+Артикул: <b>${bainMarie.article}.</b>
+Уровень напряжения: <b>${bainMarie.voltage} кВ</b>
+Количество фаз: <b>${bainMarie.numberPhases} шт.</b>
+Мощность оборудования: <b>${bainMarie.power} кВт.</b>
+Габариты производителя: <b>Ш ${bainMarie.width} x Г ${bainMarie.depth} x В ${bainMarie.weight} мм.</b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${bainMarie.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, bainMarie.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: bainMarie.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.bainMarie,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+// rmGastro deep fryer command
+bot.onText(/\/dfs(.+)/, (msg, [source]) => {
+    const productUuid = helper.getRmGastroDeepFryerUuid(source)
+    const chatId = helper.getChatId(msg)
+
+    deepFryer.findOne({ uuid: productUuid }).then(deepFryer => {
+        const caption = `Название товара: <b>${deepFryer.name}.</b>
+Тип оборудования: <b>${deepFryer.type}.</b>
+Вид оборудования: <b>${deepFryer.form}.</b>
+Производитель: <b>${deepFryer.manufacturer}.</b>
+Страна производителя: <b>${deepFryer.countryManufacturer}.</b>
+Артикул: <b>${deepFryer.article}.</b>
+Уровень напряжения: <b>${deepFryer.voltage} кВ</b>
+Количество фаз: <b>${deepFryer.numberPhases} шт.</b>
+Мощность оборудования: <b>${deepFryer.power} кВт.</b>
+Габариты производителя: <b>Ш ${deepFryer.width} x Г ${deepFryer.depth} x В ${deepFryer.height} мм.</b>
+Вес: <b> ${deepFryer.weight} кг. </b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${deepFryer.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, deepFryer.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: deepFryer.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.deepFryer,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+// rmGastro food boiler command
+bot.onText(/\/fbs(.+)/, (msg, [source]) => {
+    const productUuid = helper.getRmGastroFoodBoilerUuid(source)
+    const chatId = helper.getChatId(msg)
+
+    foodBoiler.findOne({ uuid: productUuid }).then(foodBoiler => {
+        const caption = `Название товара: <b>${foodBoiler.name}.</b>
+Тип оборудования: <b>${foodBoiler.type}.</b>
+Вид оборудования: <b>${foodBoiler.form}.</b>
+Производитель: <b>${foodBoiler.manufacturer}.</b>
+Страна производителя: <b>${foodBoiler.countryManufacturer}.</b>
+Артикул: <b>${foodBoiler.article}.</b>
+Уровень напряжения: <b>${foodBoiler.voltage} кВ</b>
+Количество фаз: <b>${foodBoiler.numberPhases} шт.</b>
+Мощность оборудования: <b>${foodBoiler.power} кВт.</b>
+Габариты производителя: <b>Ш ${foodBoiler.width} x Г ${foodBoiler.depth} x В ${foodBoiler.height} мм.</b>
+Вес: <b> ${foodBoiler.weight} кг. </b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${foodBoiler.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, foodBoiler.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: foodBoiler.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.foodBoiler,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+// rmGastro pasta cooker command
+bot.onText(/\/pcs(.+)/, (msg, [source]) => {
+    const productUuid = helper.getRmGastroPastaCookerUuid(source)
+    const chatId = helper.getChatId(msg)
+
+    pastaCooker.findOne({ uuid: productUuid }).then(pastaCooker => {
+        const caption = `Название товара: <b>${pastaCooker.name}.</b>
+Тип оборудования: <b>${pastaCooker.type}.</b>
+Вид оборудования: <b>${pastaCooker.form}.</b>
+Производитель: <b>${pastaCooker.manufacturer}.</b>
+Страна производителя: <b>${pastaCooker.countryManufacturer}.</b>
+Артикул: <b>${pastaCooker.article}.</b>
+Уровень напряжения: <b>${pastaCooker.voltage} кВ</b>
+Количество фаз: <b>${pastaCooker.numberPhases} шт.</b>
+Мощность оборудования: <b>${pastaCooker.power} кВт.</b>
+Габариты производителя: <b>Ш ${pastaCooker.width} x Г ${pastaCooker.depth} x В ${pastaCooker.height} мм.</b>
+Вес: <b> ${pastaCooker.weight} кг. </b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${pastaCooker.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, pastaCooker.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: pastaCooker.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.pastaCooker,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+// rmGastro pen command
+bot.onText(/\/pen(.+)/, (msg, [source]) => {
+    const productUuid = helper.getRmGastroPenUuid(source)
+    const chatId = helper.getChatId(msg)
+
+    pen.findOne({ uuid: productUuid }).then(pen => {
+        const caption = `Название товара: <b>${pen.name}.</b>
+Тип оборудования: <b>${pen.type}.</b>
+Вид оборудования: <b>${pen.form}.</b>
+Производитель: <b>${pen.manufacturer}.</b>
+Страна производителя: <b>${pen.countryManufacturer}.</b>
+Артикул: <b>${pen.article}.</b>
+Уровень напряжения: <b>${pen.voltage} кВ</b>
+Количество фаз: <b>${pen.numberPhases} шт.</b>
+Мощность оборудования: <b>${pen.power} кВт.</b>
+Габариты производителя: <b>Ш ${pen.width} x Г ${pen.depth} x В ${pen.height} мм.</b>
+Вес: <b> ${pen.weight} кг. </b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${pen.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, pen.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: pen.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.pen,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+// rmGastro plate command
+bot.onText(/\/plt(.+)/, (msg, [source]) => {
+    const productUuid = helper.getRmGastroPlateUuid(source)
+    const chatId = helper.getChatId(msg)
+
+    plate.findOne({ uuid: productUuid }).then(plate => {
+        const caption = `Название товара: <b>${plate.name}.</b>
+Тип оборудования: <b>${plate.type}.</b>
+Вид оборудования: <b>${plate.form}.</b>
+Производитель: <b>${plate.manufacturer}.</b>
+Страна производителя: <b>${plate.countryManufacturer}.</b>
+Артикул: <b>${plate.article}.</b>
+Уровень напряжения: <b>${plate.voltage} кВ</b>
+Количество фаз: <b>${plate.numberPhases} шт.</b>
+Мощность оборудования: <b>${plate.power} кВт.</b>
+Габариты производителя: <b>Ш ${plate.width} x Г ${plate.depth} x В ${plate.height} мм.</b>
+Вес: <b> ${plate.weight} кг. </b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${plate.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, plate.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: plate.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.plate,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+
+// ----------------- Robot Coupe manufacturer commands ----------------------
+// Robot Coupe Robot Cook command
+bot.onText(/\/rck(.+)/, (msg, [source]) => {
+    const productUuid = helper.getProductsByFourLittersUuid(source)
+    const chatId = helper.getChatId(msg)
+
+    robotCook.findOne({ uuid: productUuid }).then(robotCook => {
+        const caption = `Название товара: <b>${robotCook.name}.</b>
+Тип оборудования: <b>${robotCook.type}.</b>
+Вид оборудования: <b>${robotCook.form}.</b>
+Производитель: <b>${robotCook.manufacturer}.</b>
+Страна производителя: <b>${robotCook.countryManufacturer}.</b>
+Артикул: <b>${robotCook.article}.</b>
+Уровень напряжения: <b>${robotCook.voltage} кВ</b>
+Количество фаз: <b>${robotCook.numberPhases} шт.</b>
+Мощность оборудования: <b>${robotCook.power} кВт.</b>
+Габариты производителя: <b>Ш ${robotCook.width} x Г ${robotCook.depth} x В ${robotCook.height} мм.</b>
+Вес: <b> ${robotCook.weight} кг. </b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${robotCook.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, robotCook.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: robotCook.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.robotCook,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+// Robot Coupe mixer command
+bot.onText(/\/mxr(.+)/, (msg, [source]) => {
+    const productUuid = helper.getProductsByFourLittersUuid(source)
+    const chatId = helper.getChatId(msg)
+
+    mixer.findOne({ uuid: productUuid }).then(mixer => {
+        const caption = `Название товара: <b>${mixer.name}.</b>
+Тип оборудования: <b>${mixer.type}.</b>
+Вид оборудования: <b>${mixer.form}.</b>
+Производитель: <b>${mixer.manufacturer}.</b>
+Страна производителя: <b>${mixer.countryManufacturer}.</b>
+Артикул: <b>${mixer.article}.</b>
+Уровень напряжения: <b>${mixer.voltage} кВ</b>
+Количество фаз: <b>${mixer.numberPhases} шт.</b>
+Мощность оборудования: <b>${mixer.power} кВт.</b>
+Габариты производителя: <b>Ш ${mixer.width} x Г ${mixer.depth} x В ${mixer.height} мм.</b>
+Вес: <b> ${mixer.weight} кг. </b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${mixer.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, mixer.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: mixer.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.mixer,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+// Robot Coupe vegetable cutters command
+bot.onText(/\/vcr(.+)/, (msg, [source]) => {
+    const productUuid = helper.getProductsByFourLittersUuid(source)
+    const chatId = helper.getChatId(msg)
+
+    vegetableCutter.findOne({ uuid: productUuid }).then(vegetableCutter => {
+        const caption = `Название товара: <b>${vegetableCutter.name}.</b>
+Тип оборудования: <b>${vegetableCutter.type}.</b>
+Вид оборудования: <b>${vegetableCutter.form}.</b>
+Производитель: <b>${vegetableCutter.manufacturer}.</b>
+Страна производителя: <b>${vegetableCutter.countryManufacturer}.</b>
+Артикул: <b>${vegetableCutter.article}.</b>
+Уровень напряжения: <b>${vegetableCutter.voltage} кВ</b>
+Количество фаз: <b>${vegetableCutter.numberPhases} шт.</b>
+Мощность оборудования: <b>${vegetableCutter.power} кВт.</b>
+Габариты производителя: <b>Ш ${vegetableCutter.width} x Г ${vegetableCutter.depth} x В ${vegetableCutter.height} мм.</b>
+Вес: <b> ${vegetableCutter.weight} кг. </b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${vegetableCutter.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, vegetableCutter.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: vegetableCutter.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.vegetableCutter,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+// Robot Coupe food combines command
+bot.onText(/\/fce(.+)/, (msg, [source]) => {
+    const productUuid = helper.getProductsByFourLittersUuid(source)
+    const chatId = helper.getChatId(msg)
+
+    foodCombine.findOne({ uuid: productUuid }).then(foodCombine => {
+        const caption = `Название товара: <b>${foodCombine.name}.</b>
+Тип оборудования: <b>${foodCombine.type}.</b>
+Вид оборудования: <b>${foodCombine.form}.</b>
+Производитель: <b>${foodCombine.manufacturer}.</b>
+Страна производителя: <b>${foodCombine.countryManufacturer}.</b>
+Артикул: <b>${foodCombine.article}.</b>
+Уровень напряжения: <b>${foodCombine.voltage} кВ</b>
+Количество фаз: <b>${foodCombine.numberPhases} шт.</b>
+Мощность оборудования: <b>${foodCombine.power} кВт.</b>
+Габариты производителя: <b>Ш ${foodCombine.width} x Г ${foodCombine.depth} x В ${foodCombine.height} мм.</b>
+Вес: <b> ${foodCombine.weight} кг. </b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${foodCombine.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, foodCombine.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: foodCombine.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.foodCombine,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+// Robot Coupe blixters command
+bot.onText(/\/blr(.+)/, (msg, [source]) => {
+    const productUuid = helper.getProductsByFourLittersUuid(source)
+    const chatId = helper.getChatId(msg)
+
+    blixter.findOne({ uuid: productUuid }).then(blixter => {
+        const caption = `Название товара: <b>${blixter.name}.</b>
+Тип оборудования: <b>${blixter.type}.</b>
+Вид оборудования: <b>${blixter.form}.</b>
+Производитель: <b>${blixter.manufacturer}.</b>
+Страна производителя: <b>${blixter.countryManufacturer}.</b>
+Артикул: <b>${blixter.article}.</b>
+Уровень напряжения: <b>${blixter.voltage} кВ</b>
+Количество фаз: <b>${blixter.numberPhases} шт.</b>
+Мощность оборудования: <b>${blixter.power} кВт.</b>
+Габариты производителя: <b>Ш ${blixter.width} x Г ${blixter.depth} x В ${blixter.height} мм.</b>
+Вес: <b> ${blixter.weight} кг. </b>
+
+<i>Требования к подключению:</i>
+Електроснабжение: <b>Розетка на ${blixter.NecessaryCommunications.electrical} кВт.</b>
+`
+        bot.sendPhoto(chatId, blixter.picture, {
+            caption: caption,
+            parse_mode: 'HTML',
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'На официальный сайт',
+                            url: blixter.link
+                        },
+                        {
+                            text: 'Добавить в актуальное',
+                            callback_data: JSON.stringify({
+                                type: ACTION_TYPE.blixter,
+                                productUuid: productUuid
+                            })
+                        }
+                    ]
+                ],
+            },
+            resize_keyboard: true,
+        })
+    })
+})
+
+
+// ------------------ callback_query action ----------------------------------------------
 // callback_query action_type by project inline buttons
 bot.on('callback_query', query => {
     let data
@@ -1139,125 +1729,12 @@ bot.on('callback_query', query => {
     }
 
 
-    const { type } = data
+    const { type, la, lo } = data
     if (type === ACTION_TYPE.DWG) {
         console.log(data)
 
-    } else if (type === ACTION_TYPE.PDF) {
-
-    } else if (type === ACTION_TYPE.technologicalEquipmentPerObject) {
-
-        const { projTechEquip } = data
-
-        const html = `Количество технологического оборудования заложенного в проект: <strong>${projTechEquip}</strong>.
-
-Для детального просмотра расположение технологического оборудования смотрите сам проект`
-
-        bot.sendMessage(query.message.chat.id, html, {
-            parse_mode: 'HTML'
-        })
-
-    } else if (type === ACTION_TYPE.stainlessSteelEquipmentPerObject) {
-
-        const { stSteelEquip } = data
-
-        const html = `Количество оборудования из нержавещей стали заложенного в проект: <strong>${stSteelEquip}</strong>.
-
-Для детального просмотра расположение оборудования из нержавеющей стали смотрите сам проект`
-
-        bot.sendMessage(query.message.chat.id, html, {
-            parse_mode: 'HTML'
-        })
-
-    } else if (type === ACTION_TYPE.electricalPerObject) {
-
-        const { projRos, projCabel } = data
-
-        const html = `Количество точек расположения розеток заложенных в проект: <strong>${projRos}</strong>.
-Количество точек расположения кабелей заложенных в проект: <strong>${projCabel}</strong>.
-
-Для детального просмотра расположение электроснабжение смотрите сам проект`
-
-        bot.sendMessage(query.message.chat.id, html, {
-            parse_mode: 'HTML'
-        })
-
-    } else if (type === ACTION_TYPE.waterPerObject) {
-
-        const { wC12, wC34 } = data
-
-        const html = `Количество точек расположения кранов размером 1/2 заложенных в проект: <strong>${wC12}</strong>.
-Количество точек расположения кранов размером 3/4 заложенных в проект: <strong>${wC34}</strong>.
-        
-Для детального просмотра расположение водоснабжения смотрите сам проект`
-
-        bot.sendMessage(query.message.chat.id, html, {
-            parse_mode: 'HTML'
-        })
-
-    } else if (type === ACTION_TYPE.seweragePerObject) {
-
-        const { wT, wL } = data
-
-        const html = `Количество точек расположения канализационых труб диаметром 50 мм: <strong>${wT}</strong>.
-Количество точек расположения трапов заложенных в проект: <strong>${wL}</strong>.
-        
-Для детального просмотра расположение канализации смотрите сам проект`
-
-        bot.sendMessage(query.message.chat.id, html, {
-            parse_mode: 'HTML'
-        })
-
-    } else if (type === ACTION_TYPE.ventilationPerObject) {
-        const { vt } = data
-
-        const html = `Количество точек расположения вытяжних зонтов: <strong>${vt}</strong>.
-        
-Для детального просмотра расположение вентиляции смотрите сам проект`
-
-        bot.sendMessage(query.message.chat.id, html, {
-            parse_mode: 'HTML'
-        })
-
-
-    } else if (type === ACTION_TYPE.allCommunicationsPerObject) {
-        const { allCom } = data
-
-        const html = `Всего точек подключений: <strong>${allCom}</strong>.
-        
-Для детального просмотра расположение вентиляции смотрите сам проект`
-
-        bot.sendMessage(query.message.chat.id, html, {
-            parse_mode: 'HTML'
-        })
-
-    } else if (type === ACTION_TYPE.square) {
-
-        const { square } = data
-
-        const html = `Площадь всего объекта: <strong>${square}</strong>.
-        
-Для детального просмотра площади помещений объекта смотрите сам проект`
-
-        bot.sendMessage(query.message.chat.id, html, {
-            parse_mode: 'HTML'
-        })
-
-    } else if (type === ACTION_TYPE.squareByTechnologist) {
-
-        const { squareByTechnologist } = data
-
-        const html = `Площадь реализованной пищевой технологии на объекта: <strong>${squareByTechnologist}</strong>.
-        
-Для детального просмотра площади помещений объекта смотрите сам проект`
-
-        bot.sendMessage(query.message.chat.id, html, {
-            parse_mode: 'HTML'
-        })
-
-        file_id = ''
-        bot.sendDocument(chatId, file_id)
-
+    } else if (type === ACTION_TYPE.SHOW_PROJECTS_MAP) {
+            bot.sendLocation(query.message.chat.id, lo, la)
     }
 })
 
@@ -1271,13 +1748,16 @@ bot.on('callback_query', query => {
         throw new Error('Data is not an object')
     }
 
-    const { type } = data
-    if (type === ACTION_TYPE.concreticate) {
-
-        getProductData(query.id, data)
+    const { la, lo } = data
+    if (type === ACTION_TYPE.SHOW_PROJECTS_MAP) {
+        bot.sendLocation(query.message.chat.id, la, lo)
 
     }
 })
+
+
+
+// find products and projects by query
 
 // find project by type
 function sendProjectsByQuery(chatId, query) {
@@ -1344,8 +1824,10 @@ function sendMultiPenByQuery(chatId, query) {
     })
 }
 
-// send by query bar equipment
-// find coffeeGrinder by type
+
+
+// ------------------------ function send Bartscher bar equipment products by query -------------------
+// bartscher__coffeeGrinder
 function sendCoffeGrinderByQuery(chatId, query) {
     coffeeGrinder.find(query).then(coffeeGrinder => {
 
@@ -1364,7 +1846,7 @@ function sendCoffeGrinderByQuery(chatId, query) {
     })
 }
 
-// find coffeeMaker by type
+// bartscher__coffeeMaker
 function sendCoffeMakerByQuery(chatId, query) {
     coffeeMaker.find(query).then(coffeeMaker => {
 
@@ -1383,7 +1865,7 @@ function sendCoffeMakerByQuery(chatId, query) {
     })
 }
 
-// find juicer by type
+// bartscher__juicer
 function sendJuicerByQuery(chatId, query) {
     juicer.find(query).then(juicer => {
 
@@ -1402,7 +1884,7 @@ function sendJuicerByQuery(chatId, query) {
     })
 }
 
-// find milkFrother by type
+// bartscher__milkFrother
 function sendMilkFrotherByQuery(chatId, query) {
     milkFrother.find(query).then(milkFrother => {
 
@@ -1421,7 +1903,8 @@ function sendMilkFrotherByQuery(chatId, query) {
     })
 }
 
-// find elframo dishwasher by type
+// ------------------------ function send Elframo products by query ------------------- 
+// elframo__dishwasher
 function sendElframoDishwasherByQuery(chatId, query) {
     dishwasher.find(query).then(dishwasher => {
 
@@ -1440,7 +1923,7 @@ function sendElframoDishwasherByQuery(chatId, query) {
     })
 }
 
-// find elframo glassWasher by type
+// elframo__glassWasher
 function sendElframoGlassWasherByQuery(chatId, query) {
     glassWasher.find(query).then(glassWasher => {
 
@@ -1459,7 +1942,7 @@ function sendElframoGlassWasherByQuery(chatId, query) {
     })
 }
 
-// find elframo potWashingMachine by type
+// elframo__pot_washing_machine
 function sendElframoPotWashingMachineByQuery(chatId, query) {
     potWashingMachine.find(query).then(potWashingMachine => {
 
@@ -1478,7 +1961,9 @@ function sendElframoPotWashingMachineByQuery(chatId, query) {
     })
 }
 
-// find samaref refrigeratedTable by type
+
+// ------------------------ function send Samaref products by query -------------------
+// samaref__refrigerated_table
 function sendSamarefRefrigeratedTableByQuery(chatId, query) {
     refrigeratedTable.find(query).then(refrigeratedTable => {
 
@@ -1497,7 +1982,7 @@ function sendSamarefRefrigeratedTableByQuery(chatId, query) {
     })
 }
 
-// find samaref refrigeratiorCabinet by type
+// samaref__refrigeratior_cabinet
 function sendSamarefRefrigeratiorCabinetByQuery(chatId, query) {
     refrigeratiorCabinet.find(query).then(refrigeratiorCabinet => {
 
@@ -1516,7 +2001,7 @@ function sendSamarefRefrigeratiorCabinetByQuery(chatId, query) {
     })
 }
 
-// find samaref shockFreezer by type
+// samaref__shock_freezer
 function sendSamarefShockFreezerByQuery(chatId, query) {
     shockFreezer.find(query).then(shockFreezer => {
 
@@ -1534,6 +2019,215 @@ function sendSamarefShockFreezerByQuery(chatId, query) {
         sendHTML(chatId, html, 'products')
     })
 }
+
+// ------------------------ function send RM Gastro products by query -------------------
+// rm_gastro__grill
+function sendRmGastroGrillByQuery(chatId, query) {
+    grill.find(query).then(grill => {
+
+        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
+
+        bot.sendMessage(chatId, text, {})
+
+        const html = grill.map((gr, i) => {
+            return `<strong>Название: </strong> ${gr.name} 
+<strong>Подробнее: </strong> /gr${gr.uuid}
+\n`
+        }).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+// rm_gastro__pasta_cooker
+function sendRmGastroPastaCookerByQuery(chatId, query) {
+    pastaCooker.find(query).then(pastaCooker => {
+
+        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
+
+        bot.sendMessage(chatId, text, {})
+
+        const html = pastaCooker.map((pcs, i) => {
+            return `<strong>Название: </strong> ${pcs.name} 
+<strong>Подробнее: </strong> /pcs${pcs.uuid}\n`
+}).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+// rm_gastro__bain_marie
+function sendRmGastroBainMarieByQuery(chatId, query) {
+    bainMarie.find(query).then(bainMarie => {
+
+        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
+
+        bot.sendMessage(chatId, text, {})
+
+        const html = bainMarie.map((bmr, i) => {
+            return `<strong>Название: </strong> ${bmr.name} 
+<strong>Подробнее: </strong> /bmr${bmr.uuid}
+\n`
+        }).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+// rm_gastro__plate
+function sendRmGastroPlateByQuery(chatId, query) {
+    plate.find(query).then(plate => {
+
+        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
+
+        bot.sendMessage(chatId, text, {})
+
+        const html = plate.map((plt, i) => {
+            return `<strong>Название: </strong> ${plt.name} 
+<strong>Подробнее: </strong> /plt${plt.uuid}\n`
+}).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+// rm_gastro__pen
+function sendRmGastroPenByQuery(chatId, query) {
+    pen.find(query).then(pen => {
+
+        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
+
+        bot.sendMessage(chatId, text, {})
+
+        const html = pen.map((pen, i) => {
+            return `<strong>Название: </strong> ${pen.name} 
+<strong>Подробнее: </strong> /pen${pen.uuid}\n`
+}).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+// rm_gastro__food_boiler
+function sendRmGastroFoodBoilerByQuery(chatId, query) {
+    foodBoiler.find(query).then(foodBoiler => {
+
+        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
+
+        bot.sendMessage(chatId, text, {})
+
+        const html = foodBoiler.map((fbs, i) => {
+            return `<strong>Название: </strong> ${fbs.name} 
+<strong>Подробнее: </strong> /fbs${fbs.uuid}\n`
+}).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+// rm_gastro__deep_fryer
+function sendRmGastroDeepFryerByQuery(chatId, query) {
+    deepFryer.find(query).then(deepFryer => {
+        const html = deepFryer.map((dfs, i) => {
+            return `<strong>Название: </strong> ${dfs.name} 
+<strong>Подробнее: </strong> /dfs${dfs.uuid}\n`
+}).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+
+// ------------------------ function send Robot Coupe products by query -------------------
+// robot_coupe__robot_cook
+function sendRobotCoupeRobotCookByQuery(chatId, query) {
+    robotCook.find(query).then(robotCook => {
+        const html = robotCook.map((rck, i) => {
+            return `<strong>Название: </strong> ${rck.name} 
+<strong>Подробнее: </strong> /rck${rck.uuid}\n`
+}).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+// robot_coupe__cooter
+function sendRobotCoupeCooterByQuery(chatId, query) {
+    cooter.find(query).then(cooter => {
+        const html = cooter.map((сtr, i) => {
+            return `<strong>Название: </strong> ${сtr.name} 
+<strong>Подробнее: </strong> /сtr${сtr.uuid}\n`
+}).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+// robot_coupe__blixter
+function sendRobotCoupeBlixerByQuery(chatId, query) {
+    blixter.find(query).then(blixter => {
+        const html = blixter.map((blr, i) => {
+            return `<strong>Название: </strong> ${blr.name} 
+<strong>Подробнее: </strong> /blr${blr.uuid}\n`
+}).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+
+
+// robot_coupe__food_combine
+function sendRobotCoupeFoodCombineByQuery(chatId, query) {
+    foodCombine.find(query).then(foodCombine => {
+
+        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
+
+        bot.sendMessage(chatId, text, {})
+
+        const html = foodCombine.map((fce, i) => {
+            return `<strong>Название: </strong> ${fce.name} 
+<strong>Подробнее: </strong> /fce${fce.uuid}\n`
+}).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+// robot_coupe__mixer
+function sendRobotCoupeMixerByQuery(chatId, query) {
+    mixer.find(query).then(mixer => {
+
+        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
+
+        bot.sendMessage(chatId, text, {})
+
+        const html = mixer.map((mxr, i) => {
+            return `<strong>Название: </strong> ${mxr.name} 
+<strong>Подробнее: </strong> /mxr${mxr.uuid}\n`
+}).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
+// robot_coupe__vegetable_cutter
+function sendRobotCoupeVegetableCutterByQuery(chatId, query) {
+    vegetableCutter.find(query).then(vegetableCutter => {
+
+        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
+
+        bot.sendMessage(chatId, text, {})
+
+        const html = vegetableCutter.map((vcr, i) => {
+            return `<strong>Название: </strong> ${vcr.name} 
+<strong>Подробнее: </strong> /vcr${vcr.uuid}\n`
+}).join('\n')
+
+        sendHTML(chatId, html, 'products')
+    })
+}
+
 
 // get answerCallbackQuery by query
 function getProductData(queryId, { productUuid }) {

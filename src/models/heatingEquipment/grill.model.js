@@ -56,10 +56,6 @@ const grillSchema = new Schema({
             type: String,
             default: '0'
         },
-        materialOfBurners: {
-            type: String,
-            default: ''
-        },
         latticeSize: {
             type: String,
             default: ''
@@ -68,10 +64,6 @@ const grillSchema = new Schema({
             type: String,
             default: ''
         },
-    },
-    alternativeVolume: {
-        type: String,
-        default: ''
     },
     width: {
         type: Number,
@@ -100,10 +92,6 @@ const grillSchema = new Schema({
     picture: {
         type: String,
         rquired: true
-    },
-    options: {
-        type: [String],
-        default: []
     },
     NecessaryCommunications: {
         electrical: {

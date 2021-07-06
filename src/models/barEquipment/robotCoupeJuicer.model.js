@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const bakeSchema = new Schema({
+const robotCoupeJuicerSchema = new Schema({
     type: {
         type: String,
         required: true
@@ -9,10 +9,6 @@ const bakeSchema = new Schema({
     form: {
         type: String,
         required: true
-    },
-    subform: {
-        type: String,
-        default: ''
     },
     manufacturer: {
         type: String,
@@ -79,16 +75,8 @@ const bakeSchema = new Schema({
         electrical: {
             type: String,
             default: ''
-        },
-        waterSupply: {
-            type: String,
-            default: ''
-        },
-        sewerage: {
-            type: String,
-            default: ''
         }
     }
 })
 
-mongoose.model('bake', bakeSchema)
+mongoose.model('robotCoupeJuicer', robotCoupeJuicerSchema)
