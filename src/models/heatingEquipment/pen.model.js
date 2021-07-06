@@ -22,6 +22,9 @@ const penSchema = new Schema({
         type: String,
         required: true
     },
+    series: {
+        type: String
+    },
     article: {
         type: String,
         default: ''

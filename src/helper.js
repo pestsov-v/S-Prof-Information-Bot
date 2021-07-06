@@ -30,7 +30,6 @@ module.exports = {
         return source.substr(3, source.length)
     },
 
-
     getElframoDishwasherUuid(source) {
         return source.substr(5, source.length)
     },
@@ -53,7 +52,37 @@ module.exports = {
 
     getElframoShockFreezerUuid(source) {
         return source.substr(3, source.length)
+    },
+
+    getRmGastroGrillUuid (source) {
+        return source.substr(3, source.length)
+    },
+    
+    getRmGastroBainMarieUuid (source) {
+        return source.substr(4, source.length)
+    },
+
+    getRmGastroDeepFryerUuid (source) {
+        return source.substr(4, source.length)
+    },
+
+    getRmGastroFoodBoilerUuid (source) {
+        return source.substr(4, source.length)
+    },
+
+    getRmGastroPastaCookerUuid (source) {
+        return source.substr(4, source.length)
+    },
+
+    getRmGastroPenUuid (source) {
+        return source.substr(4, source.length)
+    },
+
+    getRmGastroPlateUuid (source) {
+        return source.substr(4, source.length)
+    },
+
+    getProductsByFourLittersUuid (source) {
+        return source.substr(4, source.length)
     }
-
-
 }

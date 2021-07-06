@@ -1,9 +1,9 @@
 module.exports = {
     home: {
         projects: 'Проекты',
-        statistic: 'Статистика поставок',
-        analytics: 'Аналитика продаж',
-        products: 'Товары'
+        statistic: 'Статистика по объектам',
+        actuality: 'Актуальное',
+        products: 'Оборудование'
     }
 }
 

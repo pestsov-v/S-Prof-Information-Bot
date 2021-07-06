@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const cooterSchema = new Schema({
+const deepFryerSchema = new Schema({
     type: {
         type: String,
         required: true
@@ -9,10 +9,6 @@ const cooterSchema = new Schema({
     form: {
         type: String,
         required: true
-    },
-    subform: {
-        type: String,
-        default: ''
     },
     manufacturer: {
         type: String,
@@ -87,4 +83,4 @@ const cooterSchema = new Schema({
     }
 })
 
-mongoose.model('cooter', cooterSchema)
+mongoose.model('deepFryer', deepFryerSchema)

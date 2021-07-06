@@ -18,6 +18,9 @@ const plateSchema = new Schema({
         type: String,
         required: true
     },
+    series: {
+        type: String
+    },
     name: {
         type: String,
         required: true
@@ -55,14 +58,6 @@ const plateSchema = new Schema({
         latticeSize: {
             type: String,
             default: ''
-        },
-        typeOfCoating: {
-            type: String,
-            default: ''
-        },
-        coolingCapacity: {
-            type: String,
-            default: true
         }
     },
     width: {
