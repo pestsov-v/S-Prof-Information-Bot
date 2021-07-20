@@ -1,8 +1,8 @@
 module.exports = {
     home: {
         projects: 'Проекты',
-        statistic: 'Статистика поставок',
-        analytics: 'Аналитика продаж',
+        statistic: 'Статистика объектов',
+        analytics: 'Реестр объектов',
         products: 'Товары'
     },
     projects: {
@@ -10,12 +10,6 @@ module.exports = {
         Lviv: 'Объекты по Львову',
         Random: 'Объекты в других областях',
         Exhibition: 'Виставки'
-    },
-    analytics: {
-        equipment_per_month: 'Всего запроектированного оборудования за месяц',
-        communications_per_month: 'Всего запроектированного коммуникаций за месяц',
-        equipment_per_year: 'Всего запроектированного оборудования за год',
-        communications_per_year: 'Всего запроектированного коммуникаций за год'
     },
     manufacturer: {
         rational: 'Rational',

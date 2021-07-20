@@ -1,4 +1,5 @@
-process.env["NTBA_FIX_319"] = 1;
+process.env["NTBA_FIX_319"] = 1
+process.env["NTBA_FIX_350"] = 1
 
 // require modules
 const mongoose = require('mongoose')
@@ -9,6 +10,11 @@ const config = require('./config')
 const keyboard = require('../src/keyboards/keyboards')
 const kb = require('../src/keyboards/keyboard-buttons')
 const helper = require('../src/helper')
+const fileId = require('./fileId')
+const emodji = require('./emoji')
+const sticker = require('./stickers')
+
+
 
 //database
 const databaseProjects = require('../databaseProjects.json')
@@ -54,7 +60,9 @@ const {
     productManufacturerText,
     inviteProjectsText,
     productKeyboardText,
-    productsText
+    productsText,
+    typeText,
+    objectsCommandText
 } = require('./messageText/generalText/index')
 
 // keyboard text
@@ -118,14 +126,12 @@ const pen = mongoose.model('pen')
 require('./models/heatingEquipment/plate.model')
 const plate = mongoose.model('plate')
 
-
 require('./models/refrigerationEquipment/refrigeratedTable.model')
 const refrigeratedTable = mongoose.model('refrigeratedTable')
 require('./models/refrigerationEquipment/refrigeratiorCabinet.model')
 const refrigeratiorCabinet = mongoose.model('refrigeratiorCabinet')
 require('./models/refrigerationEquipment/shockFreezer.model')
 const shockFreezer = mongoose.model('shockFreezer')
-
 
 require('./models/electromechanicalEquipment/blixter.model')
 const blixter = mongoose.model('blixter')
@@ -140,11 +146,7 @@ const vegetableCutter = mongoose.model('vegetableCutter')
 require ('./models/electromechanicalEquipment/robotCook.model')
 const robotCook = mongoose.model('robotCook')
 
-
-
-
 // databaseProjects.projects.forEach(p => new Project(p).save().catch(e => console.log(e)))
-
 
 // create to require MongoDB NoSQL
 mongoose.connect(config.DB_URL, {
@@ -156,15 +158,6 @@ mongoose.connect(config.DB_URL, {
 const ACTION_TYPE = {
     DWG: 'dwg',
     PDF: 'pdf',
-    technologicalEquipmentPerObject: 'texeqpo',
-    stainlessSteelEquipmentPerObject: 'ststpo',
-    allCommunicationsPerObject: 'allcopo',
-    electricalPerObject: 'elepo',
-    waterPerObject: 'watpo',
-    seweragePerObject: 'sepo',
-    ventilationPerObject: 'venpo',
-    square: 'ar',
-    squareByTechnologist: 'arbtech',
     concreticate: 'cnc',
     oficialSite: 'ofs',
     SHOW_PROJECTS_MAP: 'spm'
@@ -198,6 +191,7 @@ const bot = new TelegramBot(config.TOKEN, {
 
 
 // // switch case keybard_markup to back buttons
+
 bot.on('message', msg => {
     const chatId = helper.getChatId(msg)
 
@@ -247,10 +241,16 @@ bot.on('message', msg => {
             })
             break
         case kb.home.statistic:
-            bot.sendMessage(chatId, { district: 'statistic' })
+            bot.sendMessage(chatId, `<a href="https://docs.google.com/spreadsheets/d/11osrviGjujYOF_7iiMYZmzlf9p1p9TU0384F1R6hCIk/edit?usp=sharing">Общая статистика за 2021 год</a>`, {
+                parse_mode: 'HTML',
+                disable_web_page_preview: true
+            })
             break
         case kb.home.analytics:
-            bot.sendMessage(chatId, { district: 'projects' })
+            bot.sendMessage(chatId, `<a href="https://docs.google.com/spreadsheets/d/1rqGGFdBZrPFx9JEMVqT6UoXnjozG1cUxp4TepiKA3wM/edit?usp=sharing">Реестр объектов за 2021 год</a>`, {
+                parse_mode: 'HTML',
+                disable_web_page_preview: true
+            })
             break
         case kb.home.products:
             bot.sendMessage(chatId, productsText, {
@@ -260,7 +260,6 @@ bot.on('message', msg => {
                 }
             })
             break
-
         case kb.projects.Kyiv:
             sendProjectsByQuery(chatId, { district: 'Киев' })
             break
@@ -273,7 +272,7 @@ bot.on('message', msg => {
         case kb.projects.Exhibition:
             sendProjectsByQuery(chatId, { district: 'Выставки' })
             break
-
+        
     }
 })
 
@@ -400,7 +399,6 @@ bot.on('message', msg => {
     }
 })
 
-
 // switch case keyboard_markup to manufacturer categories
 bot.on('message', msg => {
     const chatId = helper.getChatId(msg)
@@ -519,25 +517,71 @@ bot.on('message', msg => {
     }
 })
 
+
+bot.on('message', msg => {
+    chatId = msg.chat.id
+    console.log(msg)
+    if (msg.text === 'хочу скачать проект') {
+        bot.sendMessage(chatId, `Для того чтобы скачать всю информацию по проекту введите шифр объекта. 
+
+К примеру, чтобы просмотреть всю информацию по 15 школей в городе Мариуполь - необходимо ввести шифр проекта, а именно: "П-001-2021"`)
+    }
+})
+
 // start command
 bot.onText(/\/start/, msg => {
 
-    const text = 'hello'
-    bot.sendMessage(helper.getChatId(msg), text, {
-        reply_markup: {
-            keyboard: keyboard.home,
-            resize_keyboard: true
-        }
-    })
+    if (msg.chat.first_name !== 'Ave' || 'ZelenskyiV') {
+        bot.sendMessage(helper.getChatId(msg), `Извини, у тебя нету доступа к этому боту ${package} 
+Чтобы получить доступ напиши нашему главному - @AveCardinal`)
+    } else if (msg.chat.first_name === 'Ave') {
+        const text = 'hello'
+        bot.sendMessage(helper.getChatId(msg), text, {
+            reply_markup: {
+                keyboard: keyboard.home,
+                resize_keyboard: true
+            }
+        })
+    }
 })
 
 // help command
 bot.onText(/\/help/, msg => {
-
-    self = this
-    self.helpText = helpText
-    bot.sendMessage(helper.getChatId(msg), helpText)
+    if (msg.chat.first_name !== 'Ave' || 'ZelenskyiV') {
+        bot.sendMessage(helper.getChatId(msg), 'Извини, у тебя нету доступа к этому боту:( чтобы получить доступ напиши нашему главному - @AveCardinal')
+    } else if (msg.chat.first_name === 'Ave') {
+        self = this
+        self.helpText = helpText
+        bot.sendMessage(helper.getChatId(msg), helpText, {
+            parse_mode: 'HTML'
+        })
+    }
 })
+
+
+bot.onText(/\/type/, msg => {
+    if (msg.chat.first_name !== 'Ave' || 'ZelenskyiV') {
+        bot.sendMessage(helper.getChatId(msg), 'Извини, у тебя нету доступа к этому боту:( чтобы получить доступ напиши нашему главному - @AveCardinal')
+    } else if (msg.chat.first_name === 'Ave') {
+        bot.sendMessage(helper.getChatId(msg), typeText.typeText, {
+            parse_mode: 'HTML'
+        })
+    }
+})
+
+bot.onText(/\/object/, msg => {
+    if (msg.chat.first_name !== 'Ave' || 'ZelenskyiV') {
+        bot.sendMessage(helper.getChatId(msg), 'Извини, у тебя нету доступа к этому боту:( чтобы получить доступ напиши нашему главному - @AveCardinal')
+    } else if (msg.chat.first_name === 'Ave') {
+        bot.sendMessage(helper.getChatId(msg), objectsCommandText.objectsCommandText, {
+            reply_markup: {
+                keyboard: keyboard.projects,
+                resize_keyboard: true
+            }    
+        })
+    }
+})
+
 
 // find project by id
 bot.onText(/\/k(.+)/, (msg, [source]) => {
@@ -1738,37 +1782,15 @@ bot.on('callback_query', query => {
     }
 })
 
-// callback_query action_type by product inline buttons
-bot.on('callback_query', query => {
-    let data
-
-    try {
-        data = JSON.parse(query.data)
-    } catch (e) {
-        throw new Error('Data is not an object')
-    }
-
-    const { la, lo } = data
-    if (type === ACTION_TYPE.SHOW_PROJECTS_MAP) {
-        bot.sendLocation(query.message.chat.id, la, lo)
-
-    }
-})
-
-
 
 // find products and projects by query
-
 // find project by type
 function sendProjectsByQuery(chatId, query) {
     Project.find(query).then(projects => {
 
-
         const text = `Виберите желаемый объект кликнув по ссылке ниже: `
 
-
-        bot.sendMessage(chatId, text, {
-        })
+        bot.sendMessage(chatId, text, {})
 
         const html = projects.map((k, i) => {
             return `<strong>Штамп: </strong> <i>${k.stamp}</i> 
@@ -1789,8 +1811,7 @@ function sendcombiSteamerByQuery(chatId, query) {
 
         const text = `Виберите желаемый товар кликнув по ссылке ниже:`
 
-        bot.sendMessage(chatId, text, {
-        })
+        bot.sendMessage(chatId, text, {})
 
         const html = combiStreamers.map((p, i) => {
             return `<strong>Серия: </strong> ${p.series}
@@ -1809,8 +1830,7 @@ function sendMultiPenByQuery(chatId, query) {
 
         const text = `Виберите желаемый товар кликнув по ссылке ниже:`
 
-        bot.sendMessage(chatId, text, {
-        })
+        bot.sendMessage(chatId, text, {})
 
         const html = multiPen.map((m, i) => {
             return `<strong>Название серии: </strong> ${m.series} 
@@ -1824,17 +1844,13 @@ function sendMultiPenByQuery(chatId, query) {
     })
 }
 
-
-
 // ------------------------ function send Bartscher bar equipment products by query -------------------
 // bartscher__coffeeGrinder
 function sendCoffeGrinderByQuery(chatId, query) {
     coffeeGrinder.find(query).then(coffeeGrinder => {
 
         const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {
-        })
+        bot.sendMessage(chatId, text, {})
 
         const html = coffeeGrinder.map((cg, i) => {
             return `<strong>Название: </strong> ${cg.name} 
@@ -1851,9 +1867,7 @@ function sendCoffeMakerByQuery(chatId, query) {
     coffeeMaker.find(query).then(coffeeMaker => {
 
         const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {
-        })
+        bot.sendMessage(chatId, text, {})
 
         const html = coffeeMaker.map((cm, i) => {
             return `<strong>Название: </strong> ${cm.name}<strong>
@@ -1903,21 +1917,63 @@ function sendMilkFrotherByQuery(chatId, query) {
     })
 }
 
+bot.on('message', msg => {
+    console.log(msg.document)
+})
+
+bot.on('message', msg => {
+    console.log(msg.sticker)
+})
+
+const downwardsBlackArrow = '\u{2B07}' 
+const package = '\u{1F4E6}'
+
+
+bot.on('message', msg => {
+    chatId = msg.chat.id
+
+    if (msg.text === 'П-001-2021') {
+        const dwg = fileId.p_001_2021.dwg
+        const pdf = fileId.p_001_2021.pdf
+        const xcls = fileId.p_001_2021.xcls
+        const caption = fileId.p_001_2021.caption
+
+        bot.sendSticker(chatId, sticker.stickers.HotCherryPresents)
+        bot.sendMessage(chatId, caption)
+        bot.sendDocument(chatId, dwg, {
+            caption: `Проект в DWF формате ${emodji.emodji.package}`,
+            reply_markup: {
+                keyboard: keyboard.home,
+                resize_keyboard: true
+            }
+        })
+        bot.sendDocument(chatId, pdf, {
+            caption: `Проект в PDF формате ${emodji.emodji.package}`,
+            reply_markup: {
+                keyboard: keyboard.home,
+                resize_keyboard: true
+            }
+        })
+        bot.sendDocument(chatId, xcls, {
+            caption: `Спецификация оборудование и материалов ${emodji.emodji.package}`,
+            reply_markup: {
+                keyboard: keyboard.home,
+                resize_keyboard: true
+            }
+        })
+    }
+})
+
 // ------------------------ function send Elframo products by query ------------------- 
 // elframo__dishwasher
 function sendElframoDishwasherByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     dishwasher.find(query).then(dishwasher => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {
-        })
-
         const html = dishwasher.map((edsw, i) => {
-            return `<strong>Название: </strong> ${edsw.name} 
-<strong>Подробнее: </strong> /edsw${edsw.uuid}
-\n`
-        }).join('\n')
+            return `<strong>Серия: </strong> ${edsw.series}
+<strong>Название модели: </strong> ${edsw.name} 
+<strong>Подробнее о товаре: </strong> /edsw${edsw.uuid}\n`
+}).join('\n')
 
         sendHTML(chatId, html, 'products')
     })
@@ -1925,13 +1981,8 @@ function sendElframoDishwasherByQuery(chatId, query) {
 
 // elframo__glassWasher
 function sendElframoGlassWasherByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     glassWasher.find(query).then(glassWasher => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {
-        })
-
         const html = glassWasher.map((egw, i) => {
             return `<strong>Название: </strong> ${egw.name} 
 <strong>Подробнее: </strong> /egw${egw.uuid}
@@ -1944,13 +1995,8 @@ function sendElframoGlassWasherByQuery(chatId, query) {
 
 // elframo__pot_washing_machine
 function sendElframoPotWashingMachineByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     potWashingMachine.find(query).then(potWashingMachine => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {
-        })
-
         const html = potWashingMachine.map((eptm, i) => {
             return `<strong>Название: </strong> ${eptm.name} 
 <strong>Подробнее: </strong> /eptm${eptm.uuid}
@@ -1961,17 +2007,12 @@ function sendElframoPotWashingMachineByQuery(chatId, query) {
     })
 }
 
-
 // ------------------------ function send Samaref products by query -------------------
 // samaref__refrigerated_table
 function sendSamarefRefrigeratedTableByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     refrigeratedTable.find(query).then(refrigeratedTable => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {
-        })
-
+        bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
         const html = refrigeratedTable.map((rt, i) => {
             return `<strong>Название: </strong> ${rt.name} 
 <strong>Подробнее: </strong> /rt${rt.uuid}
@@ -1984,13 +2025,8 @@ function sendSamarefRefrigeratedTableByQuery(chatId, query) {
 
 // samaref__refrigeratior_cabinet
 function sendSamarefRefrigeratiorCabinetByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     refrigeratiorCabinet.find(query).then(refrigeratiorCabinet => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {
-        })
-
         const html = refrigeratiorCabinet.map((rf, i) => {
             return `<strong>Название: </strong> ${rf.name} 
 <strong>Подробнее: </strong> /rf${rf.uuid}
@@ -2003,13 +2039,8 @@ function sendSamarefRefrigeratiorCabinetByQuery(chatId, query) {
 
 // samaref__shock_freezer
 function sendSamarefShockFreezerByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     shockFreezer.find(query).then(shockFreezer => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {
-        })
-
         const html = shockFreezer.map((sf, i) => {
             return `<strong>Название: </strong> ${sf.name} 
 <strong>Подробнее: </strong> /sf${sf.uuid}
@@ -2023,12 +2054,8 @@ function sendSamarefShockFreezerByQuery(chatId, query) {
 // ------------------------ function send RM Gastro products by query -------------------
 // rm_gastro__grill
 function sendRmGastroGrillByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     grill.find(query).then(grill => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {})
-
         const html = grill.map((gr, i) => {
             return `<strong>Название: </strong> ${gr.name} 
 <strong>Подробнее: </strong> /gr${gr.uuid}
@@ -2041,12 +2068,8 @@ function sendRmGastroGrillByQuery(chatId, query) {
 
 // rm_gastro__pasta_cooker
 function sendRmGastroPastaCookerByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     pastaCooker.find(query).then(pastaCooker => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {})
-
         const html = pastaCooker.map((pcs, i) => {
             return `<strong>Название: </strong> ${pcs.name} 
 <strong>Подробнее: </strong> /pcs${pcs.uuid}\n`
@@ -2058,12 +2081,8 @@ function sendRmGastroPastaCookerByQuery(chatId, query) {
 
 // rm_gastro__bain_marie
 function sendRmGastroBainMarieByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     bainMarie.find(query).then(bainMarie => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {})
-
         const html = bainMarie.map((bmr, i) => {
             return `<strong>Название: </strong> ${bmr.name} 
 <strong>Подробнее: </strong> /bmr${bmr.uuid}
@@ -2076,12 +2095,8 @@ function sendRmGastroBainMarieByQuery(chatId, query) {
 
 // rm_gastro__plate
 function sendRmGastroPlateByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     plate.find(query).then(plate => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {})
-
         const html = plate.map((plt, i) => {
             return `<strong>Название: </strong> ${plt.name} 
 <strong>Подробнее: </strong> /plt${plt.uuid}\n`
@@ -2093,12 +2108,8 @@ function sendRmGastroPlateByQuery(chatId, query) {
 
 // rm_gastro__pen
 function sendRmGastroPenByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     pen.find(query).then(pen => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {})
-
         const html = pen.map((pen, i) => {
             return `<strong>Название: </strong> ${pen.name} 
 <strong>Подробнее: </strong> /pen${pen.uuid}\n`
@@ -2110,12 +2121,8 @@ function sendRmGastroPenByQuery(chatId, query) {
 
 // rm_gastro__food_boiler
 function sendRmGastroFoodBoilerByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     foodBoiler.find(query).then(foodBoiler => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {})
-
         const html = foodBoiler.map((fbs, i) => {
             return `<strong>Название: </strong> ${fbs.name} 
 <strong>Подробнее: </strong> /fbs${fbs.uuid}\n`
@@ -2127,6 +2134,7 @@ function sendRmGastroFoodBoilerByQuery(chatId, query) {
 
 // rm_gastro__deep_fryer
 function sendRmGastroDeepFryerByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     deepFryer.find(query).then(deepFryer => {
         const html = deepFryer.map((dfs, i) => {
             return `<strong>Название: </strong> ${dfs.name} 
@@ -2141,6 +2149,7 @@ function sendRmGastroDeepFryerByQuery(chatId, query) {
 // ------------------------ function send Robot Coupe products by query -------------------
 // robot_coupe__robot_cook
 function sendRobotCoupeRobotCookByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     robotCook.find(query).then(robotCook => {
         const html = robotCook.map((rck, i) => {
             return `<strong>Название: </strong> ${rck.name} 
@@ -2153,6 +2162,7 @@ function sendRobotCoupeRobotCookByQuery(chatId, query) {
 
 // robot_coupe__cooter
 function sendRobotCoupeCooterByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     cooter.find(query).then(cooter => {
         const html = cooter.map((сtr, i) => {
             return `<strong>Название: </strong> ${сtr.name} 
@@ -2165,6 +2175,7 @@ function sendRobotCoupeCooterByQuery(chatId, query) {
 
 // robot_coupe__blixter
 function sendRobotCoupeBlixerByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     blixter.find(query).then(blixter => {
         const html = blixter.map((blr, i) => {
             return `<strong>Название: </strong> ${blr.name} 
@@ -2175,16 +2186,10 @@ function sendRobotCoupeBlixerByQuery(chatId, query) {
     })
 }
 
-
-
 // robot_coupe__food_combine
 function sendRobotCoupeFoodCombineByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     foodCombine.find(query).then(foodCombine => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {})
-
         const html = foodCombine.map((fce, i) => {
             return `<strong>Название: </strong> ${fce.name} 
 <strong>Подробнее: </strong> /fce${fce.uuid}\n`
@@ -2196,12 +2201,8 @@ function sendRobotCoupeFoodCombineByQuery(chatId, query) {
 
 // robot_coupe__mixer
 function sendRobotCoupeMixerByQuery(chatId, query) {
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     mixer.find(query).then(mixer => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {})
-
         const html = mixer.map((mxr, i) => {
             return `<strong>Название: </strong> ${mxr.name} 
 <strong>Подробнее: </strong> /mxr${mxr.uuid}\n`
@@ -2213,12 +2214,9 @@ function sendRobotCoupeMixerByQuery(chatId, query) {
 
 // robot_coupe__vegetable_cutter
 function sendRobotCoupeVegetableCutterByQuery(chatId, query) {
+    bot.sendSticker(chatId, HotCherryWaiting)
+    bot.sendMessage(chatId, `Выберите желаемый товар ${package} ниже ${downwardsBlackArrow}: `, {})
     vegetableCutter.find(query).then(vegetableCutter => {
-
-        const text = `Виберите желаемый товар кликнув по ссылке ниже:`
-
-        bot.sendMessage(chatId, text, {})
-
         const html = vegetableCutter.map((vcr, i) => {
             return `<strong>Название: </strong> ${vcr.name} 
 <strong>Подробнее: </strong> /vcr${vcr.uuid}\n`
