@@ -6,6 +6,8 @@ const productManufacturerText = require('./productsManufacturer.text')
 const inviteProjectsText = require('./inviteProjects.text')
 const productKeyboardText = require('./productKeyboard.text')
 const productsText = require('./products.text')
+const typeText = require('./typeText')
+const objectsCommandText = require('./products')
 
 module.exports = {
     backText,
@@ -15,5 +17,7 @@ module.exports = {
     productManufacturerText,
     inviteProjectsText,
     productKeyboardText,
-    productsText
+    productsText,
+    typeText,
+    objectsCommandText
 }
