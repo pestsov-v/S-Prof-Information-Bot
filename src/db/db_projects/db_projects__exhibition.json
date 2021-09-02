@@ -1,0 +1,36 @@
+{
+    "projects__exhibition": [
+        {
+            "project_name": "Влаштування технологічного обладнання на виставці в конгресно-виставковому центрі \"Парковий\"",
+            "object_name": "Виставка в конгресно-виставковому центрі \"Парковий\"",
+            "type": "Виставка",
+            "city": "м. Київ",
+            "address": "вул. Паркова дорога 16а",
+            "dwgLinks": "https://drive.google.com/file/d/1wyLp-gEQyBnLI6nNO6flGtRa2KBem0jZ/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1wyLp-gEQyBnLI6nNO6flGtRa2KBem0jZ/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1wyLp-gEQyBnLI6nNO6flGtRa2KBem0jZ/view?usp=sharing",
+            "location": {
+                "latitude": 30.54081498471157,
+                "longitude": 50.44920561550802
+            },
+            "stamp": "В-701-2021",
+            "uuid": "k0701"
+        },
+        {
+            "project_name": "Влаштування технологічного обладнання на виставці в міжнародному виставковому центрів",
+            "object_name": "Виставка в Міжнародному виставковому центрі",
+            "type": "Виставка",
+            "city": "м. Київ",
+            "address": "вул. Броварський проспект 15",
+            "dwgLinks": "https://drive.google.com/file/d/1cugGoK5re7XsoMP36zFxoauEOM6k0rO1/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1r7-Nen1iAhrbSDdAQi-xKAa8CbQbHmPz/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1wyLp-gEQyBnLI6nNO6flGtRa2KBem0jZ/view?usp=sharing",
+            "location": {
+                "latitude": 30.589981696567726,
+                "longitude": 50.45267919137133
+            },
+            "stamp": "В-702-2021",
+            "uuid": "k0702"
+        }
+    ]
+}

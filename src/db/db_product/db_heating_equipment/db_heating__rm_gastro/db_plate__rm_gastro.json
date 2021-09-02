@@ -1,0 +1,37 @@
+{
+    "db_plates__rm_gastro":  [
+        {
+            "type": "Теплове обладнання",
+            "form": "Плита", 
+            "manufacturer": "RM Gastro",
+            "country_manufacturer": "Чехія",
+            "series": "Line 700",
+            "name": "SPI 704 E",
+            "article": "117260903",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 7,
+            "specialized_data": {
+                "type_of_burners": "Індуктивні елементи нагріву",
+                "number_and_power_of_burners": "2 комфорки по 3.5 кВт кожна",
+                "type_of_coating": "Склокераміка",
+                "lattice_size": "2 комфорки діаметром 120-130 мм"
+            },
+            "width": 400,
+            "depth": 730,
+            "height": 300,
+            "weight": 37,
+            "uuid": "plt001",
+            "link": "http://www.rmgastro.com/source/RM/RM_700_s.pdf",
+            "picture": "https://gastromarket.by/wp-content/uploads/2019/01/%D0%9F%D0%BB%D0%B8%D1%82%D0%B0-%D0%B8%D0%BD%D0%B4%D1%83%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F-SPI-704-E.png",
+            "necessary_communications": {
+                "electrical": "8",
+                "ventilation": {
+                    "width": 700,
+                    "depth": 1100,
+                    "height": 300
+                }
+            }
+        }
+    ]
+}

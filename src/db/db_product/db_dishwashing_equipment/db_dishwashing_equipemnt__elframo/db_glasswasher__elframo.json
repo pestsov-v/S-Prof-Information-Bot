@@ -1,0 +1,37 @@
+{
+    "db_glasswashers__elframo":  [
+        {
+            "type": "Посудомийне обладнання",
+            "form": "Склянкомийна машина",
+            "subform": "Фронтова",
+            "appointment": "Для склянок та кухлів",
+            "manufacturer": "Elramo",
+            "country_manufacturer": "Італія",
+            "series": "Basic",
+            "name": "BE 35",
+            "article": "B111100",
+            "number_phases": 1,
+            "voltage": 230,
+            "power": 3.2,
+            "inner_dimensions": "Склянки не вище 217 мм",
+            "alternative_volume": "Кошик 350 х 350 мм",
+            "width": 416,
+            "depth": 447,
+            "height": 639,
+            "weight": 33,
+            "uuid": "egw001",
+            "link": "https://www.elframo.com/glasswashers/be-series-glasswashers/",
+            "picture": "https://www.elframo.com/wp-content/uploads//2015/04/BE-40-800x600.jpg",
+            "necessary_communications": {
+                "electrical": "4",
+                "water_supply": "1/2",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 700,
+                    "depth": 700,
+                    "height": 300
+                }
+            }
+        }
+    ]
+}

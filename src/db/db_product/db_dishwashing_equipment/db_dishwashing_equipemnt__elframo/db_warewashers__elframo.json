@@ -1,0 +1,37 @@
+{
+    "db_warewashers__elframo":  [
+        {
+            "type": "Посудомийне обладнання",
+            "form": "Котломийна машина",
+            "subform": "Фронтова",
+            "appointment": "Для котлів, кастрюль та деко",
+            "manufacturer": "Elframo",
+            "country_manufacturer": "Італія",
+            "series": "Warewashers",
+            "name": "LP 61 VE",
+            "article": "L1111111",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 10.5,
+            "inner_dimensions": "Внутрішня висота 641 мм",
+            "alternative_volume": "Кошик 700 х 550 мм",
+            "width": 675,
+            "depth": 843,
+            "height": 1837,
+            "weight": 158,
+            "uuid": "eptm001",
+            "link": "https://www.elframo.com/glasswashers/be-series-glasswashers/",
+            "picture": "https://www.elframo.com/wp-content/uploads//2015/04/BE-40-800x600.jpg",
+            "necessary_communications": {
+                "electrical": "12",
+                "water_supply": "1/2",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1000,
+                    "depth": 1000,
+                    "height": 300
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "db_robot_cooks__robot_coupe":  [
+        {
+            "type": "Електромеханічне обладнання",
+            "form": "Robot Cook",
+            "manufacturer": "Robot Coupe",
+            "country_manufacturer": "Франція",
+            "name": "Robot Cook",
+            "article": "43000R",
+            "number_phases": 1,
+            "voltage": 230,
+            "power": 1.8,
+            "volume": "Одна чаша на 3.7 л",
+            "width": 226,
+            "depth": 338,
+            "height": 522,
+            "weight": 15,
+            "uuid": "rck001",
+            "link": "https://www.robot-coupe.com/ru/ru/p/robot-cook/18407",
+            "picture": "https://robot-coupe.pro/uploads/shop/products/large/436e063911fe689fbfd959ce57faafe0.jpg",
+            "necessary_communications": {
+                "electrical": "2"
+            }
+        }
+    ]
+}

@@ -1,0 +1,424 @@
+{
+    "db_combi_streamers__rational":  [
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Pro",
+            "name": "XS 6-2/3",
+            "article": "CA1ERRA.0001245",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 5.7,
+            "volume": "6 рівнів GN 2/3",
+            "width": 655,
+            "depth": 621,
+            "height": 567,
+            "weight": 67,
+            "uuid": "p0001",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://profitex-market.com.ua/upload/iblock/ab0/ab0485c37c39c5a668abbc4c37f0c943.jpg",
+            "necessary_communications": {
+                "electrical": "6",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1000,
+                    "depth": 1000,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Pro",
+            "name": "6-1/1",
+            "article": "CB1ERRA.0001246",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 10.8,
+            "volume": "6 рівнів GN 1/1 або 12 рівнів GN 1/2",
+            "width": 850,
+            "depth": 842,
+            "height": 754,
+            "weight": 99,
+            "uuid": "p0002",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://assets.catering-appliance.com/media/product_huge_thumb/62/a2/rational-icp-6-1-1-g-n_img73780.jpg",
+            "necessary_communications": {
+                "electrical": "11",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1200,
+                    "depth": 1200,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Pro",
+            "name": "10-1/1",
+            "article": "CD1ERRA.0001247",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 18.9,
+            "volume": "10 рівнів GN 1/1 або 20 рівнів GN 1/2",
+            "width": 850,
+            "depth": 842,
+            "height": 1014,
+            "weight": 127,
+            "uuid": "p0003",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://images.ua.prom.st/2579405265_w449_h430_parokonvektomat-rational-icombi.jpg",
+            "necessary_communications": {
+                "electrical": "19",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1200,
+                    "depth": 1200,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Pro",
+            "name": "6-2/1",
+            "article": "CC1ERRA.0001248",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 22.4,
+            "volume": "6 рівнів GN 2/1 або 12 рівнів GN 1/1",
+            "width": 1072,
+            "depth": 1042,
+            "height": 754,
+            "weight": 137,
+            "uuid": "p0004",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://images.ua.prom.st/2579133312_w449_h430_parokonvektomat-rational-icombi.jpg",
+            "necessary_communications": {
+                "electrical": "23",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1400,
+                    "depth": 1400,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Pro",
+            "name": "10-2/1",
+            "article": "CE1ERRA.0001249",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 37.4,
+            "volume": "10 рівнів GN 2/1 або 20 рівнів GN 1/1",
+            "width": 1072,
+            "depth": 1042,
+            "height": 1014,
+            "weight": 179,
+            "uuid": "p0005",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://images.ua.prom.st/2579600569_parokonvektomat-rational-icombi.jpg",
+            "necessary_communications": {
+                "electrical": "38",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1400,
+                    "depth": 1400,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Pro",
+            "name": "20-1/1",
+            "article": "CF1ERRA.0001250",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 37.2,
+            "volume": "20 рівнів GN 1/1 або 40 рівнів GN 1/2",
+            "width": 877,
+            "depth": 913,
+            "height": 1807,
+            "weight": 263,
+            "uuid": "p0006",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://marine.metos.com/wp-content/uploads/2020/08/4352082MK.jpg",
+            "necessary_communications": {
+                "electrical": "38",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1200,
+                    "depth": 1200,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Pro",
+            "name": "20-2/1",
+            "article": "CG1ERRA.0001251",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 67.9,
+            "volume": "20 рівнів GN 2/1 або 40 рівнів GN 1/1",
+            "width": 1082,
+            "depth": 1117,
+            "height": 1807,
+            "weight": 336,
+            "uuid": "p0007",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://et-e.com.ua/image/cache/catalog/products/000003946_1-800x800.jpg",
+            "necessary_communications": {
+                "electrical": "68",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1400,
+                    "depth": 1500,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Сlassic",
+            "name": "CombiMaster Plus XS 6-2/3",
+            "article": "CA2ERRA.0001252",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 5.7,
+            "volume": "6 рівнів GN 2/3",
+            "width": 655,
+            "depth": 621,
+            "height": 567,
+            "weight": 62,
+            "uuid": "p0008",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://assets.catering-appliance.com/media/product_huge_thumb/62/a2/rational-icp-6-1-1-g-n_img73780.jpg",
+            "necessary_communications": {
+                "electrical": "6",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1000,
+                    "depth": 1000,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Сlassic",
+            "name": "6-1/1",
+            "article": "CB2ERRA.0001253",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 10.7,
+            "volume": "6 рівнів GN 1/1 або 12 рівнів GN 1/2",
+            "width": 850,
+            "depth": 842,
+            "height": 754,
+            "weight": 93,
+            "uuid": "p0009",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://images.ua.prom.st/2913338268_w500_h500_parokonvektomat-icombi-classic.jpg",
+            "necessary_communications": {
+                "electrical": "11",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1200,
+                    "depth": 1200,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Сlassic",
+            "name": "10-1/1",
+            "article": "CD2ERRA.0001254",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 18.9,
+            "volume": "10 рівнів GN 1/1 або 20 рівнів GN 1/2",
+            "width": 850,
+            "depth": 842,
+            "height": 1014,
+            "weight": 121,
+            "uuid": "p0010",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://trapeza.ru/images/big/b173609.jpg",
+            "necessary_communications": {
+                "electrical": "19",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1200,
+                    "depth": 1200,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Сlassic",
+            "name": "6-2/1",
+            "article": "CC2ERRA.0001255",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 22.4,
+            "volume": "6 рівнів GN 2/1 або 12 рівнів GN 1/1",
+            "width": 1072,
+            "depth": 1042,
+            "height": 754,
+            "weight": 131,
+            "uuid": "p0011",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://assets.catering-appliance.com/media/product_huge_thumb/58/54/rational-icc-6-2-1-e_img73795.jpg",
+            "necessary_communications": {
+                "electrical": "23",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1400,
+                    "depth": 1400,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Сlassic",
+            "name": "10-2/1",
+            "article": "CE2ERRA.0001256",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 37.4,
+            "volume": "10 рівнів GN 2/1 або 20 рівнів GN 1/1",
+            "width": 1072,
+            "depth": 1042,
+            "height": 1014,
+            "weight": 160,
+            "uuid": "p0012",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://s3-eu-west-1.amazonaws.com/ecateringcouk/i/pmi/ovc049.jpg?_t=21151697",
+            "necessary_communications": {
+                "electrical": "38",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1400,
+                    "depth": 1400,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Сlassic",
+            "name": "20-1/1",
+            "article": "CF2ERRA.0001257",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 37.2,
+            "volume": "20 рівнів GN 1/1 або 40 рівнів GN 1/2",
+            "width": 877,
+            "depth": 913,
+            "height": 1807,
+            "weight": 231,
+            "uuid": "p0013",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://lincat.co.uk/feed-images/ICC201_01.jpg",
+            "necessary_communications": {
+                "electrical": "38",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1200,
+                    "depth": 1200,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Пароконвектомат",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iCombi Сlassic",
+            "name": "20-2/1",
+            "article": "CG2ERRA.0001258",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 67.9,
+            "volume": "20 рівнів GN 2/1 або 40 рівнів GN 1/1",
+            "width": 1082,
+            "depth": 1117,
+            "height": 1807,
+            "weight": 304,
+            "uuid": "p0014",
+            "link": "https://www.rational-online.com/ru_ua/icombi-pro/",
+            "picture": "https://www.cs-catering-equipment.co.uk/media/catalog/product/cache/a9c4420610ab0550e481c5c4edbb6f27/i/c/icc202_1.jpg",
+            "necessary_communications": {
+                "electrical": "68",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1400,
+                    "depth": 1500,
+                    "height": 300
+                }
+            }
+        }
+    ]
+}

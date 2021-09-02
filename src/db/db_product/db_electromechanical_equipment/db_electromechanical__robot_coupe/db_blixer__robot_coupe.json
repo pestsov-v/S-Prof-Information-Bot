@@ -1,0 +1,28 @@
+{
+    "db_blixers__robot_coupe":  [
+        {
+            "type": "Електромеханічне обладнання",
+            "form": "Бліксер",
+            "manufacturer": "Robot Coupe",
+            "country_manufacturer": "Франція",
+            "series": "Blixer",
+            "name": "Blixer 2",
+            "article": "33228",
+            "number_phases": 1,
+            "voltage": 230,
+            "power": 0.7,
+            "volume": "Одна чаша на 2.9 л",
+            "width": 210,
+            "depth": 330,
+            "height": 420,
+            "weight": 11.5,
+            "uuid": "blr001",
+            "link": "https://www.robot-coupe.com/ru/ru/p/blixer-blixer-2/18234",
+            "picture": "https://robot-coupe.pro/uploads/shop/products/large/630d90a4e79b17bf045272009b58bdbd.jpg",
+            "necessary_communications": {
+                "electrical": "2"
+            }
+        }
+    ]
+}
+

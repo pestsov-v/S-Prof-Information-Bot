@@ -1,0 +1,72 @@
+{
+    "db_grills__rm_gastro":  [
+        {
+            "type": "Теплове обладнання",
+            "form": "Гриль",
+            "appointment": "Жарова поверхня", 
+            "manufacturer": "RM Gastro",
+            "country_manufacturer": "Чехія",
+            "series": "Line 700",
+            "name": "FTH 704",
+            "article": "117110095",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 4.5,
+            "specialized_data": {
+                "type_of_burners": "Одна суцільна поверхня",
+                "number_and_power_of_burners": "Одна суцільна поверхня потужністю 4.5 кВт",
+                "lattice_size": "Ш 370 х Г 560 мм",
+                "type_of_coating": "Сталь"
+            },
+            "width": 400,
+            "depth": 730,
+            "height": 900,
+            "weight": 40,
+            "uuid": "gr001",
+            "link": "http://www.rmgastro.com/source/RM/RM_700_s.pdf",
+            "picture": "https://www.s-prof.com.ua/upload/iblock/bac/ffbbe06f-73bb-11e8-b660-005056835c11_2d1924dc-73bd-11e8-b660-005056835c11.jpeg",
+            "necessary_communications": {
+                "electrical": "5",
+                "ventilation": {
+                    "width": 700,
+                    "depth": 1000,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Гриль",
+            "appointment": "Жарова поверхня", 
+            "manufacturer": "RM Gastro",
+            "country_manufacturer": "Чехія",
+            "series": "Line 700",
+            "name": "FTHC 704 E",
+            "article": "117110105",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 4.5,
+            "specialized_data": {
+                "type_of_burners": "Одна суцільна поверхня",
+                "number_and_power_of_burners": "Одна суцільна поверхня потужністю 4.5 кВт",
+                "lattice_size": "Ш 370 х Г 560 мм",
+                "type_of_coating": "Хром"
+            },
+            "width": 400,
+            "depth": 730,
+            "height": 900,
+            "weight": 40,
+            "uuid": "gr002",
+            "link": "http://www.rmgastro.com/source/RM/RM_700_s.pdf",
+            "picture": "https://www.s-prof.com.ua/upload/iblock/bac/ffbbe06f-73bb-11e8-b660-005056835c11_2d1924dc-73bd-11e8-b660-005056835c11.jpeg",
+            "necessary_communications": {
+                "electrical": "5",
+                "ventilation": {
+                    "width": 700,
+                    "depth": 1000,
+                    "height": 300
+                }
+            }
+        }
+    ]
+}

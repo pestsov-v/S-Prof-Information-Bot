@@ -1,0 +1,20 @@
+{
+    "projects__college": [
+        {
+            "project_name": "Влаштування технологічного обладнання в учбовим кімнатах медичного коледжу в Луцьку",
+            "object_name": "Луцький базовий фаховий медичний коледж",
+            "type": "Колледж",
+            "city": "м. Луцьк",
+            "address": "вул. Лесі Українки 2",
+            "dwgLinks": "https://drive.google.com/file/d/1UtQup4On8CjEG5nQY2bvAgBU0pIcqIC0/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1bZdOmH87yPViChOPh-oDLuQrYd92eYYs/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1bZdOmH87yPViChOPh-oDLuQrYd92eYYs/view?usp=sharing",
+            "location": {
+                "latitude": 23.943982519073465,
+                "longitude": 49.82714171075837
+            },
+            "stamp": "Л-502-2021",
+            "uuid": "k0502"
+        }
+    ]
+}

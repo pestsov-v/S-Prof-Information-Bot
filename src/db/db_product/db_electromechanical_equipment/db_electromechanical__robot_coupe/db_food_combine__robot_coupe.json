@@ -1,0 +1,28 @@
+{
+    "db_food_combines__robot_coupe":  [
+        {
+            "type": "Електромеханічне обладнання",
+            "form": "Кухонний комбайн",
+            "manufacturer": "Robot Coupe",
+            "country_manufacturer": "Франція",
+            "series": "R",
+            "name": "R 211 XL",
+            "article": "2176",
+            "number_phases": 1,
+            "voltage": 230,
+            "power": 0.55,
+            "volume": "Одна чаша на 2.9 л",
+            "alternative_volume": "Воронка діаметром 58 мм",
+            "width": 220,
+            "depth": 340,
+            "height": 445,
+            "weight": 12.6,
+            "uuid": "fce001",
+            "link": "https://www.robot-coupe.com/ru/ru/p/kuhonn-processor-kutter-ovo-erezka2-r-211-xl/18401",
+            "picture": "https://images.ua.prom.st/469199664_w640_h640_kuhonnyj-protsessor-r211.jpg",
+            "necessary_communications": {
+                "electrical": "2"
+            }
+        }
+    ]
+}

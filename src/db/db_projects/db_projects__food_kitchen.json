@@ -1,0 +1,20 @@
+{
+    "projects__food_kitchen": [
+        {
+            "project_name": "Будівництво житлових будинків, в тому числі доступного житла, та будівництво загальноосвітньої школи из басейном на вул. Соломії Крушильницької (ж/м Осокорки-Північні, 11 мікрорайон) у Дарницькому районі м.Києва (II черга будівництва)",
+            "object_name": "Фабрика-кухня, яка розташована в школі.",
+            "type": "Фабрика-кухня",
+            "city": "м. Київ",
+            "address": "вул. Соломії Крушельницької 11",
+            "dwgLinks": "https://drive.google.com/drive/folders/1oWlgyuMubIqywFVJ0pBACsx0PvKqwSdt?usp=sharing",
+            "pdfLinks": "https://drive.google.com/drive/folders/1c1oJ9LQOBmUxEjUcl_HF_VURN3ecEr3g?usp=sharing",
+            "xslsLinks": "https://drive.google.com/drive/folders/1c1oJ9LQOBmUxEjUcl_HF_VURN3ecEr3g?usp=sharing",
+            "location": {
+                "latitude": 30.641586525401795,
+                "longitude": 50.392639136857895
+            },
+            "stamp": "П-018-2021",
+            "uuid": "k0018"
+        }
+    ]
+}

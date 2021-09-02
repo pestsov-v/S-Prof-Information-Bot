@@ -1,0 +1,180 @@
+{
+    "projects__school": [
+                    {
+                        "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях КЗ \"Маріупольська загальноосвітня школа I - III ступенів № 15, яка знаходиться за адресою: вул. Новоросійська, 12 в м. Маріуполь.\"",
+                        "object_name": "Комунальный заклад \"Маріупольська загальноосвітня школа I - III ступенів № 15\"",
+                        "type": "Школа",
+                        "city": "м. Маріуполь",
+                        "address": "вул. Новоросійська, 12",
+                        "dwgLinks": "https://drive.google.com/file/d/1DOL3zpFh-NBdA45ooBwHUvURbf0hvc4D/view?usp=sharing",
+                        "pdfLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "location": {
+                            "latitude": 37.48559818311948,
+                            "longitude": 47.06730836042795
+                        },
+                        "stamp": "П-001-2021",
+                        "uuid": "k0001"
+                    },
+                    {
+                        "project_name": "Влаштування кухонного, технологічного обладнання в приміщеннях харчоблоку середньої загальноосвітньої школи №1, яка знаходиться за адресою: вул. Молодіжна, 19",
+                        "object_name": "Середня загальноосвітня школа I - III cтупенів № 1",
+                        "type": "Школа",
+                        "city": "смт. Станиця-Луганська",
+                        "address": "вул. Молодіжна 19",
+                        "dwgLinks": "https://drive.google.com/file/d/1SZQ2lBeqcYFH92DJ_-bTERmLhsoan-xf/view?usp=sharing",
+                        "pdfLinks": "https://drive.google.com/file/d/1XF9SvcHvdgyxSQoF9bLKpMALvd_alc2c/view?usp=sharing",
+                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "location": {
+                            "latitude": 39.47549705970439,
+                            "longitude": 48.654017703662745
+                        },
+                        "stamp": "П-006-2021",
+                        "uuid": "k0006"
+                    },
+                    {
+                        "project_name": "Капітальний ремонт (відновлення) конструкцій існуючого блоку приміщень середньої загальтноосвітньої школи I - III ступенів № 103 м. Києва, вулиця Алматинська, 89",
+                        "object_name": "Середня загальноосвітня школа I - III cтупенів № 103",
+                        "type": "Школа",
+                        "city": "м. Київ",
+                        "address": "вул. Алма-Атинська 89",
+                        "dwgLinks": "https://drive.google.com/file/d/1LgpOEH2ADFnl_YEcbRovfNnfxzc6o87W/view?usp=sharing",
+                        "pdfLinks": "https://drive.google.com/file/d/10s3a86HIFyOI3QI41mHvBWztlI_9Peqh/view?usp=sharing",
+                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "location": {
+                            "latitude": 30.670674071430877,
+                            "longitude": 50.44619922966597
+                        },
+                        "stamp": "П-019-2021",
+                        "uuid": "k0019"
+                    },
+                    {
+                        "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях середньої загальноосвітньої школи I-III ступенів №184, яка знаходиться за адресою вул. Вільде, 5, Дніпровського району в м. Києві",
+                        "object_name": "Середня загальноосвітня школа I - III cтупенів № 184",
+                        "type": "Школа",
+                        "city": "м. Київ",
+                        "address": "вул. Вільде 5",
+                        "dwgLinks": "https://drive.google.com/file/d/1mNDrbim8rKhVyMSSJArhhs5K14Pa6zMr/view?usp=sharing",
+                        "pdfLinks": "https://drive.google.com/file/d/1PdPae3pks3YuZ70kt15fHBRsuv_oqhl1/view?usp=sharing",
+                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "location": {
+                            "latitude": 30.604753827253923,
+                            "longitude": 50.489999725382404
+                        },
+                        "stamp": "П-025-2021",
+                        "uuid": "k0025"
+                    },
+                    {
+                        "project_name": "Влаштування технологічного обладнання в приміщеннях спеціалізованій школі I - III ступенів № 228, яка знаходиться за адресою: вул. Березняківська 34, м. Києва",
+                        "object_name": "Спеціалізована школа I - III cтупенів № 228",
+                        "type": "Школа",
+                        "city": "м. Київ",
+                        "address": "вул. Березняківська 34",
+                        "dwgLinks": "https://drive.google.com/file/d/1lX6FCZ7ZEdVx2eBMe8g7OtLBbCg5fyEy/view?usp=sharing",
+                        "pdfLinks": "https://drive.google.com/file/d/1qwVtgJjqUITd4BaI-zL00nJbh5b1kXf3/view?usp=sharing",
+                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "location": {
+                            "latitude": 30.600034457937337,
+                            "longitude": 50.42295381497949
+                        },
+                        "stamp": "П-026-2021",
+                        "uuid": "k0026"
+                    },
+                    {
+                        "project_name": "Влаштування технологічного обладнання в приміщеннях спеціалізованій школі I - III ступенів № 65 м. Києва з поглибленим вивченням іноземних мов",
+                        "object_name": "Середня загальноосвітня школа I - III cтупенів № 65 з поглибленим вивченням іноземних мов",
+                        "type": "Школа",
+                        "city": "м. Київ",
+                        "address": "вул. Челябинська 5",
+                        "dwgLinks": "https://drive.google.com/file/d/1DV1fobn60l7sl61KPboQ4OC1KYLasbsc/view?usp=sharing",
+                        "pdfLinks": "https://drive.google.com/file/d/1pwpH9Z998GBXJRV5GtHz4Zo6JxeJvK00/view?usp=sharing",
+                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "location": {
+                            "latitude": 30.59600297567655,
+                            "longitude": 50.459202722296865
+                        },
+                        "stamp": "П-027-2021",
+                        "uuid": "k0027"
+                    },
+                    {
+                        "project_name": "Капітальний ремонт (відновлення) конструкцій існуючого блоку приміщень спеціалізованої школи I - III ступенів №127, яка знаходиться за адресою: вулиця Алтинська 13, Дарницький район, м. Київ",
+                        "object_name": "Середня загальноосвітня школа I - III cтупенів № 127",
+                        "type": "Школа",
+                        "city": "м. Київ",
+                        "address": "вул. Алтинська 13",
+                        "dwgLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
+                        "pdfLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
+                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "location": {
+                            "latitude": 30.656036556087845,
+                            "longitude": 50.42545478804777
+                        },
+                        "stamp": "П-029-2021",
+                        "uuid": "k0029"
+                    },
+                    {
+                        "project_name": "Спеціалізована загальноосвітня школа № 274 I-III ступенів Дарницького району м. Києва з поглибленим вивченням іноземних мов, яка знаходиться за адресою: вул. Харківсьше шосе 168-і, м. Київ",
+                        "object_name": "Спеціалізована загальноосвітня школа I-III ступенів № 274 з поглибленим вивченням іноземних мов",
+                        "type": "Школа",
+                        "city": "м. Київ",
+                        "address": "вул. Харківсьше шосе 168-і",
+                        "dwgLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
+                        "pdfLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
+                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "location": {
+                            "latitude": 30.656036556087845,
+                            "longitude": 50.42545478804777
+                        },
+                        "stamp": "П-032-2021",
+                        "uuid": "k0032"
+                    },
+                    {
+                        "project_name": "Влаштування технологічного обладнання в приміщеннях Петропавлівсько-Борщагівської загальноосвітньої школи Борщагівської сільської ради Бучанського району Київської область",
+                        "object_name": "Петропавлівсько-Борщагівська загальноосвітня школа",
+                        "type": "Школа",
+                        "city": "с. Борщагівка",
+                        "address": "вул. Соборна, 30",
+                        "dwgLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
+                        "pdfLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
+                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "location": {
+                            "latitude": 30.656036556087845,
+                            "longitude": 50.42545478804777
+                        },
+                        "stamp": "П-033-2021",
+                        "uuid": "k0033"
+                    },
+                    {
+                        "project_name": "Влаштування технологічного, кухонного, обладнання в загальноосвітній школі № 308 I - III ступенів, яка знаходиться за адресою: вул. Гадинська, 6-Б, Деснянського району м. Києва",
+                        "object_name": "Середня загальноосвітня школа I - III cтупенів № 308",
+                        "type": "Школа",
+                        "city": "м. Київ",
+                        "address": "вул. Гадиська 6б",
+                        "dwgLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
+                        "pdfLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
+                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "location": {
+                            "latitude": 30.656036556087845,
+                            "longitude": 50.42545478804777
+                        },
+                        "stamp": "П-034-2021",
+                        "uuid": "k0034"
+                    },
+                    {
+                        "project_name": "Чернігівська загальноосвітня школа I - III ступенів № 34 Чернігівської міської ради, Чернігівської області",
+                        "object_name": "Середня загальноосвітня школа I - III cтупенів № 34",
+                        "type": "Школа",
+                        "city": "м. Чернігів",
+                        "address": "вул. Текстильників 27",
+                        "dwgLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
+                        "pdfLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
+                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+                        "location": {
+                            "latitude": 30.656036556087845,
+                            "longitude": 50.42545478804777
+                        },
+                        "stamp": "П-035-2021",
+                        "uuid": "k0035"
+                    }
+    ]
+}

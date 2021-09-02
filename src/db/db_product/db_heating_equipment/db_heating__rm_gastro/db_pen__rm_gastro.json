@@ -1,0 +1,32 @@
+{
+    "db_pens__rm_gastro":  [
+        {
+            "type": "Теплове обладнання",
+            "form": "Сковорода",
+            "manufacturer": "RM Gastro",
+            "country_manufacturer": "Чехія",
+            "name": "BR 780 E",
+            "series": "Line 700",
+            "article": "117030052",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 10.5,
+            "volume": "Одна ємність на 50 л",
+            "width": 800,
+            "depth": 730,
+            "height": 900,
+            "weight": 153.2,
+            "uuid": "pen001",
+            "link": "http://www.rmgastro.com/source/RM/RM_700_s.pdf",
+            "picture": "https://et-e.com.ua/image/cache/catalog/products/000017278_1-800x800.jpg",
+            "necessary_communications": {
+                "electrical": "11",
+                "ventilation": {
+                    "width": 1100,
+                    "depth": 1100,
+                    "height": 300
+                }
+            }
+        }
+    ]
+}

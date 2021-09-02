@@ -1,0 +1,37 @@
+{
+    "db_dishwashers__elframo":  [
+        {
+            "type": "Посудомийне обладнання",
+            "form": "Посудомийна машина",
+            "subform": "Фронтова",
+            "appointment": "Для керамічного та скляного посуду",
+            "manufacturer": "Elframo",
+            "country_manufacturer": "Італія",
+            "series": "Basic",
+            "name": "CE 24",
+            "article": "C5111010",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 6.2,
+            "inner_dimensions": "Тарілки діаметром не більше 240 мм",
+            "alternative_volume": "Кошик 500 х 500 мм",
+            "width": 717,
+            "depth": 815,
+            "height": 1446,
+            "weight": 120,
+            "uuid": "edsw001",
+            "link": "https://www.elframo.com/passthrough-hood-type-fixed-basket-dishwashers/ce-series-dishwashers/",
+            "picture": "https://www.elframo.com/wp-content/uploads//2015/03/CE24-2-e1504272420106-720x600.jpg",
+            "necessary_communications": {
+                "electrical": "7",
+                "water_supply": "1/2",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1000,
+                    "depth": 1000,
+                    "height": 300
+                }
+            }
+        }
+    ]
+}

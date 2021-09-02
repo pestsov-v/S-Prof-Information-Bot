@@ -1,0 +1,20 @@
+{
+    "projects__lyceum": [
+        {
+            "project_name": "Технічне завдання на технологічне переоснащення кухні Київського спортивного ліцею-інтернату по вул. бульвар Вацлава Гавела буд. 46, м. Київ, Київська область",
+            "object_name": "Київський спортивний ліцей-інтернат",
+            "type": "Ліцей",
+            "city": "м. Київ",
+            "address": "вул. бульвар Вацлава Гавела буд. 46",
+            "dwgLinks": "https://drive.google.com/file/d/1yHQV7f1faODLaUpYzKq3CVwLNar9Bm6_/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1gGVrx2j9aM3cLWAPHTvjHO-QyRM45lOc/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+            "location": {
+                "latitude": 30.42131690041462,
+                "longitude": 50.4238460903929
+            },
+            "stamp": "П-004-2021",
+            "uuid": "k0004"
+        }
+    ]
+}

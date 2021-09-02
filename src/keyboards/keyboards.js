@@ -3,13 +3,14 @@ const kb = require('./keyboard-buttons')
 module.exports = {
     home: [
         [kb.home.projects, kb.home.products],
-        [kb.home.statistic, kb.home.analytics]
+        [kb.home.statistic, kb.home.analytics],
+        [kb.home.download, kb.home.actualy]
     ],
     projects: [
-        [kb.projects.Kyiv],
-        [kb.projects.Lviv],
-        [kb.projects.Random],
-        [kb.projects.Exhibition],
+        [kb.projects.kindergarden, kb.projects.school],
+        [kb.projects.school_complex, kb.projects.lyceum],
+        [kb.projects.college, kb.projects.finishing],
+        [kb.projects.food_kitchen, kb.projects.exhibition],
         [kb.back]
     ],
     manufacturer: [
@@ -21,56 +22,6 @@ module.exports = {
     rational: [
         [kb.rational.combiStemear],
         [kb.rational.muiltyPen],
-        [kb.backToMainManufacturer],
-        [kb.back]
-    ],
-    bartscher: [
-        [kb.bartscher.bartscherHeatingEquipment],
-        [kb.bartscher.bartscherRefrigerationEquipment],
-        [kb.bartscher.bartscherElectromechanicalEquipment],
-        [kb.bartscher.bartscherDishwashingEquipment],
-        [kb.bartscher.bartscherBarEquipment],
-        [kb.backToMainManufacturer],
-        [kb.back]
-    ],
-    bartscherHeatingEquipment: [
-        [kb.bartscherHeatingEquipment.combiStemear, kb.bartscherHeatingEquipment.deepFryer],
-        [kb.bartscherHeatingEquipment.heatShowcase, kb.bartscherHeatingEquipment.bainMarie],
-        [kb.bartscherHeatingEquipment.pen, kb.bartscherHeatingEquipment.bake, kb.bartscherHeatingEquipment.plate],
-        [kb.bartscherHeatingEquipment.riceCooker, kb.bartscherHeatingEquipment.eggCooker, kb.bartscherHeatingEquipment.sausageCooker],
-        [kb.bartscherHeatingEquipment.waffleIron, kb.bartscherHeatingEquipment.grill, kb.bartscherHeatingEquipment.toaster],
-        [kb.bartscherHeatingEquipment.dispancer, kb.bartscherHeatingEquipment.pastaCooker, kb.bartscherHeatingEquipment.pancakeMaker],
-        [kb.backToMainManufacturer],
-        [kb.back]
-    ],
-    bartscherRefrigerationEquipment: [
-        [kb.bartscherRefrigerationEquipment.shockFreezer],
-        [kb.bartscherRefrigerationEquipment.freezerChest, kb.bartscherRefrigerationEquipment.freezerCabinet],
-        [kb.bartscherRefrigerationEquipment.refrigeratedTable, kb.bartscherRefrigerationEquipment.refrigeratiorCabinet],
-        [kb.bartscherRefrigerationEquipment.iceMaker, kb.bartscherRefrigerationEquipment.iceCrusher],
-        [kb.bartscherRefrigerationEquipment.refrigerationShowcase],
-        [kb.bartscherRefrigerationEquipment.iceCreamCutter],
-        [kb.backToMainManufacturer],
-        [kb.back]
-    ],
-    bartscherElectromechanicalEquipment: [
-        [kb.bartscherElectromechanicalEquipment.meatGrinder, kb.bartscherElectromechanicalEquipment.slicer, kb.bartscherElectromechanicalEquipment.sausageCuter],
-        [kb.bartscherElectromechanicalEquipment.blender, kb.bartscherElectromechanicalEquipment.cooter, kb.bartscherElectromechanicalEquipment.mixer],
-        [kb.bartscherElectromechanicalEquipment.potatoPeeler, kb.bartscherElectromechanicalEquipment.vegetableCutter, kb.bartscherElectromechanicalEquipment.doughMixer],
-        [kb.bartscherElectromechanicalEquipment.foodCombine, kb.bartscherElectromechanicalEquipment.doughSheeter],
-        [kb.backToMainManufacturer],
-        [kb.back]
-    ],
-    bartscherDishwashingEquipment: [
-        [kb.bartscherDishwashingEquipment.dishwasher],
-        [kb.bartscherDishwashingEquipment.glassWasher],
-        [kb.bartscherElectromechanicalEquipment.polishingMachine],
-        [kb.backToMainManufacturer],
-        [kb.back]
-    ],
-    bartscherBarEquipment: [
-        [kb.bartscherBarEquipment.coffeeGrinder, kb.bartscherBarEquipment.coffeeMaker],
-        [kb.bartscherBarEquipment.milkFrother, kb.bartscherBarEquipment.juicer],
         [kb.backToMainManufacturer],
         [kb.back]
     ],

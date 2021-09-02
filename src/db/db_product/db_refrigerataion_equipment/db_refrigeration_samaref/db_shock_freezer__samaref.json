@@ -1,0 +1,29 @@
+{
+    "db_shok_freezer__samaref":  [
+        {
+            "type": "Холодильне обладнання",
+            "form": "Шафа шокового охолодження та замороження",
+            "manufacturer": "Samaref",
+            "country_manufacturer": "Італія",
+            "series": "Ergon",
+            "name": "ER 6V",
+            "number_phases": 1,
+            "voltage": 230,
+            "power": 1.038,
+            "cold_production": 1.787,
+            "volume": "Одне відділення на 159 л",
+            "width": 800,
+            "depth": 730,
+            "height": 850,
+            "weight": 114,
+            "uuid": "sf001",
+            "link": "https://www.samaref.it/ru/products/ice-cream/ergon/er6v/er-6v/",
+            "picture": "https://www.samaref.it/public/filemanager/source/listini/gelateria/ergon/er6v/ER_6V.jpg",
+            "necessary_communications": {
+                "electrical": "2"
+            }
+        }
+    ]
+}
+
+

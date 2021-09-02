@@ -1,0 +1,28 @@
+{
+    "db_refrigeration_tables__samaref":  [
+        {
+            "type": "Холодильне обладнання",
+            "form": "Холодильна шафа",
+            "manufacturer": "Samaref",
+            "country_manufacturer": "Італія",
+            "series": "Gelato",
+            "name": "GL 800 5CA BTG",
+            "number_phases": 1,
+            "voltage": 230,
+            "power": 0.845,
+            "cold_production": 0.681,
+            "volume": "Одне відділення на 669 л",
+            "width": 745,
+            "depth": 870,
+            "height": 2120,
+            "weight": 154,
+            "uuid": "rtsm001",
+            "link": "https://www.samaref.it/ru/products/ice-cream/gelato/gl8005ca/gl-800-5ca-btg/",
+            "picture": "https://www.grecka.cl/3021-large_default/armario-freezer-heladeria-samaref-mod-gl-800-5ca-btgsamaref.jpg",
+            "necessary_communications": {
+                "electrical": "2"
+            }
+        }
+    ]
+}
+
