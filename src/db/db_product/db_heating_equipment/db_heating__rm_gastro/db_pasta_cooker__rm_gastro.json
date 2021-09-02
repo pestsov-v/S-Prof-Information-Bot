@@ -1,0 +1,27 @@
+{
+    "db_pasta_cookers__rm_gastro":  [
+        {
+            "type": "Теплове обладнання",
+            "form": "Макароноварка",
+            "manufacturer": "RM Gastro",
+            "country_manufacturer": "Чехія",
+            "series": "Line 700",
+            "name": "VT 740 E",
+            "article": "117330033",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 7.5,
+            "volume": "Один кошик на 23 л",
+            "width": 400,
+            "depth": 730,
+            "height": 900,
+            "weight": 51.2,
+            "uuid": "pcs001",
+            "link": "http://www.rmgastro.com/source/RM/RM_700_s.pdf",
+            "picture": "https://www.s-prof.com.ua/upload/resize_cache/iblock/c63/500_500_1/7950926f-43b6-11e8-844f-005056835c11_427516db-4d1b-11e8-b660-005056835c11.jpeg",
+            "necessary_communications": {
+                "electrical": "8"
+            }
+        }
+    ]
+}

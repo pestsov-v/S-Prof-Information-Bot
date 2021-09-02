@@ -1,0 +1,29 @@
+{
+    "db_food_boilers__rm_gastro":  [
+        {
+            "type": "Теплове обладнання",
+            "form": "Травний котел",
+            "manufacturer": "RM Gastro",
+            "country_manufacturer": "Чехія",
+            "series": "Line 725",
+            "name": "BI 780 E",
+            "article": "117010083",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 12,
+            "volume": "Один кошик на 50 л",
+            "width": 800,
+            "depth": 730,
+            "height": 900,
+            "weight": 72,
+            "uuid": "fbs001",
+            "link": "http://www.rmgastro.com/source/RM/RM_700_s.pdf",
+            "picture": "https://images.by.prom.st/149349273_pischevarochnyj-kotel-50.jpg",
+            "necessary_communications": {
+                "electrical": "12",
+                "water_supply": "1/2",
+                "sewerage": "50"
+            }
+        }
+    ]
+}

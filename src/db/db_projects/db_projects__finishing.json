@@ -1,0 +1,164 @@
+{
+    "projects__finishing": [
+        {
+            "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях спеціалізованої школи I-III ступенів № 98 з поглибленим вивченням англійської мови, яка знаходиться за адресою: вул. Микитенка, 7, Дніпровського району в м. Києві",
+            "object_name": "Спеціалізована школа I - III ступенів № 98",
+            "type": "Finishing",
+            "city": "м. Київ",
+            "address": "вул. Микитенка 7",
+            "dwgLinks": "https://drive.google.com/file/d/1a7i9OuKPhY8-yOkjrzlgIeUtzwJhY0M4/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1ImJKx5qoJVgciH5TeoFTauNTxMALfX5I/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+            "location": {
+                "latitude": 30.597119484789882,
+                "longitude": 50.48637997948031
+            },
+            "stamp": "П-007.98-2021",
+            "uuid": "k0007"
+        },
+        {
+            "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях спеціалізованої школи I-III ступенів № 120 з поглибленим вивченням предметів природничо-математичного циклу, яка знаходиться за адресою вул. Райдужна 17-6, Дніпровського району в м. Києві",
+            "object_name": "Спеціалізована школа I - III ступенів № 120",
+            "type": "Finishing",
+            "city": "м. Київ",
+            "address": "вул. Райдужна 17б",
+            "dwgLinks": "https://drive.google.com/file/d/1DVcJ0J0_fc1Y5KvKjwUriXlF299SNHGR/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1yI5EIeZBIP7CBCOiS4-4u9h77Kbef0jC/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+            "location": {
+                "latitude": 30.587798312056318,
+                "longitude": 50.4874072987772
+            },
+            "stamp": "П-008.120-2021",
+            "uuid": "k0008"
+        },
+        {
+            "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях середньої загальноосвітньої школи I-III ступенів № 158, яка знаходиться за адресою вул. Стальського, 12, Дніпровського району в м. Києві",
+            "object_name": "Середня загальноосвітня школа I - III ступенів № 158",
+            "type": "Finishing",
+            "city": "м. Київ",
+            "address": "вул. Сулеймана Стальського 12",
+            "dwgLinks": "https://drive.google.com/file/d/1ZC7Mus8DTnvkl6NBUqWbiXF4B3H2GQJh/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1tleDkmj5AUQK36YPbfZb3l1ttQ0G6Uvh/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+            "location": {
+                "latitude": 30.599026942744516,
+                "longitude": 50.48400020047887
+            },
+            "stamp": "П-009.158-2021",
+            "uuid": "k0009"
+        },
+        {
+            "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях середньої загальноосвітньої школи I-III ступенів № 180, яка знаходиться за адресою б-р Перова, 21, Дніпровського району в м. Києві",
+            "object_name": "Середня загальноосвітня школа I - III ступенів № 180",
+            "type": "Finishing",
+            "city": "м. Київ",
+            "address": "вул. бульвар Перова 21",
+            "dwgLinks": "https://drive.google.com/file/d/1vFg4JcN1RL4OMdxgZnAGbeKD2WykC4Wf/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/15za771oP5BCJbz_0qqvhrO9_G37Z_WoZ/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+            "location": {
+                "latitude": 30.591409642744757,
+                "longitude": 50.487300113849074
+            },
+            "stamp": "П-010.184-2021",
+            "uuid": "k0010"
+        },
+        {
+            "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях середньої загальноосвітньої школи I-III ступенів № 184, яка знаходиться за адресою вул. Вільде, 5, Дніпровського району в м. Києві",
+            "object_name": "Спеціалізована школа I - III ступенів № 184",
+            "type": "Finishing",
+            "city": "м. Київ",
+            "address": "вул. Вільде 5",
+            "dwgLinks": "https://drive.google.com/file/d/1Y4FxnGUn7sC-62Ey74W82E6JY-fPU62j/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/15xHC6FlvBtWRy7GFaKrnjmGeZmj7ok7k/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+            "location": {
+                "latitude": 30.605033985072605,
+                "longitude": 50.48919607251392
+            },
+            "stamp": "П-011.184-2021",
+            "uuid": "k0011"
+        },
+        {
+            "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях середньої загальноосвітньої школи I-III ступенів № 201, яка знаходиться за адресою: б-р Перова 14А, Дніпровського району в м. Києві",
+            "object_name": "Середня загальноосвітня школа I - III ступенів № 201",
+            "type": "Finishing",
+            "city": "м. Київ",
+            "address": "вул. Перова 14-А",
+            "dwgLinks": "https://drive.google.com/file/d/1s29aFzRjG6BUnj89dQdimep6BcYBLX8J/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1aMzxQlwf5l7aIANQGr-kAbXhfwldJiE1/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
+            "location": {
+                "latitude": 30.599823683219945,
+                "longitude": 50.4750240074723
+            },
+            "stamp": "П-012.201-2021",
+            "uuid": "k0012"
+        },
+        {
+            "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях середньої загальноосвітньої школи I-III ступенів № 224, яка знаходиться за адресою вул. М. Кибальчича, 5, Дніпровського району в м. Києв",
+            "object_name": "Середня загальноосвітня школа I - III ступенів № 224",
+            "type": "Finishing",
+            "city": "м. Київ",
+            "address": "вул. Миколи Кибальчича 5",
+            "dwgLinks": "https://drive.google.com/file/d/1US58gsIeGJYrZZCwppbSFLylaQaPbELa/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
+            "location": {
+                "latitude": 30.596367886924764,
+                "longitude": 50.49082097387238
+            },
+            "stamp": "П-0013.224-2021",
+            "uuid": "k0013"
+        },
+        {
+            "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях спеціалізованої школи I-III ступенів № 234 з поглибленим вивченням економіки та права, яка знаходиться за адресою вул. Райдужна, 12, Дніпровського району в м. Києві",
+            "object_name": "Спеціалізована школа I-III ступенів № 234 з поглибленим вивченням економіки та права",
+            "type": "Finishing",
+            "city": "м. Київ",
+            "address": "вул. Райдужна 12",
+            "dwgLinks": "https://drive.google.com/file/d/1R8pKen5dWUdXt_lJA5FzKfZn8mv1OdEY/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1QQ1dzIhjS2j-12HMe3HZtOBxpB8AniCV/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
+            "location": {
+                "latitude": 30.580355715760902,
+                "longitude": 50.49128944374078
+            },
+            "stamp": "П-014.234-2021",
+            "uuid": "k0014"
+        },
+        {
+            "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях загальноосвітньої середньої школи I-III ступенів № 246, яка знаходится за адресою: вул. Кибальчича, 7, Дніпровського району в м. Києві",
+            "object_name": "Спеціалізована школа I-III ступенів № 246 з поглибленим вивченням англійської мови",
+            "type": "Finishing",
+            "city": "м. Київ",
+            "address": "вул. Миколи Кибальчича 7",
+            "dwgLinks": "https://drive.google.com/file/d/1dl9FkZKa3EI8k7m-zMRiBXGvCcgpb2il/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/124-j94gl1buN8mazs0uGhEr23PU87wMe/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
+            "location": {
+                "latitude": 30.597889113908714,
+                "longitude": 50.491031674116165
+            },
+            "stamp": "П-0015.246-2021",
+            "uuid": "k0015"
+        },
+        {
+            "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях спеціалізованої школи I-III ступенів № 265 з поглибленим вивченням предметів художньо-естетичного циклу, яка знаходиться за адресою: вул. Райдужна, 53, Дніпровського району в м. Києві",
+            "object_name": "Середня загальноосвітня школа №265",
+            "type": "Finishing",
+            "city": "м. Київ",
+            "address": "вул. Райдужна 53",
+            "dwgLinks": "https://drive.google.com/file/d/1A-QY59HXsTFLuLEUF3jnFW12B7Nf1HTL/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1OXFIX4Zs6LJXTKUQU-kUV_rHkc3--dtg/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
+            "location": {
+                "latitude": 30.590028418139294,
+                "longitude": 50.479781279836686
+            },
+            "stamp": "П-016.265-2021",
+            "uuid": "k0016"
+        }
+    ]
+}

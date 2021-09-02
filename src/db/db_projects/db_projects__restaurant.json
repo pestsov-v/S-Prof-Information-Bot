@@ -1,0 +1,36 @@
+{
+    "projects__restaurant": [
+        {
+            "project_name": "Влаштування технологічного обладнання в приміщеннях харчоблоку ресторану Острів",
+            "object_name": "Острів",
+            "type": "Ресторан",
+            "city": "м. Львів",
+            "address": "Невідомо",
+            "dwgLinks": "https://drive.google.com/file/d/1jgVIZ0VWIgqUw3EHrQTutHT-01aFB0kB/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1lpjq0vrzWjXAYX-eHpTxOHVqS3SGYS_i/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1lpjq0vrzWjXAYX-eHpTxOHVqS3SGYS_i/view?usp=sharing",
+            "location": {
+                "latitude": 23.943982519073465,
+                "longitude": 49.82714171075837
+            },
+            "stamp": "Л-501-2021",
+            "uuid": "k0501"
+        },
+        {
+            "project_name": "Влаштування технологічного обладнання в приміщеннях фудкортів торгівельного центру",
+            "object_name": "Фудкорти",
+            "type": "Ресторан",
+            "address": "Невідомо",
+            "city": "м. Львів",
+            "dwgLinks": "https://drive.google.com/file/d/11f_TIKhU2_9H4LKFPhp8BiBWeb40teb6/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1uywQTdGP5hcWvVqkwJNM7_i-cB9f2Obr/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1lpjq0vrzWjXAYX-eHpTxOHVqS3SGYS_i/view?usp=sharing",
+            "location": {
+                "latitude": 23.943982519073465,
+                "longitude": 49.82714171075837
+            },
+            "stamp": "Л-503-2021",
+            "uuid": "k0503"
+        }
+    ]
+}

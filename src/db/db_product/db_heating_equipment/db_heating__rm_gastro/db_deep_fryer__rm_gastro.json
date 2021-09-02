@@ -1,0 +1,51 @@
+{
+    "db_deep_fryers__rm_gastro":  [
+        {
+            "type": "Теплове обладнання",
+            "form": "Фритюрниця",
+            "manufacturer": "RM Gastro",
+            "country_manufacturer": "Чехія",
+            "series": "Line 700",
+            "name": "FE 704/13 E",
+            "article": "117090072",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 12.5,
+            "volume": "Один кошик на 13 л",
+            "width": 400,
+            "depth": 730,
+            "height": 313,
+            "weight": 24.2,
+            "uuid": "dfs001",
+            "link": "http://www.rmgastro.com/source/RM/RM_700_s.pdf",
+            "picture": "https://static.entero.ru/mp@2x/19/09/19097de80321fa9473a298f0e0feae82.jpg",
+            "necessary_communications": {
+                "electrical": "13"
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Фритюрниця",
+            "manufacturer": "RM Gastro",
+            "country_manufacturer": "Чехія",
+            "series": "Line 700",
+            "name": "FE 708/13 E",
+            "article": "117090073",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 25,
+            "volume": "Два кошика, кожний на 13 л",
+            "width": 800,
+            "depth": 730,
+            "height": 313,
+            "weight": 44.2,
+            "uuid": "dfs002",
+            "link": "http://www.rmgastro.com/source/RM/RM_700_s.pdf",
+            "picture": "https://static.entero.ru/mp@2x/79/d9/79d9fce45299d515597a87c7877c0a32.jpg",
+            "necessary_communications": {
+                "electrical": "26"
+            }
+        }
+    ]
+}
+

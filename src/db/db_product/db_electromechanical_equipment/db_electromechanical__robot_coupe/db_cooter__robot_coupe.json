@@ -1,0 +1,28 @@
+{
+    "db_cooters__robot_coupe":  [
+        {
+            "type": "Електромеханічне обладнання",
+            "form": "Кутер",
+            "subform": "Настольний",
+            "manufacturer": "Robot Coupe",
+            "country_manufacturer": "Франція",
+            "series": "R",
+            "name": "R 2",
+            "article": "2450",
+            "number_phases": 1,
+            "voltage": 230,
+            "power": 0.55,
+            "volume": "Одна чаша на 2.9 л",
+            "width": 200,
+            "depth": 280,
+            "height": 350,
+            "weight": 10.5,
+            "uuid": "сtr001",
+            "link": "https://www.robot-coupe.com/ru/ru/p/nastol-n-kutter-r-2/18233",
+            "picture": "https://www.crosbys.co.uk/images/robot-coupe-r2-table-top-cutter-mixer-2-9-litre-p16661-168368_image.jpg",
+            "necessary_communications": {
+                "electrical": "2"
+            }
+        }
+    ]
+}

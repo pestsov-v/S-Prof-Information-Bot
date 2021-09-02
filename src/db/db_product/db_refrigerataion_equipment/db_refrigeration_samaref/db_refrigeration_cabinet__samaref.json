@@ -1,0 +1,29 @@
+{
+    "db_refrigeration_cabinets__samaref":  [
+        {
+            "type": "Холодильне обладнання",
+            "form": "Холодильний стіл",
+            "manufacturer": "Samaref",
+            "country_manufacturer": "Італія",
+            "series": "Gastronorm",
+            "name": "TG2 M SP TN",
+            "number_phases": 1,
+            "voltage": 230,
+            "power": 0.282,
+            "cold_production": 0.328,
+            "volume": "Одне відділення на 286 л",
+            "width": 1370,
+            "depth": 700,
+            "height": 810,
+            "weight": 96,
+            "uuid": "rf001",
+            "link": "https://www.samaref.it/ru/products/catering/gastronorm/tg2/tg2-m-sp-tn/",
+            "picture": "https://www.s-prof.com.ua/upload/iblock/58b/5f05576f-2025-11e7-80cf-6a0ca6f121ac_ef0a7ea1-eb09-11e7-a91e-005056835247.jpeg",
+            "necessary_communications": {
+                "electrical": "2"
+            }
+        }
+    ]
+}
+
+

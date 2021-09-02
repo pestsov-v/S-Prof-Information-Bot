@@ -1,0 +1,125 @@
+{
+    "db_multi_pens__rational":  [
+        {
+            "type": "Теплове обладнання",
+            "form": "Мультифункціональна сковорода",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iVario",
+            "name": "Pro 2-XS",
+            "article": "WZ9ENRA.0002411",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 14,
+            "volume": "Два тігеля 13 л. кожний",
+            "width": 1100,
+            "depth": 756,
+            "height": 485,
+            "weight": 110,
+            "uuid": "mp0001",
+            "link": "https://www.rational-online.com/ru_ua/ivario-xs/",
+            "picture": "https://www.horeca.com/images/product/detail/rational-ivario-pro-2-s-intelligent-kooksysteem-ivario-pro-2-s.jpg",
+            "necessary_communications": {
+                "electrical": "15",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1300,
+                    "depth": 1000,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Мультифункціональна сковорода",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iVario",
+            "name": "Pro 2-S",
+            "article": "WY9ENRA.0002427",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 21,
+            "volume": "Два тігеля 25 л. кожний",
+            "width": 1100,
+            "depth": 938,
+            "height": 485,
+            "weight": 130,
+            "uuid": "mp0002",
+            "link": "https://www.rational-online.com/ru_ua/ivario-xs/",
+            "picture": "https://assets.catering-appliance.com/media/product_huge_thumb/85/d4/rational-pro-2-s_img74248.jpg",
+            "necessary_communications": {
+                "electrical": "21",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1300,
+                    "depth": 1200,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Мультифункціональна сковорода",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iVario",
+            "name": "Pro L",
+            "article": "WX9ENRA.0002538",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 27,
+            "volume": "Один тігель на 100 л",
+            "width": 1030,
+            "depth": 894,
+            "height": 1078,
+            "weight": 154,
+            "uuid": "mp0003",
+            "link": "https://www.rational-online.com/ru_ua/ivario-xs/",
+            "picture": "https://assets.catering-appliance.com/media/product_huge_thumb/60/e2/rational-pro-l_img74253.jpg",
+            "necessary_communications": {
+                "electrical": "27",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1300,
+                    "depth": 1200,
+                    "height": 300
+                }
+            }
+        },
+        {
+            "type": "Теплове обладнання",
+            "form": "Мультифункціональна сковорода",
+            "manufacturer": "Rational",
+            "country_manufacturer": "Німеччина",
+            "series": "iVario",
+            "name": "Pro ХL",
+            "article": "WW9ENRA.0002628",
+            "number_phases": 3,
+            "voltage": 400,
+            "power": 41,
+            "volume": "Один тігель на 150 л",
+            "width": 1365,
+            "depth": 894,
+            "height": 1078,
+            "weight": 180,
+            "uuid": "mp0004",
+            "link": "https://www.rational-online.com/ru_ua/ivario-xs/",
+            "picture": "https://www.rational-online.com/media/images/product/ivariopro/ivario-pro-xl-feet-rational-100192.jpg",
+            "necessary_communications": {
+                "electrical": "41",
+                "water_supply": "3/4",
+                "sewerage": "50",
+                "ventilation": {
+                    "width": 1600,
+                    "depth": 1200,
+                    "height": 300
+                }
+            }
+        }
+    ]
+}
+

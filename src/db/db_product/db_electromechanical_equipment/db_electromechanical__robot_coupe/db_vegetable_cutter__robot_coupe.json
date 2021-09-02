@@ -1,0 +1,27 @@
+{
+    "db_vegetable_cutters__robot_coupe":  [
+        {
+            "type": "Електромеханічне обладнання",
+            "form": "Овочерізка",
+            "manufacturer": "Robot Coupe",
+            "country_manufacturer": "Франція",
+            "series": "CL",
+            "name": "CL 20",
+            "article": "22394",
+            "number_phases": 1,
+            "voltage": 230,
+            "power": 0.4,
+            "alternative_volume": "Воронка діаметром 58 мм",
+            "width": 325,
+            "depth": 304,
+            "height": 570,
+            "weight": 12,
+            "uuid": "vcr001",
+            "link": "https://www.robot-coupe.com/ru/ru/p/ovo-erezki3-cl-20/18232",
+            "picture": "https://images.ua.prom.st/488567379_w500_h500_ovoscherezka-robot-coupe.jpg",
+            "necessary_communications": {
+                "electrical": "2"
+            }
+        }
+    ]
+}

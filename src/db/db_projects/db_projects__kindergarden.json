@@ -1,0 +1,85 @@
+{
+    "projects__kindergarden": [
+        {
+            "project_name": "Реконструкція приміщень на вулиці Академіка Корольова, 5-А для відновлення роботи дошкільного навчального закладу № 497",
+            "object_name": "Дошкільний навчальний заклад № 497",
+            "type": "Дитячий садочок",
+            "city": "м. Київ",
+            "address": "вул. Академика Корольова 5",
+            "dwgLinks": "https://drive.google.com/file/d/1u1qn2rn831YjrMsC9KK8BeIKyuPRBizG/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1SLMqzCO_E3n9cIrZ_ZMtU8VO711ie4Fe/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
+            "location": {
+                "latitude": 30.391027856234842,
+                "longitude": 50.427793571324564
+            },
+            "stamp": "П-017-2021",
+            "uuid": "k0017"
+        },
+        {
+            "project_name": "Влаштування технологічного обладнання в приміщеннях дошкільного навчального закладу № 452, який знаходиться за адресою: вул. Ентузіастів, 41/2, м. Київ.",
+            "object_name": "Дошкільний навчальний заклад № 452",
+            "type": "Дитячий садочок",
+            "city": "м. Київ",
+            "address": "вул. Энтузиастов 41/2",
+            "dwgLinks": "https://drive.google.com/file/d/1apj_NThTC0unRscPVO0O6XHv_VeXib55/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1vI1gpgFEQ7Kg-cZoew7p4KxsMlqMv8gw/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
+            "location": {
+                "latitude": 30.59441951375963,
+                "longitude": 50.442194134227265
+            },
+            "stamp": "П-020-2021",
+            "uuid": "k0020"
+        },
+        {
+            "project_name": "Влаштування технологічного обладнання в приміщеннях дошкільного навчального закладу №53, який знаходиться за адресою: вул. Райдужна 17 б, м. Київ.",
+            "object_name": "Дошкільний навчальний заклад № 53",
+            "type": "Дитячий садочок",
+            "city": "м. Київ",
+            "address": "вул. Радужная 17б",
+            "dwgLinks": "https://drive.google.com/file/d/1n1SdZ1VxTzPnU_YQW8iLyY9I_Uw1nfrs/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1vvGkICf2Af9652DyZguFwKtGVWjfQs59/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
+            "location": {
+                "latitude":30.58773108307553,
+                "longitude": 50.48746603939806
+            },
+            "stamp": "П-021-2021",
+            "uuid": "k0021"
+        },
+        {
+            "project_name": "Влаштування технологічного обладнання в приміщеннях дошкільного навчального закладу № 619, який знаходиться за адресою: вул. Сосницька, буд. 8-а",
+            "object_name": "Дошкільний навчальний заклад № 619",
+            "type": "Дитячий садочок",
+            "city": "м. Київ",
+            "address": "вул. Сосницкая 8а",
+            "dwgLinks": "https://drive.google.com/file/d/1eDUHVt31TLiRgESxIDiW_SNL1_3nsxHX/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/10O7WXUwOf4dfGdaIjiiEbLe9J6a6aeou/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
+            "location": {
+                "latitude": 30.58773108307553,
+                "longitude": 50.48746603939806
+            },
+            "stamp": "П-022-2021",
+            "uuid": "k0022"
+        },
+        {
+            "project_name": "Влаштування технологічного обладнання в приміщеннях комунального дитсадочка № 454, який знаходиться за адресою: вулиця Березняківська, 26-А, м. Київ",
+            "object_name": "Дошкільний навчальний заклад № 619",
+            "type": "Дитячий садочок",
+            "city": "м. Київ",
+            "address": "вул. Березнякивская, 26а",
+            "dwgLinks": "https://drive.google.com/file/d/1FGDJBm7JCyjsfA1c5NkEpG4gs7geHRxR/view?usp=sharing",
+            "pdfLinks": "https://drive.google.com/file/d/1yIlyqgWH_tY9ABOJvMBW31cK1rIG8v7A/view?usp=sharing",
+            "xslsLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
+            "location": {
+                "latitude": 30.613089044444408,
+                "longitude": 50.42714560308517
+            },
+            "district": "Киев",
+            "stamp": "П-028-2021",
+            "uuid": "k0028"
+        }
+    ]
+}

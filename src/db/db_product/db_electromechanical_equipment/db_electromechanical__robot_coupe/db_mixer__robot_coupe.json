@@ -1,0 +1,28 @@
+{
+    "db_mixers__robot_coupe":  [
+        {
+            "type": "Електромеханічне обладнання",
+            "form": "Міксер",
+            "subform": "Погружний",
+            "manufacturer": "Robot Coupe",
+            "country_manufacturer": "Франція",
+            "series": "Mini MP",
+            "name": "MicroMix",
+            "article": "34900",
+            "number_phases": 1,
+            "voltage": 230,
+            "power": 0.22,
+            "volume": "Для кастрюль до 1 л",
+            "width": 61,
+            "depth": 61,
+            "height": 430,
+            "weight": 1.4,
+            "uuid": "mxr001",
+            "link": "https://www.robot-coupe.com/ru/ru/p/rucn-e-mikser-micromix/18408",
+            "picture": "https://avelon.com.ua/image/cache/data-elektromexanicheskoe-mixer-pogrugnoy-mini-mp160-vv-500x500.jpg",
+            "necessary_communications": {
+                "electrical": "2"
+            }
+        }
+    ]
+}
