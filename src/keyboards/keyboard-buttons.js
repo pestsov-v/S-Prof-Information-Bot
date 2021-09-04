@@ -21,45 +21,44 @@ module.exports = {
     manufacturer: {
         rational: 'Rational',
         elframo: 'Elframo',
-        rmGastro: 'RM Gastro',
-        robotCoupe: 'Robot Coupe',
+        rm_gastro: 'RM Gastro',
+        robot_coupe: 'Robot Coupe',
         samaref: 'Samaref',
     },
     rational: {
-        combiStemear: 'Пароконвектомати',
-        muiltyPen: 'Мультифункціональні сковороди'
+        combi_streamer: 'Пароконвектомати',
+        multi_pen: 'Мультифункціональні сковороди'
     },
     elframo: {
-        potWashingMachine: 'Котломийні машини',
+        warewasher: 'Котломийні машини',
         dishwasher: 'Посудомийні машини',
-        glassWasher: 'Стаканомийні машини'
+        glass_washer: 'Стаканомийні машини'
     },
-    rmGastro: {
+    rm_gastro: {
         grill: 'Грилі',
-        pastaCooker: 'Макароноварки',
-        bainMarie: 'Марміти',
+        pasta_cooker: 'Макароноварки',
+        bain_marie: 'Марміти',
         plate: 'Плити',
         pen: 'Сковороди',
-        foodBoiler: 'Травні котли',
-        deepFryer: 'Фритюрниці'
+        food_boiler: 'Травні котли',
+        deep_fryer: 'Фритюрниці'
     },
-    robotCoupe: {
-        robotCook: 'Robot cook',
+    robot_coupe: {
+        robot_cook: 'Robot cook',
         blixer: 'Бліксери',
         cooter: 'Куттери',
-        foodCombine: 'Кухонні комбайни',
+        food_combine: 'Кухонні комбайни',
         mixer: 'Міксери',
-        vegetableCutter: 'Овочерізки',
-        juicer: 'Соковижималки'
+        vegetable_cutter: 'Овочерізки',
     },
     samaref: {
-        shockFreezer: 'Камери шокового охолодження та замороження',
-        refrigeratiorCabinet: 'Холодильні столи',
-        refrigeratedTable: 'Холодильні шафи',
+        shock_freezer: 'Камери шокового охолодження та замороження',
+        refrigeratior_cabinet: 'Холодильні столи',
+        refrigerated_table: 'Холодильні шафи',
     },
     back: 'До головного меню',
-    backToMainProducts: 'До варіантів пошуку',
-    backToMainManufacturer: 'Назад',
+    back_to_main_products: 'До варіантів пошуку',
+    back_to_main_manufacturer: 'Назад',
 }
 
 

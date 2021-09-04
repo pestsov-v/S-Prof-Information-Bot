@@ -15,42 +15,42 @@ module.exports = {
     ],
     manufacturer: [
         [kb.manufacturer.elframo, kb.manufacturer.samaref],
-        [kb.manufacturer.rational, kb.manufacturer.robotCoupe],
-        [kb.manufacturer.rmGastro],
+        [kb.manufacturer.rational, kb.manufacturer.robot_coupe],
+        [kb.manufacturer.rm_gastro],
         [kb.back]
     ],
     rational: [
-        [kb.rational.combiStemear],
-        [kb.rational.muiltyPen],
-        [kb.backToMainManufacturer],
+        [kb.rational.combi_streamer],
+        [kb.rational.multi_pen],
+        [kb.back_to_main_manufacturer],
         [kb.back]
     ],
     elframo: [
-        [kb.elframo.potWashingMachine],
+        [kb.elframo.warewasher],
         [kb.elframo.dishwasher],
-        [kb.elframo.glassWasher],
-        [kb.backToMainManufacturer],
+        [kb.elframo.glass_washer],
+        [kb.back_to_main_manufacturer],
         [kb.back]
     ],
-    rmGastro: [
-        [kb.rmGastro.grill, kb.rmGastro.deepFryer],
-        [kb.rmGastro.pastaCooker, kb.rmGastro.pen],
-        [kb.rmGastro.bainMarie, kb.rmGastro.plate, kb.rmGastro.foodBoiler],
-        [kb.backToMainManufacturer],
+    rm_gastro: [
+        [kb.rm_gastro.grill, kb.rm_gastro.deep_fryer],
+        [kb.rm_gastro.pasta_cooker, kb.rm_gastro.pen],
+        [kb.rm_gastro.bain_marie, kb.rm_gastro.plate, kb.rm_gastro.food_boiler],
+        [kb.back_to_main_manufacturer],
         [kb.back]
     ],
-    robotCoupe: [
-        [kb.robotCoupe.robotCook, kb.robotCoupe.blixer],
-        [kb.robotCoupe.foodCombine, kb.robotCoupe.mixer],
-        [kb.robotCoupe.vegetableCutter, kb.robotCoupe.cooter],
-        [kb.backToMainManufacturer],
+    robot_coupe: [
+        [kb.robot_coupe.robot_cook, kb.robot_coupe.blixer],
+        [kb.robot_coupe.food_combine, kb.robot_coupe.mixer],
+        [kb.robot_coupe.vegetable_cutter, kb.robot_coupe.cooter],
+        [kb.back_to_main_manufacturer],
         [kb.back]
     ],
     samaref: [
-        [kb.samaref.shockFreezer],
-        [kb.samaref.refrigeratiorCabinet],
-        [kb.samaref.refrigeratedTable],
-        [kb.backToMainManufacturer],
+        [kb.samaref.shock_freezer],
+        [kb.samaref.refrigeratior_cabinet],
+        [kb.samaref.refrigerated_table],
+        [kb.back_to_main_manufacturer],
         [kb.back]
     ]
 }

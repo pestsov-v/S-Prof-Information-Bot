@@ -3,25 +3,25 @@ const mongoose = require('mongoose')
 require('../models/user.model')
 const User = mongoose.model('users')
 
-function toogle_favourite_product(user_id, queryId, {productUuid, isFav}) {
+function toogle_favourite_product(user_id, queryId, {product_uuid, is_fav}) {
 
     User.findOne({telegram_id: user_id})
     .then(user => {
         if (user) {
-            if (isFav) {
-                user.products = user.products.filter(pUuid => pUuid !== productUuid)
+            if (is_fav) {
+                user.products = user.products.filter(pUuid => pUuid !== product_uuid)
             } else {
-                user.products.push(productUuid)
+                user.products.push(product_uuid)
             }
             userPromise = user
         } else {
             userPromise = new User({
                 telegram_id: user_id,
-                products: [productUuid]
+                products: [product_uuid]
             })
         }
 
-        const answerText = isFav ? 'Видалено' : 'Додано'
+        const answerText = is_fav ? 'Видалено' : 'Додано'
         userPromise.save().then(_ => {
             bot.answerCallbackQuery(queryId, {
                 callback_query_id: queryId,
