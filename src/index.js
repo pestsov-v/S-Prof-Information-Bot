@@ -3,21 +3,22 @@ const mongoose = require('mongoose')
 const bot = require('./init')
 const keyboard = require('../src/keyboards/keyboards')
 const kb = require('../src/keyboards/keyboard-buttons')
-const helper = require('../src/helper')
+const helper = require('./functions/get_item_uuid__function')
 const stickers = require('./helpers/stickers')
-const file_id = require('./db/fileId')
+const file_id = require('./helpers/file_id')
 
-const project_stamp_text = require('./messageText/project_stamp__text')
 const toogle_favourite_product = require('./functions/toogle_favourite__product')
-const send_project_by_query = require('./functions/send_project__by_query')
+const send_project = require('./functions/send_project__by_query')
+const function__get_chat_id = require('./functions/get_chat_id__function')
+const project_stamp__text = require('./message_text/project_stamp__text')
 
 const {
-    manufacturer_text__elframo,
-    manufacturer_text__rational,
-    manufacturer_text__rmGastro,
-    manufacturer_text__robotCoupe,
-    manufacturer_text__samaref
-} = require('./messageText/manufacturer_text__keyboard/index')
+    manufacturer_elframo__text,
+    manufacturer_rational__text,
+    manufacturer_rm_gastro__text,
+    manufacturer_robot_coupe__text,
+    manufacturer_samaref__text
+} = require('./message_text/manufacturer_keyboard_text/index')
 
 const {
     command_text__help,
@@ -25,19 +26,128 @@ const {
     command_text__start__error,
     command_text__start_success,
     command_text__type,
-} = require('./messageText/command_text__global/index')
+} = require('./message_text/command_text__global/index')
 
 const {
     command_text__statistic,
     command_text__analytics,
     command_text__projects,
     command_text__products
-} = require('./messageText/command_text__start/index')
+} = require('./message_text/command_text__start/index')
 
 const {
     command_text__back,
-    command_text__backManufacturer
-} = require('./messageText/command_text__back/index')
+    command_text__back_manufacturer
+} = require('./message_text/command_text__back/index')
+
+const {
+    show_favourite__combi_streamer__rational,
+    show_favourite__multi_pen__rational,
+    send_combi_streamer,
+    send_multi_pen__rational
+} = require('./functions/product_function/heating_equipment__rational/index')
+
+const {
+    send_dishwasher__elframo,
+    send_glasswasher__elframo,
+    send_warewasher__elframo
+} = require('./functions/product_function/dishwasing_equipment__elframo/send_product__by_query/index')
+
+const {
+    show_favourite__dishwasher_elframo,
+    show_favourite__glasswasher_elframo,
+    show_favourite__warewasher__elframo
+} = require('./functions/product_function/dishwasing_equipment__elframo/show_favourite_product/index')
+
+const {
+    send_refrigerated_table,
+    send_refrigeratior_cabinet,
+    send_shock_freezer
+} = require('./functions/product_function/refrigeration_equipment__samaref/send_product__by_query/index')
+
+const {    
+    show_favourite_refrigerated_table__samaref,
+    show_favourite_refrigeratior_cabinet__samaref,
+    show_favourite_shock_freezer__samaref
+} = require('./functions/product_function/refrigeration_equipment__samaref/show_favourite_product/index')
+
+const {
+    send_bain_marie__rm_gastro,
+    send_deep_fryer__rm_gastro,
+    send_food_boiler__rm_gastro,
+    send_grill__rm_gastro,
+    send_pasta_cooker__rm_gastro,
+    send_pen__rm_gastro,
+    send_plate__rm_gastro
+} = require('./functions/product_function/heating_equipment__rm_gastro.js/send_product__by_query/index')
+
+const {    
+    show_favourite__bain_marie__rm_gastro,
+    show_favourite__deep_fryer__rm_gastro,
+    show_favourite__food_boiler__rm_gastro,
+    show_favourite__grill__rm_gastro,
+    show_favourite__pasta_cooker__rm_gastro,
+    show_favourite__pen__rm_gastro,
+    show_favourite__plate__rm_gastro
+} = require('./functions/product_function/heating_equipment__rm_gastro.js/show_favourite_product/index')
+
+const {
+    send_blixer__robot_coupe,
+    send_cooter__robot_coupe,
+    send_food_combine__robot_coupe,
+    send_mixer__robot_coupe,
+    send_robot_cook__robot_coupe,
+    send_vegetable_cutter__robot_coupe
+} = require('./functions/product_function/electromechanical_equipment__robot_coupe/send_product__by_query/index')
+
+const {
+    show_favourite__blixer__robot_coupe,
+    show_favourite__cooter__robot_coupe,
+    show_favourite__food_combine__robot_coupe,
+    show_favourite__mixer__robot_coupe,
+    show_favourite__robot_cook__robot_coupe,
+    show_favourite__vegetable_cutter__robot_coupe
+} = require('./functions/product_function/electromechanical_equipment__robot_coupe/show_favourite_product/index')
+
+const {
+    dishwasher__elframo, 
+    glasswasher__elframo, 
+    warewasher__elframo
+} = require('./models/dishwashing_equipment__elframo/index')
+
+const {
+    blixter__robot_coupe,
+    cooter__robot_coupe,
+    food_combine__robot_coupe,
+    mixer__robot_coupe,
+    vegetable_cutter__robot_coupe,
+    robot_cook__robot_coupe
+} = require('./models/electromechanical_equipment__robot_coupe/index')
+
+const {refrigerated_table_samaref,
+    refrigeratior_cabinet__samaref,
+    shock_freezer__samaref
+} = require('./models/refrigeration_equipment__samaref/index')
+
+const {
+    grill_rm_gastro,
+    bain_marie__rm_gastro,
+    deep_fryer__rm_gastro,
+    food_boiler__rm_gastro,
+    pasta_cooker__rm_gastro,
+    pen__rm_gastro,
+    plate__rm_gastro
+} = require('./models/heating_equipment__rm_gastro/index')
+
+const {
+    combi_streamer__rational,
+    multi_pen__rational
+} = require('./models/heating_equipment__rational/index')
+
+require('./models/user.model')
+const User = mongoose.model('users')
+require('./models/project.model')
+const Project = mongoose.model('project')
 
 const ACTION_TYPE =  {
     SHOW_PROJECTS_MAP: 'spm',
@@ -64,135 +174,102 @@ const ACTION_TYPE =  {
     TOOGLE_FAV_SHOCK_FREEZER__SAMAREF: 'tfsfsm',
 }
 
-const {dishwasher__elframo, 
-    glasswasher__elframo, 
-    warewasher__elframo} = require('./models/dishwashing_equipment__elframo/index')
+bot.onText(/\/start/, msg => {
+    if (msg.chat.username !== 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
+        bot.sendMessage(chat_id, command_text__start__error)
+    } else if (msg.chat.username === 'AveCardinal' || msg.chat.username === 'AveBoss') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
+        bot.sendMessage(chat_id, command_text__start_success, {
+            reply_markup: {
+                keyboard: keyboard.home,
+                resize_keyboard: true
+            }
+        })
+    }
+})
 
-const {blixter__robot_coupe,
-    cooter__robot_coupe,
-    food_combine__robot_coupe,
-    mixer__robot_coupe,
-    vegetable_cutter__robot_coupe,
-    robot_cook__robot_coupe} = require('./models/electromechanical_equipment__robot_coupe/index')
+bot.onText(/\/help/, msg => {
+    if (msg.chat.username !== 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
+        bot.sendMessage(chat_id, command_text__start__error)
+    } else if (msg.chat.username === 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__asking)
+        bot.sendMessage(chat_id, command_text__help, {
+            parse_mode: 'HTML'
+        })
+    }
+})
 
-const {refrigerated_table_samaref,
-    refrigeratior_cabinet__samaref,
-    shock_freezer__samaref} = require('./models/refrigeration_equipment__samaref/index')
+bot.onText(/\/object/, msg => {
+    if (msg.chat.username !== 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
+        bot.sendMessage(chat_id, command_text__start__error)
+    } else if (msg.chat.username === 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__searching)
+        bot.sendMessage(chat_id, command_text__object, {
+            reply_markup: {
+                keyboard: keyboard.projects,
+                resize_keyboard: true
+            }
+        })
+    }
+})
 
-const {grill_rm_gastro,
-    bain_marie__rm_gastro,
-    deep_fryer__rm_gastro,
-    food_boiler__rm_gastro,
-    pasta_cooker__rm_gastro,
-    pen__rm_gastro,
-    plate__rm_gastro} = require('./models/heating_equipment__rm_gastro/index')
+bot.onText(/\/products/, msg => {
+    if (msg.chat.username !== 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
+        bot.sendMessage(chat_id, command_text__start__error)
+    } else if (msg.chat.username === 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__searching)
+        bot.sendMessage(chat_id, command_text__products, {
+            parse_mode: 'HTML',
+            keyboard: keyboard.products
+        })
+    }
+})
 
-const {combi_streamer__rational,
-    multi_pen__rational} = require('./models/heating_equipment__rational/index')
+bot.onText(/\/statistic/, msg => {
+    if (msg.chat.username !== 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
+        bot.sendMessage(chat_id, command_text__start__error)
+    } else if (msg.chat.username === 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__searching)
+        bot.sendMessage(chat_id, command_text__statistic, {
+            parse_mode: 'HTML',
+            disable_web_page_preview: true
+        })
+    }
+})
 
-require('./models/user.model')
-const User = mongoose.model('users')
-require('./models/project.model')
-const Project = mongoose.model('project')
+bot.onText(/\/registry/, msg => {
+    if (msg.chat.username !== 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
+        bot.sendMessage(chat_id, command_text__start__error)
+    } else if (msg.chat.username === 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__clips)
+        bot.sendMessage(chat_id, command_text__analytics, {
+            parse_mode: 'HTML',
+            disable_web_page_preview: true
+        })
+    }
+})
 
-const {
-    show_favourite__combi_streamer__rational,
-    show_favourite__multi_pen__rational,
-    send_combi_streamer__by_query,
-    send_multi_pen__rational__by_query
-} = require('./products_function/heating_equipment__rational/index')
-
-const {
-    send_dishwasher__elframo_by_query,
-    send_glasswasher__elframo_by_query,
-    send_warewasher__elframo_by_query
-} = require('./products_function/dishwasing_equipment__elframo/send_product__by_query/index')
-
-const {
-    show_favourite__dishwasher_elframo,
-    show_favourite__glasswasher_elframo,
-    show_favourite__warewasher__elframo
-} = require('./products_function/dishwasing_equipment__elframo/show_favourite_product/index')
-
-const {
-    send_refrigerated_table__by_query,
-    send_refrigeratior_cabinet__by_query,
-    send_shock_freezer__by_query
-} = require('./products_function/refrigeration_equipment__samaref/send_product__by_query/index')
-
-const {    
-    show_favourite_refrigerated_table__samaref,
-    show_favourite_refrigeratior_cabinet__samaref,
-    show_favourite_shock_freezer__samaref
-} = require('./products_function/refrigeration_equipment__samaref/show_favourite_product/index')
-
-const {
-    send_bain_marie__rm_gastro__by_query,
-    send_deep_fryer__rm_gastro__by_query,
-    send_food_boiler__rm_gastro__by_query,
-    send_grill__rm_gastro__by_query,
-    send_pasta_cooker__rm_gastro__by_query,
-    send_pen__rm_gastro__by_query,
-    send_plate__rm_gastro__by_query
-} = require('./products_function/heating_equipment__rm_gastro.js/send_product__by_query/index')
-
-const {    
-    show_favourite__bain_marie__rm_gastro,
-    show_favourite__deep_fryer__rm_gastro,
-    show_favourite__food_boiler__rm_gastro,
-    show_favourite__grill__rm_gastro,
-    show_favourite__pasta_cooker__rm_gastro,
-    show_favourite__pen__rm_gastro,
-    show_favourite__plate__rm_gastro
-} = require('./products_function/heating_equipment__rm_gastro.js/show_favourite_product/index')
-
-
-const {
-    send_blixer__robot_coupe__by_query,
-    send_cooter__robot_coupe__by_query,
-    send_food_combine__robot_coupe__by_query,
-    send_mixer__robot_coupe__by_query,
-    send_robot_cook__robot_coupe__by_query,
-    send_vegetable_cutter__robot_coupe__by_query
-} = require('./products_function/electromechanical_equipment__robot_coupe/send_product__by_query/index')
-
-const {
-    show_favourite__blixer__robot_coupe,
-    show_favourite__cooter__robot_coupe,
-    show_favourite__food_combine__robot_coupe,
-    show_favourite__mixer__robot_coupe,
-    show_favourite__robot_cook__robot_coupe,
-    show_favourite__vegetable_cutter__robot_coupe
-} = require('./products_function/electromechanical_equipment__robot_coupe/show_favourite_product/index')
-
-bot.on('message', msg => {
-    const chat_id = helper.getChatId(msg)
-
-    switch (msg.text) {
-        case kb.back: {
-            bot.sendMessage(chat_id, command_text__back, {
-                reply_markup: {
-                    keyboard: keyboard.home,
-                    resize_keyboard: true
-                }
-            })
-        }
-            break
-        case kb.backToMainManufacturer: {
-            bot.sendMessage(chat_id, command_text__backManufacturer, {
-                reply_markup: {
-                    keyboard: keyboard.manufacturer,
-                    resize_keyboard: true
-                }
-            })
-        }
-            break
+bot.onText(/\/type/, msg => {
+    if (msg.chat.username !== 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
+        bot.sendMessage(chat_id, command_text__start__error)
+    } else if (msg.chat.username === 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__looking)
+        bot.sendMessage(chat_id, command_text__type, {
+            parse_mode: 'HTML',
+        })
     }
 })
 
 // switch case keybard_markup to start buttons
 bot.on('message', msg => {
-    const chat_id = helper.getChatId(msg)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
     switch (msg.text) {
         case kb.home.projects:
             bot.sendMessage(chat_id, command_text__projects, {
@@ -204,14 +281,14 @@ bot.on('message', msg => {
             })
             break
         case kb.home.statistic:
-            bot.sendSticker(chat_id, stickers.HotCherryClips)
+            bot.sendSticker(chat_id, stickers.hot_cherry__clips)
             bot.sendMessage(chat_id, command_text__statistic, {
                 parse_mode: 'HTML',
                 disable_web_page_preview: true
             })
             break
         case kb.home.analytics:
-            bot.sendSticker(chat_id, stickers.HotCherryClips)
+            bot.sendSticker(chat_id, stickers.hot_cherry__clips)
             bot.sendMessage(chat_id, command_text__analytics, {
                 parse_mode: 'HTML',
                 disable_web_page_preview: true
@@ -226,154 +303,176 @@ bot.on('message', msg => {
             })
             break
             case kb.home.download:
-                bot.sendSticker(chat_id, stickers.HotCherryRun)
-                bot.sendMessage(chat_id, project_stamp_text)
+                bot.sendSticker(chat_id, stickers.hot_cherry__run)
+                bot.sendMessage(chat_id, project_stamp__text)
                 break
+    }
+})
+
+bot.on('message', msg => {
+    const chat_id = function__get_chat_id.get_chat_id(msg)
+
+    switch (msg.text) {
+        case kb.back: {
+            bot.sendMessage(chat_id, command_text__back, {
+                reply_markup: {
+                    keyboard: keyboard.home,
+                    resize_keyboard: true
+                }
+            })
+        }
+            break
+        case kb.back_to_main_manufacturer: {
+            bot.sendMessage(chat_id, command_text__back_manufacturer, {
+                reply_markup: {
+                    keyboard: keyboard.manufacturer,
+                    resize_keyboard: true
+                }
+            })
+        }
+            break
     }
 })
 
 // switch case keybard_markup to start buttons
 bot.on('message', msg => {
-    const chat_id = helper.getChatId(msg)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
     switch (msg.text) {
         case kb.projects.college:
-            send_project_by_query(chat_id, { type: 'Коледж' })
+            send_project(chat_id, { type: 'Коледж' })
             break
         case kb.projects.exhibition:
-            send_project_by_query(chat_id, { type: 'Виставка' })
+            send_project(chat_id, { type: 'Виставка' })
             break
         case kb.projects.finishing:
-            send_project_by_query(chat_id, { type: 'Finishing' })
+            send_project(chat_id, { type: 'Finishing' })
             break
         case kb.projects.food_kitchen:
-            send_project_by_query(chat_id, { type: 'Фабрика-кухня' })
+            send_project(chat_id, { type: 'Фабрика-кухня' })
             break
         case kb.projects.kindergarden:
-            send_project_by_query(chat_id, { type: 'Дитячий садочок' })
+            send_project(chat_id, { type: 'Дитячий садочок' })
             break
         case kb.projects.lyceum:
-            send_project_by_query(chat_id, { type: 'Ліцей' })
+            send_project(chat_id, { type: 'Ліцей' })
             break
         case kb.projects.restaurant:
-            send_project_by_query(chat_id, { type: 'Ресторан' })
+            send_project(chat_id, { type: 'Ресторан' })
             break
         case kb.projects.school_complex:
-            send_project_by_query(chat_id, { type: 'НВК' })
+            send_project(chat_id, { type: 'НВК' })
             break
         case kb.projects.school:
-            send_project_by_query(chat_id, { type: 'Школа' })
+            send_project(chat_id, { type: 'Школа' })
             break
     }
 })
 
 // switch case keyboard_markup rational product
 bot.on('message', msg => {
-    const chat_id = helper.getChatId(msg)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     switch (msg.text) {
-        case kb.rational.combiStemear:
-            send_combi_streamer__by_query(chat_id, { form: 'Пароконвектомат' })
+        case kb.rational.combi_streamer:
+            send_combi_streamer(chat_id, { form: 'Пароконвектомат' })
             break
-        case kb.rational.muiltyPen:
-            send_multi_pen__rational__by_query(chat_id, { form: 'Мультифункціональна сковорода' })
+        case kb.rational.multi_pen:
+            send_multi_pen__rational(chat_id, { form: 'Мультифункціональна сковорода' })
             break
     }
 })
 
-
-
 // switch case keyboard_markup elframo equipment product
 bot.on('message', msg => {
-    const chat_id = helper.getChatId(msg)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     switch (msg.text) {
         case kb.elframo.dishwasher:
-            send_dishwasher__elframo_by_query(chat_id, { form: 'Посудомийна машина' })
+            send_dishwasher__elframo(chat_id, { form: 'Посудомийна машина' })
             break
-        case kb.elframo.glassWasher:
-            send_glasswasher__elframo_by_query(chat_id, { form: 'Склянкомийна машина' })
+        case kb.elframo.glass_washer:
+            send_glasswasher__elframo(chat_id, { form: 'Склянкомийна машина' })
             break
-        case kb.elframo.potWashingMachine:
-            send_warewasher__elframo_by_query(chat_id, { form: 'Котломийна машина' })
+        case kb.elframo.warewasher:
+            send_warewasher__elframo(chat_id, { form: 'Котломийна машина' })
             break
     }
 })
 
 // switch case keyboard_markup samaref equipment product
 bot.on('message', msg => {
-    const chat_id = helper.getChatId(msg)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     switch (msg.text) {
-        case kb.samaref.refrigeratedTable:
-            send_refrigerated_table__by_query(chat_id, { form: 'Холодильна шафа' })
+        case kb.samaref.refrigerated_table:
+            send_refrigerated_table(chat_id, { form: 'Холодильна шафа' })
             break
-        case kb.samaref.refrigeratiorCabinet:
-            send_refrigeratior_cabinet__by_query(chat_id, { form: 'Холодильний стіл' })
+        case kb.samaref.refrigeratior_cabinet:
+            send_refrigeratior_cabinet(chat_id, { form: 'Холодильний стіл' })
             break
-        case kb.samaref.shockFreezer:
-            send_shock_freezer__by_query(chat_id, { form: 'Шафа шокового охолодження та замороження' })
+        case kb.samaref.shock_freezer:
+            send_shock_freezer(chat_id, { form: 'Шафа шокового охолодження та замороження' })
             break
     }
 })
 
-
 // switch case keyboard_markup to rm gastro equipment product
 bot.on('message', msg => {
-    const chat_id = helper.getChatId(msg)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     switch (msg.text) {
-        case kb.rmGastro.grill:
-            send_grill__rm_gastro__by_query(chat_id, { form: 'Гриль' })
+        case kb.rm_gastro.grill:
+            send_grill__rm_gastro(chat_id, { form: 'Гриль' })
             break
-        case kb.rmGastro.pastaCooker:
-            send_pasta_cooker__rm_gastro__by_query(chat_id, { form: 'Макароноварка'})
+        case kb.rm_gastro.pasta_cooker:
+            send_pasta_cooker__rm_gastro(chat_id, { form: 'Макароноварка'})
             break
-        case kb.rmGastro.bainMarie:
-            send_bain_marie__rm_gastro__by_query(chat_id, { form: 'Марміт' })
+        case kb.rm_gastro.bain_marie:
+            send_bain_marie__rm_gastro(chat_id, { form: 'Марміт' })
             break
-        case kb.rmGastro.plate:
-            send_plate__rm_gastro__by_query(chat_id, { form: 'Плита' })
+        case kb.rm_gastro.plate:
+            send_plate__rm_gastro(chat_id, { form: 'Плита' })
             break
-        case kb.rmGastro.pen:
-            send_pen__rm_gastro__by_query(chat_id, { form: 'Сковорода' })
+        case kb.rm_gastro.pen:
+            send_pen__rm_gastro(chat_id, { form: 'Сковорода' })
             break
-        case kb.rmGastro.foodBoiler:
-            send_food_boiler__rm_gastro__by_query(chat_id, { form: 'Травний котел' })
+        case kb.rm_gastro.food_boiler:
+            send_food_boiler__rm_gastro(chat_id, { form: 'Травний котел' })
             break
-        case kb.rmGastro.deepFryer:
-            send_deep_fryer__rm_gastro__by_query(chat_id, { form: 'Фритюрниця' })
+        case kb.rm_gastro.deep_fryer:
+            send_deep_fryer__rm_gastro(chat_id, { form: 'Фритюрниця' })
             break
     }
 })
 
 // switch case keyboard_markup to Robot Coupe equipment product
 bot.on('message', msg => {
-    const chat_id = helper.getChatId(msg)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     switch (msg.text) {
-        case kb.robotCoupe.robotCook:
-            send_robot_cook__robot_coupe__by_query(chat_id, { form: 'Robot Cook' })
+        case kb.robot_coupe.robot_cook:
+            send_robot_cook__robot_coupe(chat_id, { form: 'Robot Cook' })
             break
-        case kb.robotCoupe.blixer:
-            send_blixer__robot_coupe__by_query(chat_id, { form: 'Бліксер' })
+        case kb.robot_coupe.blixer:
+            send_blixer__robot_coupe(chat_id, { form: 'Бліксер' })
             break
-        case kb.robotCoupe.cooter:
-            send_cooter__robot_coupe__by_query(chat_id, { form: 'Кутер' })
+        case kb.robot_coupe.cooter:
+            send_cooter__robot_coupe(chat_id, { form: 'Кутер' })
             break
-        case kb.robotCoupe.foodCombine:
-            send_food_combine__robot_coupe__by_query(chat_id, { form: 'Кухонний комбайн' })
+        case kb.robot_coupe.food_combine:
+            send_food_combine__robot_coupe(chat_id, { form: 'Кухонний комбайн' })
             break
-        case kb.robotCoupe.mixer:
-            send_mixer__robot_coupe__by_query(chat_id, { form: 'Міксер' })
+        case kb.robot_coupe.mixer:
+            send_mixer__robot_coupe(chat_id, { form: 'Міксер' })
             break
-        case kb.robotCoupe.vegetableCutter:
-            send_vegetable_cutter__robot_coupe__by_query(chat_id, { form: 'Овочерізка' })
+        case kb.robot_coupe.vegetable_cutter:
+            send_vegetable_cutter__robot_coupe(chat_id, { form: 'Овочерізка' })
             break
     }
 })
 
 bot.on('message', msg => {
-    const chat_id = helper.getChatId(msg)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
     switch(msg.text) {
         case kb.home.actualy: 
         show_favourite__combi_streamer__rational(chat_id, msg.from.id)
@@ -399,16 +498,15 @@ bot.on('message', msg => {
         show_favourite_shock_freezer__samaref(chat_id, msg.from.id)
         break
     }
-
 })
 
 // switch case keyboard_markup to manufacturer categories
 bot.on('message', msg => {
-    const chat_id = helper.getChatId(msg)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     switch (msg.text) {
         case kb.manufacturer.elframo: {
-            bot.sendMessage(chat_id, manufacturer_text__elframo, {
+            bot.sendMessage(chat_id, manufacturer_elframo__text, {
                 reply_markup: {
                     keyboard: keyboard.elframo,
                     resize_keyboard: true
@@ -417,7 +515,7 @@ bot.on('message', msg => {
         }
             break
         case kb.manufacturer.rational: {
-            bot.sendMessage(chat_id, manufacturer_text__rational, {
+            bot.sendMessage(chat_id, manufacturer_rational__text, {
                 reply_markup: {
                     keyboard: keyboard.rational,
                     resize_keyboard: true,
@@ -426,26 +524,26 @@ bot.on('message', msg => {
             })
         }
             break
-        case kb.manufacturer.rmGastro: {
-            bot.sendMessage(chat_id, manufacturer_text__rmGastro, {
+        case kb.manufacturer.rm_gastro: {
+            bot.sendMessage(chat_id, manufacturer_rm_gastro__text, {
                 reply_markup: {
-                    keyboard: keyboard.rmGastro,
+                    keyboard: keyboard.rm_gastro,
                     resize_keyboard: true
                 }
             })
         }
             break
-        case kb.manufacturer.robotCoupe: {
-            bot.sendMessage(chat_id, manufacturer_text__robotCoupe, {
+        case kb.manufacturer.robot_coupe: {
+            bot.sendMessage(chat_id, manufacturer_robot_coupe__text, {
                 reply_markup: {
-                    keyboard: keyboard.robotCoupe,
+                    keyboard: keyboard.robot_coupe,
                     resize_keyboard: true
                 }
             })
         }
             break
         case kb.manufacturer.samaref: {
-            bot.sendMessage(chat_id, manufacturer_text__samaref, {
+            bot.sendMessage(chat_id, manufacturer_samaref__text, {
                 reply_markup: {
                     keyboard: keyboard.samaref,
                     resize_keyboard: true
@@ -456,106 +554,12 @@ bot.on('message', msg => {
     }
 })
 
-// start command
-bot.onText(/\/start/, msg => {
-    if (msg.chat.username !== 'AveCardinal' && msg.chat.username !== 'AveBoss') {
-        bot.sendSticker(chat_id, stickers.HotCherryCry)
-        bot.sendMessage(chat_id, command_text__start__error)
-    } else if (msg.chat.username === 'AveCardinal' || msg.chat.username === 'AveBoss') {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
-        bot.sendMessage(chat_id, command_text__start_success, {
-            reply_markup: {
-                keyboard: keyboard.home,
-                resize_keyboard: true
-            }
-        })
-    }
-})
 
-// help command
-bot.onText(/\/help/, msg => {
-    if (msg.chat.username !== 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherryCry)
-        bot.sendMessage(chat_id, command_text__start__error)
-    } else if (msg.chat.username === 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherryAsking)
-        bot.sendMessage(chat_id, command_text__help, {
-            parse_mode: 'HTML'
-        })
-    }
-})
-
-bot.onText(/\/type/, msg => {
-    if (msg.chat.username !== 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherryCry)
-        bot.sendMessage(chat_id, command_text__start__error)
-    } else if (msg.chat.username === 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherryLooking)
-        bot.sendMessage(chat_id, command_text__type, {
-            parse_mode: 'HTML',
-        })
-    }
-})
-
-bot.onText(/\/object/, msg => {
-    if (msg.chat.username !== 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherryCry)
-        bot.sendMessage(chat_id, command_text__start__error)
-    } else if (msg.chat.username === 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherrySearching)
-        bot.sendMessage(chat_id, command_text__object, {
-            reply_markup: {
-                keyboard: keyboard.projects,
-                resize_keyboard: true
-            }
-        })
-    }
-})
-
-bot.onText(/\/statistic/, msg => {
-    if (msg.chat.username !== 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherryCry)
-        bot.sendMessage(chat_id, command_text__start__error)
-    } else if (msg.chat.username === 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherrySearching)
-        bot.sendMessage(chat_id, command_text__statistic, {
-            parse_mode: 'HTML',
-            disable_web_page_preview: true
-
-        })
-    }
-})
-
-bot.onText(/\/products/, msg => {
-    if (msg.chat.username !== 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherryCry)
-        bot.sendMessage(chat_id, command_text__start__error)
-    } else if (msg.chat.username === 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherrySearching)
-        bot.sendMessage(chat_id, command_text__products, {
-            parse_mode: 'HTML',
-            keyboard: keyboard.products
-        })
-    }
-})
-
-bot.onText(/\/registry/, msg => {
-    if (msg.chat.username !== 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherryCry)
-        bot.sendMessage(chat_id, command_text__start__error)
-    } else if (msg.chat.username === 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.HotCherryClips)
-        bot.sendMessage(chat_id, command_text__analytics, {
-            parse_mode: 'HTML',
-            disable_web_page_preview: true
-        })
-    }
-})
 
 // find project by id
 bot.onText(/\/k(.+)/, (msg, [source]) => {
     const projectUuid = helper.get_item__with__two_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Project.findOne({ uuid: projectUuid }).then(project => {
         
@@ -601,41 +605,41 @@ bot.onText(/\/k(.+)/, (msg, [source]) => {
 // heating equipment coomand
 // combiStream command
 bot.onText(/\/p(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__two_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__two_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        combi_streamer__rational.findOne({ uuid: productUuid }),
+        combi_streamer__rational.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([combi_streamer__rational, user]) => {
 
-        let isFav = false
+        let is_fav = false
 
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
 
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товара: <b>${combi_streamer__rational.name}.</b>
-        Серія: <b>${combi_streamer__rational.series}.</b>
-        Тип обладнання: <b>${combi_streamer__rational.type}.</b>
-        Вид обладнання: <b>${combi_streamer__rational.form}.</b>
-        Виробник: <b>${combi_streamer__rational.manufacturer}.</b>
-        Країна виробника: <b>${combi_streamer__rational.country_manufacturer}.</b>
-        Артикул: <b>${combi_streamer__rational.article}.</b>
-        Місткість: <b>${combi_streamer__rational.volume} ємностей.</b>
-        Рівень напруги: <b>${combi_streamer__rational.voltage}</b>
-        Кількість фаз: <b>${combi_streamer__rational.number_phases} шт.</b>
-        Потужність: <b>${combi_streamer__rational.power} кВт.</b>
-        Розміри обладнання: <b>Ш ${combi_streamer__rational.width} x Г ${combi_streamer__rational.depth} x В ${combi_streamer__rational.weight} мм.</b>
-        Вага: <b>${combi_streamer__rational.weight} кг.</b>
+Серія: <b>${combi_streamer__rational.series}.</b>
+Тип обладнання: <b>${combi_streamer__rational.type}.</b>
+Вид обладнання: <b>${combi_streamer__rational.form}.</b>
+Виробник: <b>${combi_streamer__rational.manufacturer}.</b>
+Країна виробника: <b>${combi_streamer__rational.country_manufacturer}.</b>
+Артикул: <b>${combi_streamer__rational.article}.</b>
+Місткість: <b>${combi_streamer__rational.volume} ємностей.</b>
+Рівень напруги: <b>${combi_streamer__rational.voltage}</b>
+Кількість фаз: <b>${combi_streamer__rational.number_phases} шт.</b>
+Потужність: <b>${combi_streamer__rational.power} кВт.</b>
+Розміри обладнання: <b>Ш ${combi_streamer__rational.width} x Г ${combi_streamer__rational.depth} x В ${combi_streamer__rational.weight} мм.</b>
+Вага: <b>${combi_streamer__rational.weight} кг.</b>
         
-        <i>Вимоги до підключення:</i>
-        Електропостачання: <b>Кабель на ${combi_streamer__rational.necessary_communications.electrical} кВт.</b>
-        Водопостачання: <b>Кран разміром ${combi_streamer__rational.necessary_communications.water_supply}''.</b>
-        Каналізація: <b>Труба діаметром ${combi_streamer__rational.necessary_communications.sewerage} мм.</b>
-        Вентиляція: <b>Вентиляційний зонт розмірами: Ш ${combi_streamer__rational.necessary_communications.ventilation.width} х Г ${combi_streamer__rational.necessary_communications.ventilation.depth} х В ${combi_streamer__rational.necessary_communications.ventilation.height} мм.</b>`
+<i>Вимоги до підключення:</i>
+Електропостачання: <b>Кабель на ${combi_streamer__rational.necessary_communications.electrical} кВт.</b>
+Водопостачання: <b>Кран разміром ${combi_streamer__rational.necessary_communications.water_supply}''.</b>
+Каналізація: <b>Труба діаметром ${combi_streamer__rational.necessary_communications.sewerage} мм.</b>
+Вентиляція: <b>Вентиляційний зонт розмірами: Ш ${combi_streamer__rational.necessary_communications.ventilation.width} х Г ${combi_streamer__rational.necessary_communications.ventilation.depth} х В ${combi_streamer__rational.necessary_communications.ventilation.height} мм.</b>`
                 bot.sendPhoto(chat_id, combi_streamer__rational.picture, {
                     caption: caption,
                     parse_mode: 'HTML',
@@ -647,11 +651,11 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
                                     url: combi_streamer__rational.link
                                 },
                                 {
-                                    text: favText,
+                                    text: fav_text,
                                     callback_data: JSON.stringify({
                                         type: ACTION_TYPE.TOOGLE_FAV_COMBI_STREAMERS,
-                                        productUuid: productUuid,
-                                        isFav: isFav
+                                        product_uuid: product_uuid,
+                                        is_fav: is_fav
                                     })
                                 }
                             ]
@@ -665,21 +669,21 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
 
 // multiPen command
 bot.onText(/\/mp(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__three_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__three_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        multi_pen__rational.findOne({ uuid: productUuid }),
+        multi_pen__rational.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([multi_pen__rational, user]) => {
 
-        let isFav = false
+        let is_fav = false
 
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
 
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товара: <b>${multi_pen__rational.name}.</b>
 Серія: <b>${multi_pen__rational.series}.</b>
@@ -712,11 +716,11 @@ bot.onText(/\/mp(.+)/, (msg, [source]) => {
                             url: multi_pen__rational.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_MULTI_PEN,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -731,19 +735,19 @@ bot.onText(/\/mp(.+)/, (msg, [source]) => {
 // ----------------- elframo manufacturer commands ----------------------
 // elframo dishwasher command
 bot.onText(/\/edsw(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__five_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__five_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        dishwasher__elframo.findOne({ uuid: productUuid }),
+        dishwasher__elframo.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([dishwasher__elframo, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товара: <b>${dishwasher__elframo.name}.</b>
 Тип обладнання: <b>${dishwasher__elframo.type}.</b>
@@ -772,11 +776,11 @@ bot.onText(/\/edsw(.+)/, (msg, [source]) => {
                             url: dishwasher__elframo.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_DISHWASHER__ELFRAMO,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -787,21 +791,21 @@ bot.onText(/\/edsw(.+)/, (msg, [source]) => {
     })
 })       
 
-// elframo glassWasher command
+// elframo glass_washer command
 bot.onText(/\/egw(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        glasswasher__elframo.findOne({ uuid: productUuid }),
+        glasswasher__elframo.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([glasswasher__elframo, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товара: <b>${glasswasher__elframo.name}.</b>
 Тип обладнання: <b>${glasswasher__elframo.type}.</b>
@@ -832,11 +836,11 @@ bot.onText(/\/egw(.+)/, (msg, [source]) => {
                             url: glasswasher__elframo.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_GLASSWASHER__ELFRAMO,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -847,21 +851,21 @@ bot.onText(/\/egw(.+)/, (msg, [source]) => {
     })
 })
 
-// elframo potWashingMachine command
+// elframo warewasher command
 bot.onText(/\/eptm(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__five_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__five_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        warewasher__elframo.findOne({ uuid: productUuid }),
+        warewasher__elframo.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([warewasher__elframo, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товара: <b>${warewasher__elframo.name}.</b>
 Тип обладнання: <b>${warewasher__elframo.type}.</b>
@@ -892,11 +896,11 @@ bot.onText(/\/eptm(.+)/, (msg, [source]) => {
                             url: warewasher__elframo.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_WAREWASHER__ELFRAMO,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -908,21 +912,21 @@ bot.onText(/\/eptm(.+)/, (msg, [source]) => {
 })
 
 // ----------------- samaref manufacturer commands ----------------------
-// samaref refrigeratedTable command
+// samaref refrigerated_table command
 bot.onText(/\/rtsm(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__five_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__five_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        refrigerated_table_samaref.findOne({ uuid: productUuid }),
+        refrigerated_table_samaref.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([refrigerated_table_samaref, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товара: <b>${refrigerated_table_samaref.name}.</b>
 Тип обладнання: <b>${refrigerated_table_samaref.type}.</b>
@@ -949,11 +953,11 @@ bot.onText(/\/rtsm(.+)/, (msg, [source]) => {
                             url: refrigerated_table_samaref.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_REFRIGERATED_TABLE__SAMAREF,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -964,21 +968,21 @@ bot.onText(/\/rtsm(.+)/, (msg, [source]) => {
     })
 })
 
-// samaref refrigeratiorCabinet command
+// samaref refrigeratior_cabinet command
 bot.onText(/\/rf(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__three_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__three_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        refrigeratior_cabinet__samaref.findOne({ uuid: productUuid }),
+        refrigeratior_cabinet__samaref.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([refrigeratior_cabinet__samaref, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товара: <b>${refrigeratior_cabinet__samaref.name}.</b>
 Тип обладнання: <b>${refrigeratior_cabinet__samaref.type}.</b>
@@ -1006,11 +1010,11 @@ bot.onText(/\/rf(.+)/, (msg, [source]) => {
                             url: refrigeratior_cabinet__samaref.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_REFRIGERATIOR_CABINET__SAMAREF,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1021,21 +1025,21 @@ bot.onText(/\/rf(.+)/, (msg, [source]) => {
     })
 })
 
-// samaref shockFreezer command
+// samaref shock_freezer command
 bot.onText(/\/sf(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__three_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__three_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        shock_freezer__samaref.findOne({ uuid: productUuid }),
+        shock_freezer__samaref.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([shock_freezer__samaref, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товара: <b>${shock_freezer__samaref.name}.</b>
 Тип обладнання: <b>${shock_freezer__samaref.type}.</b>
@@ -1063,11 +1067,11 @@ bot.onText(/\/sf(.+)/, (msg, [source]) => {
                             url: shock_freezer__samaref.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_SHOCK_FREEZER__SAMAREF,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1081,19 +1085,19 @@ bot.onText(/\/sf(.+)/, (msg, [source]) => {
 // ----------------- rmGastro manufacturer commands ----------------------
 // rmGastro grill command
 bot.onText(/\/gr(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__three_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__three_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        grill_rm_gastro.findOne({ uuid: productUuid }),
+        grill_rm_gastro.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([grill_rm_gastro, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
     
         const caption = `Назва товару: <b>${grill_rm_gastro.name}.</b>
 Тип обладнання: <b>${grill_rm_gastro.type}.</b>
@@ -1127,11 +1131,11 @@ bot.onText(/\/gr(.+)/, (msg, [source]) => {
                             url: grill_rm_gastro.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_GRILL__RM_GASTRO,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1144,19 +1148,19 @@ bot.onText(/\/gr(.+)/, (msg, [source]) => {
 
 // rmGastro bain marie command
 bot.onText(/\/bmr(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        bain_marie__rm_gastro.findOne({ uuid: productUuid }),
+        bain_marie__rm_gastro.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([bain_marie__rm_gastro, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
     
         const caption = `Назва товару: <b>${bain_marie__rm_gastro.name}.</b>
 Тип обладнання: <b>${bain_marie__rm_gastro.type}.</b>
@@ -1185,11 +1189,11 @@ bot.onText(/\/bmr(.+)/, (msg, [source]) => {
                             url: bain_marie__rm_gastro.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_BAIN_MARIE__RM_GASTRO,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1202,19 +1206,19 @@ bot.onText(/\/bmr(.+)/, (msg, [source]) => {
 
 // rmGastro deep fryer command
 bot.onText(/\/dfs(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        deep_fryer__rm_gastro.findOne({ uuid: productUuid }),
+        deep_fryer__rm_gastro.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([deep_fryer__rm_gastro, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
     
         const caption = `Назва товару: <b>${deep_fryer__rm_gastro.name}.</b>
 Тип обладнання: <b>${deep_fryer__rm_gastro.type}.</b>
@@ -1243,11 +1247,11 @@ bot.onText(/\/dfs(.+)/, (msg, [source]) => {
                             url: deep_fryer__rm_gastro.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_DEEP_FRYER__RM_GASTRO,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1260,19 +1264,19 @@ bot.onText(/\/dfs(.+)/, (msg, [source]) => {
 
 // rmGastro food boiler command
 bot.onText(/\/fbs(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        food_boiler__rm_gastro.findOne({ uuid: productUuid }),
+        food_boiler__rm_gastro.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([food_boiler__rm_gastro, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
         
         const caption = `Назва товару: <b>${food_boiler__rm_gastro.name}.</b>
 Тип обладнання: <b>${food_boiler__rm_gastro.type}.</b>
@@ -1301,11 +1305,11 @@ bot.onText(/\/fbs(.+)/, (msg, [source]) => {
                             url: food_boiler__rm_gastro.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_FOOD_BOILER__RM_GASTRO,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1318,19 +1322,19 @@ bot.onText(/\/fbs(.+)/, (msg, [source]) => {
 
 // rmGastro pasta cooker command
 bot.onText(/\/pcs(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        pasta_cooker__rm_gastro.findOne({ uuid: productUuid }),
+        pasta_cooker__rm_gastro.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([pasta_cooker__rm_gastro, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
         
         const caption = `Назва товару: <b>${pasta_cooker__rm_gastro.name}.</b>
 Тип обладнання: <b>${pasta_cooker__rm_gastro.type}.</b>
@@ -1358,11 +1362,11 @@ bot.onText(/\/pcs(.+)/, (msg, [source]) => {
                             url: pasta_cooker__rm_gastro.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_PASTA_COOKER__RM_GASTRO,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1375,19 +1379,19 @@ bot.onText(/\/pcs(.+)/, (msg, [source]) => {
 
 // rmGastro pen command
 bot.onText(/\/pen(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        pen__rm_gastro.findOne({ uuid: productUuid }),
+        pen__rm_gastro.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([pen__rm_gastro, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товару: <b>${pen__rm_gastro.name}.</b>
 Тип обладнання: <b>${pen__rm_gastro.type}.</b>
@@ -1415,11 +1419,11 @@ bot.onText(/\/pen(.+)/, (msg, [source]) => {
                             url: pen__rm_gastro.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_PEN__RM_GASTRO,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1432,19 +1436,19 @@ bot.onText(/\/pen(.+)/, (msg, [source]) => {
 
 // rmGastro plate command
 bot.onText(/\/plt(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        plate__rm_gastro.findOne({ uuid: productUuid }),
+        plate__rm_gastro.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([plate__rm_gastro, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товару: <b>${plate__rm_gastro.name}.</b>
 Тип обладнання: <b>${plate__rm_gastro.type}.</b>
@@ -1478,11 +1482,11 @@ bot.onText(/\/plt(.+)/, (msg, [source]) => {
                             url: plate__rm_gastro.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_PLATE__RM_GASTRO,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1496,19 +1500,19 @@ bot.onText(/\/plt(.+)/, (msg, [source]) => {
 // ----------------- Robot Coupe manufacturer commands ----------------------
 // Robot Coupe Robot Cook command
 bot.onText(/\/rck(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        robot_cook__robot_coupe.findOne({ uuid: productUuid }),
+        robot_cook__robot_coupe.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([robot_cook__robot_coupe, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товару: <b>${robot_cook__robot_coupe.name}.</b>
 Тип обладнання: <b>${robot_cook__robot_coupe.type}.</b>
@@ -1523,7 +1527,7 @@ bot.onText(/\/rck(.+)/, (msg, [source]) => {
 Вага: <b>${robot_cook__robot_coupe.weight} кг. </b>
 
 <i>Вимоги до підключення:</i>
-// Електропостачання: <b>розетка на ${robot_cook__robot_coupe.necessary_communications.electrical} кВт.</b>`
+ Електропостачання: <b>розетка на ${robot_cook__robot_coupe.necessary_communications.electrical} кВт.</b>`
         bot.sendPhoto(chat_id, robot_cook__robot_coupe.picture, {
             caption: caption,
             parse_mode: 'HTML',
@@ -1535,11 +1539,11 @@ bot.onText(/\/rck(.+)/, (msg, [source]) => {
                             url: robot_cook__robot_coupe.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_ROBOT_COOK__ROBOT_COUPE,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1552,19 +1556,19 @@ bot.onText(/\/rck(.+)/, (msg, [source]) => {
 
 // Robot Coupe mixer command
 bot.onText(/\/mxr(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        mixer__robot_coupe.findOne({ uuid: productUuid }),
+        mixer__robot_coupe.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([mixer__robot_coupe, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товару: <b>${mixer__robot_coupe.name}.</b>
 Тип обладнання: <b>${mixer__robot_coupe.type}.</b>
@@ -1592,11 +1596,11 @@ bot.onText(/\/mxr(.+)/, (msg, [source]) => {
                             url: mixer__robot_coupe.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_MIXER__ROBOT_COUPE,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1609,19 +1613,19 @@ bot.onText(/\/mxr(.+)/, (msg, [source]) => {
 
 // Robot Coupe vegetable cutters command
 bot.onText(/\/vcr(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        vegetable_cutter__robot_coupe.findOne({ uuid: productUuid }),
+        vegetable_cutter__robot_coupe.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([vegetable_cutter__robot_coupe, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товару <b>${vegetable_cutter__robot_coupe.name}.</b>
 Тип обладнання: <b>${vegetable_cutter__robot_coupe.type}.</b>
@@ -1648,11 +1652,11 @@ bot.onText(/\/vcr(.+)/, (msg, [source]) => {
                             url: vegetable_cutter__robot_coupe.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_VEGETABLE_CUTTER__ROBOT_COUPE,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1665,19 +1669,19 @@ bot.onText(/\/vcr(.+)/, (msg, [source]) => {
 
 // Robot Coupe food combines command
 bot.onText(/\/fce(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        food_combine__robot_coupe.findOne({ uuid: productUuid }),
+        food_combine__robot_coupe.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([food_combine__robot_coupe, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товару: <b>${food_combine__robot_coupe.name}.</b>
 Тип обладнання: <b>${food_combine__robot_coupe.type}.</b>
@@ -1704,11 +1708,11 @@ bot.onText(/\/fce(.+)/, (msg, [source]) => {
                             url: food_combine__robot_coupe.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_FOOD_COMBINE__ROBOT_COUPE,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1721,19 +1725,19 @@ bot.onText(/\/fce(.+)/, (msg, [source]) => {
 
 // Robot Coupe blixters command
 bot.onText(/\/blr(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        blixter__robot_coupe.findOne({ uuid: productUuid }),
+        blixter__robot_coupe.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([blixter__robot_coupe, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товару: <b>${blixter__robot_coupe.name}.</b>
 Тип обладнання: <b>${blixter__robot_coupe.type}.</b>
@@ -1760,11 +1764,11 @@ bot.onText(/\/blr(.+)/, (msg, [source]) => {
                             url: blixter__robot_coupe.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_BLIXER__ROBOT_COUPE,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1777,19 +1781,19 @@ bot.onText(/\/blr(.+)/, (msg, [source]) => {
 
 // Robot Coupe blixters command
 bot.onText(/\/ctr(.+)/, (msg, [source]) => {
-    const productUuid = helper.get_item__with__four_letter_uuid(source)
-    const chat_id = helper.getChatId(msg)
+    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
-        cooter__robot_coupe.findOne({ uuid: productUuid }),
+        cooter__robot_coupe.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
     ]).then(([cooter__robot_coupe, user]) => {
 
-        let isFav = false
+        let is_fav = false
         if (user) {
-            isFav = user.products.indexOf(productUuid) !== -1
+            is_fav = user.products.indexOf(product_uuid) !== -1
         }
-        const favText = isFav ? 'Видалити з актуального' : 'Додати в актуальне'
+        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
         const caption = `Назва товару: <b>${cooter__robot_coupe.name}.</b>
 Тип обладнання: <b>${cooter__robot_coupe.type}.</b>
@@ -1816,11 +1820,11 @@ bot.onText(/\/ctr(.+)/, (msg, [source]) => {
                             url: cooter__robot_coupe.link
                         },
                         {
-                            text: favText,
+                            text: fav_text,
                             callback_data: JSON.stringify({
                                 type: ACTION_TYPE.TOOGLE_FAV_COOTER__ROBOT_COUPE,
-                                productUuid: productUuid,
-                                isFav: isFav
+                                product_uuid: product_uuid,
+                                is_fav: is_fav
                             })
                         }
                     ]
@@ -1896,7 +1900,7 @@ bot.on('callback_query', query => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_001_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_001_2021.caption)  
         bot.sendDocument(chat_id, file_id.p_001_2021.dwg, {caption: file_id.p_001_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_001_2021.pdf, {caption: file_id.p_001_2021.pdf__filename})        
@@ -1907,7 +1911,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_002_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_002_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_002_2021.dwg_pz, {caption: file_id.p_002_2021.dwg__filename_pz})
         bot.sendDocument(chat_id, file_id.p_002_2021.dwg_tx, {caption: file_id.p_002_2021.dwg__filename_tx})
@@ -1921,7 +1925,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_003_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_003_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_003_2021.dwg, {caption: file_id.p_003_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_003_2021.pdf, {caption: file_id.p_003_2021.pdf__filename})        
@@ -1932,7 +1936,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_004_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_004_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_004_2021.dwg, {caption: file_id.p_004_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_004_2021.pdf, {caption: file_id.p_004_2021.pdf__filename})        
@@ -1943,7 +1947,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_005_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_005_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_005_2021.dwg, {caption: file_id.p_005_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_005_2021.pdf, {caption: file_id.p_005_2021.pdf__filename})        
@@ -1954,7 +1958,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_006_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_006_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_006_2021.dwg, {caption: file_id.p_006_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_006_2021.pdf_v1, {caption: file_id.p_005_2021.pdf_filename_v1})
@@ -1966,7 +1970,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_007_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_007_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_007_2021.dwg, {caption: file_id.p_007_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_007_2021.pdf, {caption: file_id.p_007_2021.pdf__filename})        
@@ -1977,7 +1981,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_008_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_008_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_008_2021.dwg, {caption: file_id.p_008_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_008_2021.pdf, {caption: file_id.p_008_2021.pdf__filename})        
@@ -1988,7 +1992,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_009_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_009_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_009_2021.dwg, {caption: file_id.p_009_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_009_2021.pdf, {caption: file_id.p_009_2021.pdf__filename})        
@@ -1999,7 +2003,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_010_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_010_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_010_2021.dwg, {caption: file_id.p_010_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_010_2021.pdf, {caption: file_id.p_010_2021.pdf__filename})        
@@ -2010,7 +2014,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_011_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_011_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_011_2021.dwg, {caption: file_id.p_011_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_011_2021.pdf, {caption: file_id.p_011_2021.pdf__filename})        
@@ -2021,7 +2025,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_012_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_012_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_012_2021.dwg, {caption: file_id.p_012_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_012_2021.pdf, {caption: file_id.p_012_2021.pdf__filename})        
@@ -2032,7 +2036,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_013_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_013_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_013_2021.dwg, {caption: file_id.p_013_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_013_2021.pdf, {caption: file_id.p_013_2021.pdf__filename})        
@@ -2043,7 +2047,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_014_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_014_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_014_2021.dwg, {caption: file_id.p_014_2021.dwg__filename,})       
         bot.sendDocument(chat_id, file_id.p_014_2021.pdf, {caption: file_id.p_014_2021.pdf__filename})        
@@ -2054,7 +2058,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_015_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_015_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_015_2021.dwg, {caption: file_id.p_015_2021.dwg__filename,})       
         bot.sendDocument(chat_id, file_id.p_015_2021.pdf, {caption: file_id.p_015_2021.pdf__filename,})        
@@ -2065,7 +2069,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_016_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_016_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_016_2021.dwg, {caption: file_id.p_016_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_016_2021.pdf, {caption: file_id.p_016_2021.pdf__filename})        
@@ -2076,7 +2080,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_017_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_017_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_017_2021.dwg, {caption: file_id.p_017_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_017_2021.pdf, {caption: file_id.p_017_2021.pdf__filename})        
@@ -2087,7 +2091,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_018_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_018_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_018_2021.dwg_pz, {caption: file_id.p_018_2021.dwg__filename_pz})
         bot.sendDocument(chat_id, file_id.p_018_2021.dwg_tx, {caption: file_id.p_018_2021.dwg__filename_tx})
@@ -2101,7 +2105,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_019_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_019_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_019_2021.dwg, {caption: file_id.p_019_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_019_2021.pdf, {caption: file_id.p_019_2021.pdf__filename})        
@@ -2112,7 +2116,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_020_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_020_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_020_2021.dwg, {caption: file_id.p_020_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_020_2021.pdf, {caption: file_id.p_020_2021.pdf__filename})        
@@ -2123,7 +2127,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_021_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_021_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_021_2021.dwg, {caption: file_id.p_021_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_021_2021.pdf, {caption: file_id.p_021_2021.pdf__filename})        
@@ -2134,7 +2138,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_022_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_022_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_022_2021.dwg, {caption: file_id.p_022_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_022_2021.pdf, {caption: file_id.p_022_2021.pdf__filename})        
@@ -2145,7 +2149,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_023_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_023_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_023_2021.dwg, {caption: file_id.p_023_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_023_2021.pdf, {caption: file_id.p_023_2021.pdf__filename})        
@@ -2156,7 +2160,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_024_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_024_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_024_2021.dwg, {caption: file_id.p_024_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_024_2021.pdf, {caption: file_id.p_024_2021.pdf__filename})        
@@ -2167,7 +2171,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_025_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_025_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_025_2021.dwg, {caption: file_id.p_025_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_025_2021.pdf, {caption: file_id.p_025_2021.pdf__filename})        
@@ -2178,7 +2182,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_026_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_026_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_026_2021.dwg, {caption: file_id.p_026_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_026_2021.pdf, {caption: file_id.p_026_2021.pdf__filename})        
@@ -2189,7 +2193,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_027_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_027_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_027_2021.dwg, {caption: file_id.p_027_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_027_2021.pdf, {caption: file_id.p_027_2021.pdf__filename})        
@@ -2200,7 +2204,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_028_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_028_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_028_2021.dwg, {caption: file_id.p_028_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_028_2021.pdf, {caption: file_id.p_028_2021.pdf__filename})        
@@ -2212,7 +2216,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_029_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_029_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_029_2021.dwg, {caption: file_id.p_029_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_029_2021.pdf, {caption: file_id.p_029_2021.pdf__filename})        
@@ -2223,7 +2227,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_030_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_030_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_030_2021.dwg, {caption: file_id.p_030_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_030_2021.pdf, {caption: file_id.p_030_2021.pdf__filename})        
@@ -2234,7 +2238,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_031_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_031_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_031_2021.dwg, {caption: file_id.p_031_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_031_2021.pdf, {caption: file_id.p_031_2021.pdf__filename,})        
@@ -2245,7 +2249,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_032_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_032_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_032_2021.dwg, {caption: file_id.p_032_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_032_2021.pdf, {caption: file_id.p_032_2021.pdf__filename})        
@@ -2256,7 +2260,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_033_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_033_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_033_2021.dwg, {caption: file_id.p_033_2021.dwg__filename,})       
         bot.sendDocument(chat_id, file_id.p_033_2021.pdf, {caption: file_id.p_033_2021.pdf__filename})        
@@ -2267,7 +2271,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_034_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_034_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_034_2021.dwg, {caption: file_id.p_034_2021.dwg__filename,})       
         bot.sendDocument(chat_id, file_id.p_034_2021.pdf, {caption: file_id.p_034_2021.pdf__filename})        
@@ -2278,7 +2282,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_035_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_035_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_035_2021.dwg, {caption: file_id.p_035_2021.dwg__filename,})       
         bot.sendDocument(chat_id, file_id.p_035_2021.pdf, {caption: file_id.p_035_2021.pdf__filename})        
@@ -2289,7 +2293,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_036_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_036_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_036_2021.dwg, {caption: file_id.p_036_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_036_2021.pdf, {caption: file_id.p_036_2021.pdf__filename})        
@@ -2299,7 +2303,7 @@ bot.on('message', msg => {
 
 bot.on('message', msg => {
     if (msg.text === file_id.p_037_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_037_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_037_2021.dwg, {caption: file_id.p_037_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_037_2021.pdf, {caption: file_id.p_037_2021.pdf__filename})       
@@ -2310,7 +2314,7 @@ bot.on('message', msg => {
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_038_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_038_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_038_2021.dwg, {caption: file_id.p_038_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_038_2021.pdf, {caption: file_id.p_038_2021.pdf__filename})        
@@ -2328,7 +2332,7 @@ bot.on('message', msg => {
 
 bot.on('message', msg => {
     if (msg.text === file_id.p_039_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_039_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_039_2021.dwg, {caption: file_id.p_039_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_039_2021.pdf, {caption: file_id.p_039_2021.pdf__filename})       
@@ -2338,7 +2342,7 @@ bot.on('message', msg => {
 
 bot.on('message', msg => {
     if (msg.text === file_id.p_040_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_040_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_040_2021.dwg, {caption: file_id.p_040_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_040_2021.pdf, {caption: file_id.p_040_2021.pdf__filename})       
@@ -2348,7 +2352,7 @@ bot.on('message', msg => {
 
 bot.on('message', msg => {
     if (msg.text === file_id.p_041_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_041_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_041_2021.dwg, {caption: file_id.p_041_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_041_2021.pdf, {caption: file_id.p_041_2021.pdf__filename})       
@@ -2358,7 +2362,7 @@ bot.on('message', msg => {
 
 bot.on('message', msg => {
     if (msg.text === file_id.p_042_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_042_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_042_2021.dwg, {caption: file_id.p_042_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_042_2021.pdf, {caption: file_id.p_042_2021.pdf__filename})       
@@ -2368,7 +2372,7 @@ bot.on('message', msg => {
 
 bot.on('message', msg => {
     if (msg.text === file_id.p_043_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_043_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_043_2021.dwg, {caption: file_id.p_043_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_043_2021.pdf, {caption: file_id.p_043_2021.pdf__filename})       
@@ -2378,10 +2382,35 @@ bot.on('message', msg => {
 
 bot.on('message', msg => {
     if (msg.text === file_id.p_044_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.HotCherryHello)
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_044_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_044_2021.dwg, {caption: file_id.p_044_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_044_2021.pdf, {caption: file_id.p_044_2021.pdf__filename})       
         bot.sendDocument(chat_id, file_id.p_044_2021.xlsx, {caption: file_id.p_044_2021.xlsx__filename})
     }
 })
+
+bot.on('message', msg => {
+    if (msg.text === file_id.p_045_2021.project__name) {
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
+        bot.sendMessage(chat_id, file_id.p_045_2021.caption)        
+        bot.sendDocument(chat_id, file_id.p_045_2021.dwg, {caption: file_id.p_045_2021.dwg__filename})       
+        bot.sendDocument(chat_id, file_id.p_045_2021.pdf, {caption: file_id.p_045_2021.pdf__filename})       
+        bot.sendDocument(chat_id, file_id.p_045_2021.xlsx, {caption: file_id.p_045_2021.xlsx__filename})
+    }
+})
+
+bot.on('message', msg => {
+    if (msg.text === file_id.p_046_2021.project__name) {
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
+        bot.sendMessage(chat_id, file_id.p_046_2021.caption)        
+        bot.sendDocument(chat_id, file_id.p_046_2021.dwg, {caption: file_id.p_046_2021.dwg__filename})       
+        bot.sendDocument(chat_id, file_id.p_046_2021.pdf, {caption: file_id.p_046_2021.pdf__filename})       
+        bot.sendDocument(chat_id, file_id.p_046_2021.xlsx, {caption: file_id.p_046_2021.xlsx__filename})
+    }
+})
+
+// bot.on('message', msg => {
+//     console.log(msg.document.file_name)
+//     console.log(msg.document.file_id)
+// })

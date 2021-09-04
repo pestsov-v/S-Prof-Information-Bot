@@ -1,12 +1,12 @@
 const bot = require('../init')
 const keyboard = require('../keyboards/keyboards') 
 
-function send_html(chat_id, html, kbName = null) {
+function send_html(chat_id, html, kb_name = null) {
     const options = { parse_mode: 'HTML'}
 
-    if (kbName) {
+    if (kb_name) {
         options['reply_markup'] = {
-            keyboard: keyboard[kbName]
+            keyboard: keyboard[kb_name]
         }
     }
 
