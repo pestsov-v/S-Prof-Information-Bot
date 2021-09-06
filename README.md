@@ -32,28 +32,28 @@ S-Prof. Информационный бот - это закрытый, инфо�
 Первый шаг. Находим Bot Father в поисковике Telegram. <br/>
 *Важно! Bot Father должен иметь сбоку синюю галочку, как верификация подлиности.*
 
-[![1.png](https://i.postimg.cc/52GgVY5w/1.png)](https://postimg.cc/4Y6Vv3Sd)
+[![1.png](https://i.postimg.cc/YCQd9ch5/1.png)](https://postimg.cc/0z2YWBGn)
 
 Второй шаг. Запускаем чат с Bot Father.
 
-[![2.png](https://i.postimg.cc/K8K7JcX4/2.png)](https://postimg.cc/SnhzKhxp)
+[![2.png](https://i.postimg.cc/nzh20C0x/2.png)](https://postimg.cc/94syfX6g)
 
 Третий шаг. Выбираем функцию "создать нового бота" (/newbot).
 
-[![3.png](https://i.postimg.cc/6q5nRtLW/3.png)](https://postimg.cc/2bM1NpKM)
+[![3.png](https://i.postimg.cc/sgCJbnww/3.png)](https://postimg.cc/HV35ytGy)
 
 Четвертый шаг. Вводим имя бота. Аналог имени у человека.
 
-[![4.png](https://i.postimg.cc/8CR60jZk/4.png)](https://postimg.cc/wtBMtTKn)
+[![4.png](https://i.postimg.cc/t7QhQTtY/4.png)](https://postimg.cc/2LGqnCtD)
 
 Пятый шаг. Вводим username бота. Username - это виртуальное, имя, которое используется, в основном как ссылка на бота. <br/>
 *В примере для простоты username и имя бота одинаково, но Telegram позволяет разные имя и username у бота.*
 
-[![5.png](https://i.postimg.cc/MTzdPkb4/5.png)](https://postimg.cc/zLPCvcQS)
+[![5.png](https://i.postimg.cc/PfL9jRQj/5.png)](https://postimg.cc/bdh30L5C)
 
 Шестой шаг. Получаем у Bot Father уникальный токен и сохраняем его. Он нам пригодится чуть позже.
 
-[![6.png](https://i.postimg.cc/wT1sdWwG/6.png)](https://postimg.cc/F7QKyx5y)
+[![6.png](https://i.postimg.cc/BnNMDTBp/6.png)](https://postimg.cc/75G3rTcJ)
 
 ## *Получение URL адреса*
 
@@ -155,13 +155,13 @@ S-Prof. Информационный бот - это закрытый, инфо�
 
 Cоздаём файл config.js.
 
-[![1.png](https://i.postimg.cc/sgBR4LVs/1.png)](https://postimg.cc/HrCKpBch)
+[![1.png](https://i.postimg.cc/s2VbCfw6/1.png)](https://postimg.cc/hX529nFT)
 
 Вносим уникальные данные ([подробно о уникальных данных](#уникальные-вводные-данные)), а именно токен ([инструкция как получить токен Telegram bot](#получение-токена)) и URL-адрес доступа в базу данных ([инструкция как получить URL-адрес доступа в MongoDB](#получение-url-адреса)). В результате Вы должны получить следующий блок кода.
 
 ```
 module.exports = {
-    TOKEN: '1960495189:AAG2B1a8UY4J_eM2RYrgfnWNBbB85-eiGQU',
+    TOKEN: '1974489742:AAEvwm267ee6duI1FnbozyhHEYxlSs5sEdg',
     DB_URL: 'mongodb+srv://Sproftestbot111:Sproftestbot111@cluster0.b53ub.mongodb.net/Sproftestbot111'
 }
 ```
@@ -643,8 +643,6 @@ module.exports = {
 Данные, которые отправляются в запросе обратного вызова боту при нажатии кнопки. <br/>
 **Важно! callback_data - это строка, которая может иметь размер не больше 64 байт.**<br/>
 
-[![3.gif](https://i.postimg.cc/PrfQzLV5/3.gif)](https://postimg.cc/PNcDdqkg)
-
 [![3-15-fs.gif](https://i.postimg.cc/Jh7sSJJs/3-15-fs.gif)](https://postimg.cc/21JjZ10Y)
 
 Четвертый шаг. Отправляем следующую краткую информацию согласно проекту:<br/>
@@ -703,7 +701,7 @@ bot.on('callback_query', query => {
 })
 ```
 
-[![4.gif](https://i.postimg.cc/tgX6Mnt7/4.gif)](https://postimg.cc/gxTrwJ7P)
+[![4.gif](https://i.postimg.cc/pXN4CBbJ/4.gif)](https://postimg.cc/XX8s7dvr)
 
 ### Получить данные по проекту с помощью шифра проекта.
 
