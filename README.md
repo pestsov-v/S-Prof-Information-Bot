@@ -1,6 +1,6 @@
 # **S-Prof. Информационный бот**
 
-[![4.gif](https://i.postimg.cc/ZYN57jgf/4.gif)](https://postimg.cc/V5Yw59zM)
+[![4.gif](https://i.postimg.cc/pXN4CBbJ/4.gif)](https://postimg.cc/XX8s7dvr)
 
 Проект написан на библиотеке node-telegram-bot-api. Ниже Вы найдёте подробную инструкцию, как развернуть аналогичного бота у себя, а также подробную информацию о логике приложения. 
 
