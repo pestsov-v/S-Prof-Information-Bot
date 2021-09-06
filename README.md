@@ -606,16 +606,18 @@ bot.onText(/\/k(.+)/, (msg, [source]) => {
 
 
 
-
+фыфыфы
 
 [![3.gif](https://i.postimg.cc/mkcCSx3w/3.gif)](https://postimg.cc/4HgYJSS7)
 
 
 
 
-
+фыыф
 
 [![4.gif](https://i.postimg.cc/tgX6Mnt7/4.gif)](https://postimg.cc/gxTrwJ7P)
+
+фыфыфы
 
 ### Получить данные по проекту с помощью шифра проекта.
 
