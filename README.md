@@ -563,7 +563,7 @@ bot.on('message', msg => {
 Формируем переменную из массива, созданного методом map. Метод map разворачивает массив объектов для каждого элемента массива projects.<br/><br/>
 *Для других типов объектов логика аналогичная.*
 
-[![2.gif](https://i.postimg.cc/zBGnVHV4/2.gif)](https://postimg.cc/zL4LQBwk)
+[![2.gif](https://i.postimg.cc/L6vvrkgP/2.gif)](https://postimg.cc/PPpmDw4f)
 
 Третий шаг. Выводим данным исходя из уникального ID проекта (uuid)
 
@@ -643,7 +643,7 @@ module.exports = {
 Данные, которые отправляются в запросе обратного вызова боту при нажатии кнопки. <br/>
 **Важно! callback_data - это строка, которая может иметь размер не больше 64 байт.**<br/>
 
-[![3.gif](https://i.postimg.cc/mkcCSx3w/3.gif)](https://postimg.cc/4HgYJSS7)
+[![3.gif](https://i.postimg.cc/PrfQzLV5/3.gif)](https://postimg.cc/PNcDdqkg)
 
 Четвертый шаг. Отправляем следующую краткую информацию согласно проекту:<br/>
 - Название проекта.<br/>
