@@ -645,6 +645,8 @@ module.exports = {
 
 [![3.gif](https://i.postimg.cc/PrfQzLV5/3.gif)](https://postimg.cc/PNcDdqkg)
 
+[![3-15-fs.gif](https://i.postimg.cc/Jh7sSJJs/3-15-fs.gif)](https://postimg.cc/21JjZ10Y)
+
 Четвертый шаг. Отправляем следующую краткую информацию согласно проекту:<br/>
 - Название проекта.<br/>
 - Шифр.<br/>
