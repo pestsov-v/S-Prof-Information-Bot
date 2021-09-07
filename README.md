@@ -326,9 +326,9 @@ bot.onText(/\/registry/, msg => {
 Первый метод - построить быстрый маршрут к местоположению объекта и узнать штамп объекта.<br/> 
 Второй метод - получить полные данные: спецификацию объекта, его PDF и DWG форматы.
 
-### Получить данные по проекту с помощью команды. 
+### Получить данные по проекту с помощью команды
 
-#### Первый шаг. Нажимай на кнопку "Проекты". 
+#### Первый шаг. Кнопка "Проекты" 
 
 Код организован через switch case, чтобы перебрать все пункты главного меню, а именно:
 1. Проекты.
@@ -448,10 +448,12 @@ module.exports = {
 Метод позволяющий скрывать клавиатуру после того, как она будет использована.<br/>
 *Логика для обработки других меню аналогичная.*
 
+**Реализация шага**
+
 [![1.gif](https://i.postimg.cc/9FRYd9Jh/1.gif)](https://postimg.cc/1fSFPfkC)
 
 #### Второй шаг. Выбираем желаемый тип объекта. 
-**Всего типов объектов есть:**
+Всего типов объектов есть:
 1. Детские садики.
 2. Школы.
 3. Учебно-воспитальные комплексы и учебно-воспитательные объеденения (спрощено УВК и УВО соответственно).
@@ -563,9 +565,11 @@ bot.on('message', msg => {
 Формируем переменную из массива, созданного методом map. Метод map разворачивает массив объектов для каждого элемента массива projects.<br/><br/>
 *Для других типов объектов логика аналогичная.*
 
+**Реализация шага**
+
 [![2.gif](https://i.postimg.cc/L6vvrkgP/2.gif)](https://postimg.cc/PPpmDw4f)
 
-#### Третий шаг. Выводим данным исходя из уникального ID проекта (uuid)
+#### Третий шаг. Выводим конкретный проект исходя из ID
 
 Комманда отвечающая за это включена в index.js и выглядит:
 ```
@@ -643,9 +647,13 @@ module.exports = {
 Данные, которые отправляются в запросе обратного вызова боту при нажатии кнопки. <br/>
 **Важно! callback_data - это строка, которая может иметь размер не больше 64 байт.**<br/>
 
+**Реализация шага**
+
 [![3-15-fs.gif](https://i.postimg.cc/Jh7sSJJs/3-15-fs.gif)](https://postimg.cc/21JjZ10Y)
 
-#### Четвертый шаг. Отправляем следующую краткую информацию согласно проекту:
+#### Четвертый шаг. 
+
+Отправляем следующую краткую информацию согласно проекту:
 - Название проекта.<br/>
 - Шифр.<br/>
 - Тип объекта.<br/>
@@ -700,19 +708,275 @@ bot.on('callback_query', query => {
     }
 })
 ```
+**Реализация шага**
 
 [![4.gif](https://i.postimg.cc/pXN4CBbJ/4.gif)](https://postimg.cc/XX8s7dvr)
 
 ### Получить данные по проекту с помощью шифра проекта.
 
+Чтобы получить проект по шифру, очевидно, что сперва нужно узнать сам шифр.
 
+#### Первый шаг. Узнаём шифр проекта.
 
+Шифр проекта можем узнать двумя способами:
+1. Через реестр объектов.
+
+Выбираем комманду "Реестр объектов".
+
+При нажатии на комманду "Реестр объектов" выполняется следующий код:
+```
+bot.on('message', msg => {
+        case kb.home.analytics:
+            bot.sendSticker(chat_id, stickers.hot_cherry__clips)
+            bot.sendMessage(chat_id, command_text__analytics, {
+                parse_mode: 'HTML',
+                disable_web_page_preview: true
+            })
+            break
+    }
+})
+```
+
+**Пройдёмся по неописанным ранее частям кода:**<br/>
+
+`command_text__analytics`:<br/>
+Подключаем текст, который выводится при успешной проверке условия и нажатии на комманду "Реестр объектов". <br/>
+Достаём переменную со значением текста через деструктуризацию файла index.js, который находится в папке с остальными текстами базовых команд которых 4:<br/>
+1. start. <br/>
+2. help. <br/>
+3. statistic. <br/>
+4. registry. <br/>
+
+```
+const {command_text__analytics} = require('./message_text/command_text__start/index')
+```
+
+Сам код файла `command_text__analytics`:<br/>
+
+```
+const emodji = require('../../helpers/emoji')
+
+const command_text__analytics = `<a href="https://docs.google.com/spreadsheets/d/1rqGGFdBZrPFx9JEMVqT6UoXnjozG1cUxp4TepiKA3wM/edit?usp=sharing">Реєстр об'єктів за 2021 рік  ${emodji.books}</a>`
+
+module.exports = command_text__analytics
+```
+
+Где прямая ссылка на онлайн-Excel таблицу.
+
+**Реализация шага**
+
+[![1.gif](https://i.postimg.cc/hG1DgTx6/1.gif)](https://postimg.cc/PLNsQLSQ)
+
+После нажимаем на гиперссылку и переходим в онлайн таблицу реестра объектов.
+
+[![2.png](https://i.postimg.cc/NFY1NWTS/2.png)](https://postimg.cc/sQ6QxHT4)
+
+2. Через команду "Проекты".
+
+При быстром выборе объекта или при просмотре краткой информации об объекте - есть графа "шифр".
+
+[![1.png](https://i.postimg.cc/NMvd82zs/1.png)](https://postimg.cc/p9kQRrv4)
+
+#### Второй шаг. Вводим данные шифра.
+
+При отправке шифра срабатывает следующий блок кода:
+
+```
+bot.on('message', msg => {
+    chat_id = msg.chat.id
+    if (msg.text === file_id.p_021_2021.project__name) {
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
+        bot.sendMessage(chat_id, file_id.p_021_2021.caption)        
+        bot.sendDocument(chat_id, file_id.p_021_2021.dwg, {caption: file_id.p_021_2021.dwg__filename})       
+        bot.sendDocument(chat_id, file_id.p_021_2021.pdf, {caption: file_id.p_021_2021.pdf__filename})        
+        bot.sendDocument(chat_id, file_id.p_021_2021.xlsx, {caption: file_id.p_021_2021.xlsx__filename})
+    }
+})
+```
+
+**Пройдёмся по неописанным ранее частям кода:**<br/>
+
+`if (msg.text === file_id.p_021_2021.project__name)`<br/>
+Условие, при котором вводимое название шифра определяет какие материалы будут отправлены. Можно было сделать и через switch case, но он уже немного надоел.<br/>
+
+`bot.sendDocument(chat_id, file_id.p_021_2021.dwg, {caption: file_id.p_021_2021.dwg__filename})`<br/>
+Метод `sendDocument` экземепляра класса TelegramBot, который отправляет документ. Метод принимает 3 аргумента:
+1. chat_id. Обязательный параметр, описанный ранее.
+2. file_id. Обязательный параметр, описаный ранее. Также может применяться локальный путь к файлу, но имеет ограничение в 15 Мб. 
+3. options. Необязательный параметр. Объект состоящий из аргументов. Подробнее об аргументах смотрите в [официальной документации Telegram](https://core.telegram.org/bots/api#replykeyboardmarkup).<br/>
+
+В условии указаны данные, которые подключаються в index.js
+```
+const file_id = require('./helpers/file_id')
+```
+А сам код файла file_id для конкретного примера:
+```
+const p_021_2021 = {
+    project__name: 'П-021-2021',
+    dwg__filename: 'Проект в форматі DWG',
+    dwg: 'BQACAgIAAxkBAAIoFmEefxbg4-t5qPVlqi91Kjij-QKTAAIZDwACbY7wSF8lvKrt1LCoIAQ',
+    pdf__filename: 'Проект в форматі PDF',
+    pdf: 'BQACAgIAAxkBAAIoF2EefzGqEgUmLPTVM_ZUBLiCMasbAAIaDwACbY7wSAO2V6fWLMm5IAQ',
+    xlsx__filename: 'Cпецифікація в форматі xlsx',
+    xlsx: 'BQACAgIAAxkBAAIoFWEefwnZf9ijaV6oE6bnEBHM5TwXAAIYDwACbY7wSNtAAAE8oBhSmyAE',
+    caption: `Повний перелік інформації за об'єктом: "Дошкільний навчальний заклад № 53", який знаходиться за адресою: в. Райдужна 17, Дніпровський район, м. Київ, Київська область. `
+}
+```
+
+**Реализация шага**
+
+[![2.gif](https://i.postimg.cc/Xv7k3Mzb/2.gif)](https://postimg.cc/21MZFtYc)
 
 ## *Найти желанный товар*
 
 ## *Посмотреть реестр проектов*
 
+#### Первый шаг. Заходим в главное меню.
+
+Код отвечающий за выполнение комманды: 
+```
+bot.onText(/\/start/, msg => {
+    if (msg.chat.username !== 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
+        bot.sendMessage(chat_id, command_text__start__error)
+    } else if (msg.chat.username === 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
+        bot.sendMessage(chat_id, command_text__start_success, {
+            reply_markup: {
+                keyboard: keyboard.home,
+                resize_keyboard: true
+            }
+        })
+    }
+})
+```
+Детальный разбор блока кода описан выше, в разделе [Функция закрытого бота](#)
+
+**Реализация шага**
+
+[![1.gif](https://i.postimg.cc/5ysSXbk1/1.gif)](https://postimg.cc/y3SZ54Hr)
+
+Выбираем комманду "Реестр об\'єктів".
+
+При нажатии на комманду "Реестр об\'єктів" выполняется следующий код:
+```
+bot.on('message', msg => {
+        case kb.home.analytics:
+            bot.sendSticker(chat_id, stickers.hot_cherry__clips)
+            bot.sendMessage(chat_id, command_text__registry, {
+                parse_mode: 'HTML',
+                disable_web_page_preview: true
+            })
+            break
+    }
+})
+```
+
+**Пройдёмся по неописанным ранее частям кода:**<br/>
+
+`command_text__registry`:<br/>
+Подключаем текст, который выводится при успешной проверке условия и нажатии на комманду "Реестр об\'єктів". <br/>
+Достаём переменную со значением текста через деструктуризацию файла index.js, который находится в папке с остальными текстами базовых команд которых 4:<br/>
+1. start. <br/>
+2. help. <br/>
+3. statistic. <br/>
+4. registry. <br/>
+
+```
+const {command_text__registry} = require('./message_text/command_text__start/index')
+```
+
+Сам код файла `command_text__registry`:<br/>
+
+```
+const emodji = require('../../helpers/emoji')
+
+const command_text__registry = `<a href="https://docs.google.com/spreadsheets/d/1rqGGFdBZrPFx9JEMVqT6UoXnjozG1cUxp4TepiKA3wM/edit?usp=sharing">Реєстр об'єктів за 2021 рік  ${emodji.books}</a>`
+
+module.exports = command_text__registry
+```
+
+Где прямая ссылка на онлайн-Excel таблицу.
+
+[![2.png](https://i.postimg.cc/NFY1NWTS/2.png)](https://postimg.cc/sQ6QxHT4)
+
+**Реализация шага**
+
+[![1.gif](https://i.postimg.cc/hG1DgTx6/1.gif)](https://postimg.cc/PLNsQLSQ)
+
 ## *Просмотреть статистику по объектам*
+
+#### Первый шаг. Заходим в главное меню.
+
+Код отвечающий за выполнение комманды: 
+```
+bot.onText(/\/start/, msg => {
+    if (msg.chat.username !== 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
+        bot.sendMessage(chat_id, command_text__start__error)
+    } else if (msg.chat.username === 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
+        bot.sendMessage(chat_id, command_text__start_success, {
+            reply_markup: {
+                keyboard: keyboard.home,
+                resize_keyboard: true
+            }
+        })
+    }
+})
+```
+Детальный разбор блока кода описан выше, в разделе [Функция закрытого бота](#)
+
+**Реализация шага**
+
+[![1.gif](https://i.postimg.cc/5ysSXbk1/1.gif)](https://postimg.cc/y3SZ54Hr)
+
+Выбираем комманду "Реестр об\'єктів".
+
+При нажатии на комманду "Статистика по об\'єктам" выполняется следующий код:
+
+```
+bot.onText(/\/statistic/, msg => {
+    if (msg.chat.username !== 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
+        bot.sendMessage(chat_id, command_text__start__error)
+    } else if (msg.chat.username === 'AveCardinal') {
+        bot.sendSticker(chat_id, stickers.hot_cherry__searching)
+        bot.sendMessage(chat_id, command_text__statistic, {
+            parse_mode: 'HTML',
+            disable_web_page_preview: true
+        })
+    }
+})
+```
+**Пройдёмся по неописанным ранее частям кода:**<br/>
+
+`command_text__statistic`:<br/>
+Подключаем текст, который выводится при успешной проверке условия и нажатии на комманду "Реестр об\'єктів". <br/>
+Достаём переменную со значением текста через деструктуризацию файла index.js, который находится в папке с остальными текстами базовых команд которых 4:<br/>
+1. start. <br/>
+2. help. <br/>
+3. statistic. <br/>
+4. registry. <br/>
+
+```
+const {command_text__statistic} = require('./message_text/command_text__start/index')
+```
+
+Сам код файла `command_text__statistic`:<br/>
+
+```
+const emodji = require('../../helpers/emoji')
+
+const command_text__statistic = `<a href="https://docs.google.com/spreadsheets/d/11osrviGjujYOF_7iiMYZmzlf9p1p9TU0384F1R6hCIk/edit?usp=sharing">Загальна статистика за 2021 рік ${emodji.books}</a>`
+
+module.exports = command_text__statistic
+```
+
+Где прямая ссылка на онлайн-Excel таблицу.
+
+[![1.gif](https://i.postimg.cc/Vkt1W697/1.gif)](https://postimg.cc/zyq9JqcW)
+
 
 ## *Быстрый доступ к нужным товарам*
 
