@@ -3,40 +3,41 @@
 Проект написан на библиотеке node-telegram-bot-api. Ниже Вы найдёте подробную инструкцию, как развернуть аналогичного бота у себя, а также подробную информацию о логике приложения. 
 
 # **Оглавление**
-  - [Предназначение](#)
-  - [Как я могу развернуть проект у себя](#)
-    - [Уникальные вводные данные](#)
-    - [Получение токена Telegram Bot](#)
-    - [Получение URL адреса MongoDB](#)
-    - [Формируем config.js с уникальными данными](#)
-    - [Загрузка данных в MongoDB](#)
-  - [Возможности бота](#)
-    - [Запуск бота](#)
-    - [Найти проект](#найти-проект)
-      - [Получение краткой информации о проекте](#)  
-        - [Клавиша "Проекти"](#)
-        - [Необходимый тип объекта](#)
-        - [Выбор конкретного проекта исходя из ID](#)
-        - [Краткая информация о проекте](#)
-      - [Получение полной информации о проекте](#)
-        - [Способы узнать шифр проекта](#)
-        - [Полная информация о проекте](#)
-    - [Найти оборудование](#)
-        - [Клавиша "Товари"](#)
-        - [Необходимый производитель](#)
-        - [Необходимый тип товаров](#)
-        - [Выбор конкретного товара исходя из ID](#)
-    - [Актуальные товары](#)
-        - [Добавление товара в актуальное](#)
-        - [Отправка callback_data](#)
-        - [Обработка callback_query](#)
-        - [Клавиша "Актуальні товари](№)
-    - [Реестр проектов](#)
-        - [Запуск главного меню](#)
-        - [Клавиша "Реєстр об'єктів"](#)
-    - [Cтатистика по объектам](#)
-        - [Запуск главного меню](#)
-        - [Клавиша "Статистика по об'єктам"](#)
+  - [Предназначение](#предназначение)
+  - [Как я могу развернуть проект у себя](#как-я-могу-развернуть-проект-у-себя)
+    - [Уникальные вводные данные](#уникальные-вводные-данные)
+    - [Получение токена Telegram Bot](#получение-токена-telegram-bot)
+    - [Получение URL адреса MongoDB](#получение-url-адреса-mongodb)
+    - [Формируем config.js с уникальными данными](#формируем-configjs-с-уникальными-данными)
+    - [Загрузка данных в MongoDB](#загрузка-данных-в-mongodb)
+  - [Возможности бота](#возможности-бота)
+    - [Запуск бота](#запуск-бота)
+    - [](#главное-меню)
+    - [Знайти проект](#знайти-проект)
+      - [Получение краткой информации о проекте](#получение-короткой-информации-о-проекте)  
+        - [Клавиша "Знайти проект"](#клавиша-знайти-проект)
+        - [Необходимый тип объекта](#необходимый-тип-объекта)
+        - [Выбор конкретного проекта исходя из ID](#выбор-конкретного-проекта-исходя-из-id)
+        - [Краткая информация о проекте](#краткая-информация-о-проекте)
+      - [Получение полной информации о проекте](#получение-полной-информации-о-проекте)
+        - [Способы узнать шифр проекта](#способы-узнать-шифр-проекта)
+        - [Полная информация о проекте](#полная-информация-о-проекте)
+    - [Знайти товар](#знайти-товар)
+        - [Клавиша "Знайти товар"](#знайти-товар)
+        - [Необходимый производитель](#небходимый-производитель)
+        - [Необходимый тип товаров](#необходимый-тип-товаров)
+        - [Выбор конкретного товара исходя из ID](#выбор-конкретного-товара-исходя-из-id)
+    - [Актуальные товары](#актуальные-товары)
+        - [Добавление товара в актуальное](#добавление-товара-в-актуальное)
+        - [Отправка callback_data](#отправка-callback_data)
+        - [Обработка callback_query](#обработка-callback_query)
+        - [Клавиша "Актуальні товари](#клавиша-актуальні-товари)
+    - [Реестр проектов](#реестр-проектов)
+        - [Запуск главного меню](#запуск-главного-меню)
+        - [Клавиша "Реєстр об'єктів"](#клавиша-реєстр-обєктів)
+    - [Cтатистика по объектам](#статистика-по-объектам)
+        - [Запуск главного меню](#запуск-главного-меню)
+        - [Клавиша "Статистика по об'єктам"](#клавиша-статистика-по-обєктам)
   - [Заключение](#заключение)
 
 
@@ -53,7 +54,7 @@ S-Prof. Информационный бот - это закрытый Telegram b
 
 Поскольку бот использует NoSQL базу данных, а именно MongoDB, для хранения данных по проектам, объектам, гиперссылкам и сессиям отдельных пользователей в виде JSON-документов, то необходимо получить уникальный URL-адрес для успешной работы с базой данных, а следовательно успешного пользования приложением. К проекту я прилагаю файлы в формате JSON, в которых храняться достаточное количество данных, для успешного пользования приложением. Инструкция, как перебросить данных из файлов JSON в ваш аккаунт базы данных я подробно объясняю ниже, в разделе.
 
-## Получение токена
+## Получение токена Telegram Bot
 
 Находим Bot Father в поисковике Telegram: <br/>
 *Важно! Bot Father должен иметь сбоку синюю галочку, как верификация подлиности.*
@@ -342,16 +343,16 @@ bot.onText(/\/start/, msg => {
 5. Статистика по объектам. <br/>
 6. Реестр объектов. <br/>
 
-## Найти проект
+## Знайти проект
 
 Если необходимы короткая информация по объекту, в том числе и геоположение необходимо использовать путь через кнопку "Проекты". <br/>
 Если необходимо получить полные данные об проекте необходимо использовать шифр проекта. <br/>
 
 ### Получение короткой информации о проекте
 
-#### Клавиша "Найти проект" 
+#### Клавиша "Знайти проект" 
 
-При нажатии на клавишу "Найти проект" срабатывает следующий блок кода: <br/>
+При нажатии на клавишу "Знайти проект" срабатывает следующий блок кода: <br/>
 ```
 bot.on('message', msg => {
     const chat_id = function__get_chat_id.get_chat_id(msg)
@@ -507,7 +508,7 @@ module.exports = send_project
 - `bot.sendMessage(chat_id, text_project_by_type__query)` - метод `SendMessage` класса `bot` отправляющий пользователю сообщение. Принимающая 2 параметра:
     - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg). <br/>
     - `text_project_by_type__query` - обязательный параметр. Текст сообщения. <br/>
-- `const html = projects.map((k, i) => {})` - текст сообщения, который состоит из строчного текста и значений объектов массива развёрнутых методом `map`.
+- `const html = projects.map((k, i) => {})` - текст сообщения, который состоит из строчного текста и значений объектов массива развёрнутых методом `map`. <br/>
 
 **Реализация кода**
 
@@ -517,11 +518,11 @@ module.exports = send_project
 
 ---
 
-Ранее мы смогли вывести массив объектов, где есть активная ссылка. Эта ссылка сформирована за счёт команды и уникального идентификатора документа в коллекции `Project`, а сама команда выводит сформированный объект информации о проекте. 
+Ранее мы смогли вывести массив объектов, где есть активная ссылка. Эта ссылка сформирована за счёт команды и уникального идентификатора документа в коллекции `Project`, а сама команда выводит сформированный объект информации о проекте.  <br/>
 
-*Команда отправки конкретного проекта исходя из ID*
+*Команда отправки конкретного проекта исходя из ID* <br/>
 
-Код комманды состоит с включением функции создания активной ссылки и выгляди так:
+Код комманды состоит с включением функции создания активной ссылки и выгляди так: <br/>
 ```
 bot.onText(/\/k(.+)/, (msg, [source]) => {
     const projectUuid = get_item_uuid__function.get_item__with__two_letter_uuid(source)
@@ -569,23 +570,23 @@ bot.onText(/\/k(.+)/, (msg, [source]) => {
 - `text` - ключ принимающий значение сформированого текста `project_text` с данными из объекта `project`. <br/>
 - `parse_mode: 'HTML'` - 'HTML' - режим разбора сущности текста `project_text`. <br/>
 - `reply_markup` - параметр объекта `options`, добавляющий интерфейс клавиатур.  <br/>
-- `inline_keyboard` - подпараметр параметра `reply_markup` принимающий встроенную клавиатуру. Подробнее о клавиатурах смотрите [Официальную документацию Telegram](https://core.telegram.org/bots/api#replykeyboardmarkup).  <br/>
+- `inline_keyboard` - подпараметр параметра `reply_markup` принимающий встроенную клавиатуру. Подробнее о клавиатурах смотрите [Официальную документацию Telegram](https://core.telegram.org/bots/api#replykeyboardmarkup). <br/>
 - `text: 'Показати на карті'` - название клавиши встроеной клавиатуры.
-- `callback_data: JSON.stringify({})` - данные обратного вызова. Используються для обработки запросов с встроенных клавиатур.
-- `type: ACTION_TYPE.SHOW_PROJECTS_MAP` - тип данных обратного вызова. Нужен для обработки запросов с встроенных клавиатур и подробно рассматривается в подразделе [Краткая информация о проекте](#).
-- `la: project.location.latitude` - данные обратного вызова. Координаты ширины местоположения объекта. 
-- `lo: project.location.longitude` - данные обратного вызова. Координаты долготы местоположения объекта.
+- `callback_data: JSON.stringify({})` - данные обратного вызова. Используються для обработки запросов с встроенных клавиатур. <br/>
+- `type: ACTION_TYPE.SHOW_PROJECTS_MAP` - тип данных обратного вызова. Нужен для обработки запросов с встроенных клавиатур и подробно рассматривается в подразделе [Краткая информация о проекте](#краткая-информация-о-проекте). <br/>
+- `la: project.location.latitude` - данные обратного вызова. Координаты ширины местоположения объекта.  <br/>
+- `lo: project.location.longitude` - данные обратного вызова. Координаты долготы местоположения объекта. <br/>
 
 *Создание активной ссылки*
-Активная ссылка создаётся путём вырезания части присылаемой строки, оставляя только текст комманды и ID проекта из коллекции `Project`. Код активной ссылки выглядит так: 
+Активная ссылка создаётся путём вырезания части присылаемой строки, оставляя только текст комманды и ID проекта из коллекции `Project`. Код активной ссылки выглядит так: <br/>
 ```
     get_item__with__two_letter_uuid(source) {
         return source.substr(2, source.length)
     }
 ```
 Где:
-- `get_item__with__two_letter_uuid(source)` - принимает строковое значения `source`.
-- `source.substr(2, source.length)` - возвращает строковое значения `source`, начиная с третьего символа.
+- `get_item__with__two_letter_uuid(source)` - принимает строковое значения `source`. <br/>
+- `source.substr(2, source.length)` - возвращает строковое значения `source`, начиная с третьего символа. <br/>
 
 **Реализация кода**
 
@@ -593,43 +594,37 @@ bot.onText(/\/k(.+)/, (msg, [source]) => {
 
 #### Краткая информация о проекте
 
-Отправляем следующую краткую информацию согласно проекту:
-- Название проекта.<br/>
-- Шифр.<br/>
-- Тип объекта.<br/>
-- Адрес.<br/>
-```
-    Project.findOne({ uuid: projectUuid }).then(project => {
-        const project_text = `<b>Назва проекту:</b> ${project.project_name}.
-<b>Штамп:</b> ${project.stamp}.
-<b>Тип об'єкта:</b> ${project.type}.
-<b>Адреса:</b> ${project.city}, ${project.address}.`
+Детали, которые предоставляются после выбора конкретного ID составляют: <br/>
+1. Название проекта. <br/>
+2. Шифр проекта. <br/>
+3. Тип объекта. <br/>
+4. Адрес объекта. <br/>
+5. Встроенная клавиатура, которая содержит информацию местоположения объекта в координатах. <br/>
 
+Полный исполняющий код комманды представлен выше, а мы лишь остановимся на куске кода - callback_data: <br/>
 ```
-Также отправляем сallback_data при нажатии на кнопку "Показати на карті":<br/>
-- ACTION_TYPE.SHOW_PROJECTS_MAP - уникальный ID для привязки и опредения события. <br/>
-- la: project.location.latitude - значение широты местоположения объекта.<br/>
-- lo: project.location.longitude - значение долготы местоположения объекта.<br/>
+...
+inline_keyboard: [
+    [
+        {
+            text: 'Показати на карті',
+            callback_data: JSON.stringify({
+                type: ACTION_TYPE.SHOW_PROJECTS_MAP,
+                la: project.location.latitude,
+                lo: project.location.longitude
+            })
+        }
+    ]
+]
+...
 ```
-callback_data: JSON.stringify({
-    type: ACTION_TYPE.SHOW_PROJECTS_MAP,
-    la: project.location.latitude,
-    lo: project.location.longitude
-})
-```
-Формируем уникальный ID для ACTION_TYPE:SHOW_PROJECTS_MAP<br/>
-```
-const ACTION_TYPE =  {
-    SHOW_PROJECTS_MAP: 'spm'
-}
-```
-Определяем событие "callback_query", которое реагирует на запросы со встроенных клавиатур.<br/>
-- Парсим запрос.<br/>
-- Деструктуризируем data приходящую с запросом.<br/>
-- Деструктуризируем type из data.<br/>
-- Формируем условие, при запросе определенного type выполняющую определенную логику.<br/>
-- с помощью функции `bot.sendLocation(query.message.chat.id, lo, la)` отправляем геопозицию объекта.<br/>
+Где:
+- `callback_data: JSON.stringify({})` - данные обратного вызова. Используються для обработки запросов с встроенных клавиатур. <br/>
+- `type: ACTION_TYPE.SHOW_PROJECTS_MAP` - тип данных обратного вызова. Нужен для обработки запросов с встроенных клавиатур и подробно рассматривается в подразделе [Краткая информация о проекте](#краткая-информация-о-проекте). <br/>
+- `la: project.location.latitude` - данные обратного вызова. Координаты ширины местоположения объекта.  <br/>
+- `lo: project.location.longitude` - данные обратного вызова. Координаты долготы местоположения объекта. <br/>
 
+Данные обратного вызова используются дальше - в прослушке событий `calback_query` екземпляра класса `Telegram Bot`:
 ```
 bot.on('callback_query', query => {
     let data
@@ -648,19 +643,30 @@ bot.on('callback_query', query => {
     }
 })
 ```
-**Реализация шага**
+Где: <br/>
+- `bot.on('callback_query', query => {})` - прослушка событий реагирующий на события с встроенных клавиатур. <br/>
+- `let data` - объект `callback_data`, который приведен к строке методом JSON.stringify(). <br/>
+- `user_id = query.from.id` - аналог msg.chat.id при событиях 'message'. <br/>
+- `const {type} = data` - деструктуризируем тип данных. <br/>
+- `ACTION_TYPE.SHOW_PROJECTS_MAP` - уникальный индентификатор ACTION_TYPE, который отправляется в callback_data и сравнивается с ACTION_TYPE комманды. <br/>
+- `const {lo, la} = data` - деструктуризируем долготу и широту из `callback_data`. <br/>
+- `bot.sendLocation(query.message.chat.id, lo, la)` - метод `sendLocation` класса `bot` отправляющий пользователю местоположение. Примающий 3 параметра:
+    - `query.message.chat.id` - аналог msg.chat.id при событиях 'message'. <br/>
+    - `lo` - данные обратного вызова `project.location.longitude`. Координаты долготы местоположения объекта. <br/>
+    - `la` - данные обратного вызова `project.location.latitude`. Координаты ширины местоположения объекта. <br/>
+
+**Реализация кода**
 
 [![4.gif](https://i.postimg.cc/pXN4CBbJ/4.gif)](https://postimg.cc/XX8s7dvr)
 
 ### Получение полной информации о проекте
 #### Способы узнать шифр проекта
 
-Шифр проекта можем узнать двумя способами:
-1. Через реестр объектов.
+Шифр проекта может быть получен двумя способами: <br/>
+1. Через реестр объектов. <br/>
+Выбираем комманду "Реестр объектов". <br/>
 
-Выбираем комманду "Реестр объектов".
-
-При нажатии на комманду "Реестр объектов" выполняется следующий код:
+При нажатии на комманду "Реєстр об'єктів" выполняется следующий код: <br/>
 ```
 bot.on('message', msg => {
         case kb.home.analytics:
@@ -673,51 +679,24 @@ bot.on('message', msg => {
     }
 })
 ```
+*Аналогичный код был разобран выше в разделе [Запуск бота](#запуск-бота)* <br/>
+В результате работы команды "Реєстр об'єктів" бот нам отправляет гиперссылку на online таблицу в Excel. <br/>
 
-**Пройдёмся по неописанным ранее частям кода:**<br/>
-
-`command_text__analytics`:<br/>
-Подключаем текст, который выводится при успешной проверке условия и нажатии на комманду "Реестр объектов". <br/>
-Достаём переменную со значением текста через деструктуризацию файла index.js, который находится в папке с остальными текстами базовых команд которых 4:<br/>
-1. start. <br/>
-2. help. <br/>
-3. statistic. <br/>
-4. registry. <br/>
-
-```
-const {command_text__analytics} = require('./message_text/command_text__start/index')
-```
-
-Сам код файла `command_text__analytics`:<br/>
-
-```
-const emodji = require('../../helpers/emoji')
-
-const command_text__analytics = `<a href="https://docs.google.com/spreadsheets/d/1rqGGFdBZrPFx9JEMVqT6UoXnjozG1cUxp4TepiKA3wM/edit?usp=sharing">Реєстр об'єктів за 2021 рік  ${emodji.books}</a>`
-
-module.exports = command_text__analytics
-```
-
-Где прямая ссылка на онлайн-Excel таблицу.
-
-**Реализация шага**
+**Реализация кода**
 
 [![1.gif](https://i.postimg.cc/hG1DgTx6/1.gif)](https://postimg.cc/PLNsQLSQ)
 
-После нажимаем на гиперссылку и переходим в онлайн таблицу реестра объектов.
+Переходим по ссылке и ищешь нужным шифр объекта. <br/>
 
 [![2.png](https://i.postimg.cc/NFY1NWTS/2.png)](https://postimg.cc/sQ6QxHT4)
 
-2. Через команду "Проекты".
-
-При быстром выборе объекта или при просмотре краткой информации об объекте - есть графа "шифр".
+2. Через команду "Найти проект". <br/>
+При быстром выборе объекта или при просмотре краткой информации об объекте - есть графа "шифр". <br/>
 
 [![1.png](https://i.postimg.cc/NMvd82zs/1.png)](https://postimg.cc/p9kQRrv4)
 
 #### Полная информация о проекте
-
-При отправке шифра срабатывает следующий блок кода:
-
+При введении шифра, пользователь получает excel спецификацию, pdf и dwg форматы проектов, которые можно сразу же интегрировать в другие приложения, в том числе почта, месседжеры или устройства, такие как принтеры, которые поддерживают WiFi. Вот, что под капотом:
 ```
 bot.on('message', msg => {
     chat_id = msg.chat.id
@@ -730,23 +709,12 @@ bot.on('message', msg => {
     }
 })
 ```
+Где: <br/>
+- `bot.on('message', msg => {})` - прослушиватель события "message", экземпляра класса Telegram bot. <br/>
+- `if (msg.text === file_id.p_021_2021.project__name)` - условие, при котором вводимый текст пользователем (название шифра) приравнивается к названию шифра из коллекции `Project`. <br/>
+- `bot.sendMessage(chat_id, file_id.p_021_2021.caption)` - отправка в определенный чат ID текст сообщения `file_id.p_021_2021.caption`. <br/>
+Строковые значения файла `file_id` выглядят так: <br/>
 
-**Пройдёмся по неописанным ранее частям кода:**<br/>
-
-`if (msg.text === file_id.p_021_2021.project__name)`<br/>
-Условие, при котором вводимое название шифра определяет какие материалы будут отправлены. Можно было сделать и через switch case, но он уже немного надоел.<br/>
-
-`bot.sendDocument(chat_id, file_id.p_021_2021.dwg, {caption: file_id.p_021_2021.dwg__filename})`<br/>
-Метод `sendDocument` экземепляра класса TelegramBot, который отправляет документ. Метод принимает 3 аргумента:
-1. chat_id. Обязательный параметр, описанный ранее.
-2. file_id. Обязательный параметр, описаный ранее. Также может применяться локальный путь к файлу, но имеет ограничение в 15 Мб. 
-3. options. Необязательный параметр. Объект состоящий из аргументов. Подробнее об аргументах смотрите в [официальной документации Telegram](https://core.telegram.org/bots/api#replykeyboardmarkup).<br/>
-
-В условии указаны данные, которые подключаються в index.js
-```
-const file_id = require('./helpers/file_id')
-```
-А сам код файла file_id для конкретного примера:
 ```
 const p_021_2021 = {
     project__name: 'П-021-2021',
@@ -759,24 +727,32 @@ const p_021_2021 = {
     caption: `Повний перелік інформації за об'єктом: "Дошкільний навчальний заклад № 53", який знаходиться за адресою: в. Райдужна 17, Дніпровський район, м. Київ, Київська область. `
 }
 ```
+Где: <br/>
+- `project__name` - шифр объекта. <br/>
+- `dwg__filename` - краткое описание файла. <br/>
+- `dwg` - file_id проекта в формате DWG. <br/>
+- `pdf__filename` - краткое описание файла. <br/>
+- `pdf` - file_id проекта в формате PDF. <br/>
+- `xlsx__filename` - краткое описание файла. <br/>
+- `xlsx` - file_id коммерческого приложения (спецификации). <br/>
+- `caption` - краткое описание информации с привязкой к объекту. <br/>
 
-**Реализация шага**
+**Реализация кода**
 
 [![2.gif](https://i.postimg.cc/Xv7k3Mzb/2.gif)](https://postimg.cc/21MZFtYc)
 
-## Найти желанный товар
-#### Кнопка "Товари"
+## Знайти товар
+#### Клавиша "Знайти товар"
 
-Код организован через switch case по аналогии с кнопкой "Проекти". Смотреть подробно про логику кнопки ["Проекти"](#)
+Клавиша "Знайти товар" имеет под капотом такую же логику как и клавиша ["Знайти проект"](#знайти-товар). <br/>
 
-**Реализация**
+**Реализация кода**
 
 [![1.gif](https://i.postimg.cc/fThz8z9L/1.gif)](https://postimg.cc/WtXc3PSL)
 
 #### Небходимый производитель
 
-Блок кода
-
+Под капотом, логика кода выбора необходимого производителя аналогичная switch case подраздела [Клавиша "Знайти проект](#клавиша-знайти-проект). Разница лишь в переменных, которые касаются не типов объекта, а названий различных производителей. <br/>
 ```
 bot.on('message', msg => {
     const chat_id = function__get_chat_id.get_chat_id(msg)
@@ -804,22 +780,15 @@ bot.on('message', msg => {
     }
 })
 ```
-
-`bot.on('message', msg => {})`
-
-`kb.manufacturer.elframo`
-
-`bot.sendMessage(chat_id, manufacturer_elframo__text, {})`
-
-`reply_markup: {}`
-
-`keyboard: keyboard.rational`
-
-`resize_keyboard: true`
-
-`one_time_keyboard: true`
+Где: <br/>
+- `bot.sendMessage(chat_id, manufacturer_elframo__text, {})` - метод `SendMessage` класса `bot` отправляющий пользователю сообщение. Принимающий 3 параметра: <br/>
+    - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg). <br/>
+    - `command_text__projects` - обязательный параметр. Текст сообщения.  <br/>
+    - `options` - необязательный параметр. Объект принимающий ряд параметров. Подробнее о параметрам смотрите [Официальную документацию Telegram](https://core.telegram.org/bots/api#sendmessage).  <br/>
+- `keyboard: keyboard.rational` - подпараметр параметра `reply_markup` принимающий клавиатуру, в нашем примере `keyboard.rational`. Подробнее о клавиатурах смотрите [Официальную документацию Telegram](https://core.telegram.org/bots/api#replykeyboardmarkup).  <br/>
 
 
+Таблица всех производителей в меню выбора производителя:
 |  Меню  | Виробник  |
 | :----: | :-------: |
 | Товари |  Elframo  |
@@ -828,12 +797,12 @@ bot.on('message', msg => {
 | Товари |Robot Coupe|
 | Товари | RM Gastro |
 
+**Реализация кода**
+
 [![2.gif](https://i.postimg.cc/MTmS4RRp/2.gif)](https://postimg.cc/BLbkPjMr)
 
 #### Необходимый тип товаров
-
-Блок кода
-
+Под капотом, логика кода выбора типа товара аналогичная switch case подраздела [Необходимый тип объекта](#необходимый-тип-объекта). Разница лишь в переменных, которые касаются не типов объекта, а названий различного типа оборудования. <br/>
 ```
 bot.on('message', msg => {
     const chat_id = function__get_chat_id.get_chat_id(msg)
@@ -848,14 +817,11 @@ bot.on('message', msg => {
     }
 })
 ```
+Где:
+- `bot.on('message', msg => {}` - прослушиватель события "message", экземпляра класса Telegram bot. <br/>
+- `send_combi_streamer(chat_id, { form: 'Пароконвектомат' })` - функция работающая аналогично функции send_project, который подробно расписан в подразделе [Необходимый тип объекта](#необходимый-тип-объекта)  <br/>
 
-`bot.on('message', msg => {}`
-
-`function__get_chat_id.get_chat_id(msg)`
-
-`kb.rational.combi_streamer:`
-
-`send_combi_streamer(chat_id, { form: 'Пароконвектомат' })`
+Итоговая таблица всех типов оборудования, которые есть у конкретного производителя: <br/>
 
 | **Виробник** | **Тип обладнання** |
 | :--------: | :--------------: |
@@ -881,163 +847,19 @@ bot.on('message', msg => {
 | RM Gastro | Плити |
 | RM Gastro | Травні котли |
 
+**Реализация кода**
+
 [![3.gif](https://i.postimg.cc/Nfyn2mM2/3.gif)](https://postimg.cc/Tp60ZynT)
 
 #### Выбор конкретного товара исходя из ID
 
-Блок кода
-```
-send_combi_streamer(chat_id, { form: 'Пароконвектомат' })
-```
-Блок кода
-```
-const send_html = require('../../function__send_html')
-const {combi_streamer__rational} = require('../../../models/heating_equipment__rational/index')
-
-function send_combi_streamer(chat_id, query) {
-    combi_streamer__rational.find(query).then(combi_streamers__rational => {
-        const html = combi_streamers__rational.map((p, i) => {
-            return `<strong>Серія: </strong> ${p.series}
-<strong>Назва товара: </strong> ${p.name}
-<strong>Деталі: </strong> /p${p.uuid}
-`}).join('\n')
-
-    send_html(chat_id, html, 'products')
-    })
-}
-
-module.exports = send_combi_streamer
-```
-Блок кода
-```
-const {
-    show_favourite__combi_streamer__rational,
-    show_favourite__multi_pen__rational,
-    send_combi_streamer,
-    send_multi_pen__rational
-} = require('./functions/product_function/heating_equipment__rational/index')
-```
-
-Блок кода
-```
-const show_favourite__combi_streamer__rational = require('./show_favourite__combi_streamer__rational')
-const show_favourite__multi_pen__rational = require('./show_favourite__multi_pen__rational')
-const send_combi_streamer = require('./send_combi_streamer__rational__by_query')
-const send_multi_pen__rational = require('./send_multi_pen__rational__by_query')
-
-module.exports = {
-    show_favourite__combi_streamer__rational,
-    show_favourite__multi_pen__rational,
-    send_combi_streamer,
-    send_multi_pen__rational
-}
-```
-Блок кода
-```
-bot.onText(/\/p(.+)/, (msg, [source]) => {
-    const product_uuid = get_item_uuid__function.get_item__with__two_letter_uuid(source)
-    const chat_id = function__get_chat_id.get_chat_id(msg)
-
-    Promise.all([
-        combi_streamer__rational.findOne({ uuid: product_uuid }),
-        User.findOne({telegram_id: msg.from.id})
-    ]).then(([combi_streamer__rational, user]) => {
-
-        let is_fav = false
-
-        if (user) {
-            is_fav = user.products.indexOf(product_uuid) !== -1
-        }
-
-        const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
-
-        const caption = `Назва товара: <b>${combi_streamer__rational.name}.</b>
-Серія: <b>${combi_streamer__rational.series}.</b>
-Тип обладнання: <b>${combi_streamer__rational.type}.</b>
-Вид обладнання: <b>${combi_streamer__rational.form}.</b>
-Виробник: <b>${combi_streamer__rational.manufacturer}.</b>
-Країна виробника: <b>${combi_streamer__rational.country_manufacturer}.</b>
-Артикул: <b>${combi_streamer__rational.article}.</b>
-Місткість: <b>${combi_streamer__rational.volume} ємностей.</b>
-Рівень напруги: <b>${combi_streamer__rational.voltage}</b>
-Кількість фаз: <b>${combi_streamer__rational.number_phases} шт.</b>
-Потужність: <b>${combi_streamer__rational.power} кВт.</b>
-Розміри обладнання: <b>Ш ${combi_streamer__rational.width} x Г ${combi_streamer__rational.depth} x В ${combi_streamer__rational.weight} мм.</b>
-Вага: <b>${combi_streamer__rational.weight} кг.</b>
-        
-<i>Вимоги до підключення:</i>
-Електропостачання: <b>Кабель на ${combi_streamer__rational.necessary_communications.electrical} кВт.</b>
-Водопостачання: <b>Кран разміром ${combi_streamer__rational.necessary_communications.water_supply}''.</b>
-Каналізація: <b>Труба діаметром ${combi_streamer__rational.necessary_communications.sewerage} мм.</b>
-Вентиляція: <b>Вентиляційний зонт розмірами: Ш ${combi_streamer__rational.necessary_communications.ventilation.width} х Г ${combi_streamer__rational.necessary_communications.ventilation.depth} х В ${combi_streamer__rational.necessary_communications.ventilation.height} мм.</b>`
-                bot.sendPhoto(chat_id, combi_streamer__rational.picture, {
-                    caption: caption,
-                    parse_mode: 'HTML',
-                    reply_markup: {
-                        inline_keyboard: [
-                            [
-                                {
-                                    text: 'На офіційний сайт',
-                                    url: combi_streamer__rational.link
-                                },
-                                {
-                                    text: fav_text,
-                                    callback_data: JSON.stringify({
-                                        type: ACTION_TYPE.TOOGLE_FAV_COMBI_STREAMERS,
-                                        product_uuid: product_uuid,
-                                        is_fav: is_fav
-                                    })
-                                }
-                            ]
-                        ],
-                    },
-                    resize_keyboard: true,
-                })
-            })
-    })
-```
-Блок кода
-```
-bot.onText(/\/p(.+)/, (msg, [source]) => {
-    const product_uuid = get_item_uuid__function.get_item__with__two_letter_uuid(source)
-    const chat_id = function__get_chat_id.get_chat_id(msg)
-```
-Блок кода
-```
-    Promise.all([
-        combi_streamer__rational.findOne({ uuid: product_uuid }),
-        User.findOne({telegram_id: msg.from.id})
-    ])
-```
-Блок кода
-```
-.then(([combi_streamer__rational, user]) => {}
-```
-Блок кода
-```
-const caption = `Назва товара: <b>${combi_streamer__rational.name}.</b>
-Серія: <b>${combi_streamer__rational.series}.</b>
-Тип обладнання: <b>${combi_streamer__rational.type}.</b>
-    ...
-`
-```
-
-`bot.sendPhoto(chat_id, combi_streamer__rational.picture, {}`
-
-`caption: caption`
-
-`parse_mode: 'HTML'`
-
-`reply_markup: {inline_keyboard: []}`
-
-[![4.gif](https://i.postimg.cc/g0pt77K3/4.gif)](https://postimg.cc/MnsYMdNG)
-
+Под капотом, логика кода выбора типа товара аналогичная подраздела [Выбор конкретного проекта исходя из ID](#выбор-конкретного-проекта-исходя-из-id), но с дополнением логики модели пользователя, о которой будет в следующем разделе.  <br/>
 
 ## Актуальные товары
 
 #### Добавление товара в актуальное
 
-Блок кода
+Блок кода выбора конкретного товара исходя из ID скрывает одну тонкость. Весь код: <br/>
 ```
 bot.onText(/\/p(.+)/, (msg, [source]) => {
     const product_uuid = get_item_uuid__function.get_item__with__two_letter_uuid(source)
@@ -1101,7 +923,10 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
             })
     })
 ```
-Блок кода
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Наш кусочек кода - переключатель флага актуального товара.  <br/>
 ```
         let is_fav = false
         if (user) {
@@ -1110,13 +935,13 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
         const fav_text = is_fav ? 'Видалити з актуального' : 'Додати в актуальне'
 
 ```
-`is_fav`
-
-`fav_text`
+Где:
+- `is_fav` - тернарное выражение переключатель, которое передаётся дополнительно в callback_data. <br/>
+- `fav_text` - изменяемое состояние товара, в зависимости от его флага `is_fav` <br/>
 
 #### Отправка callback_data
 
-Блок кода
+Отправка callback_data аналогична отправки callback_data с включением данных геопозиции проекта, который описан в подразделе [Краткая информация о проекте](#краткая-информация-о-проекте) <br/>
 ```
 [
     {
@@ -1133,24 +958,18 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
     }
 ]
 ```
+Где:
+- `callback_data` - данные обратного вызова, отправляемые при событиях, которые происходят в встроенных клавиатурах.  <br/>
+- `type: ACTION_TYPE.TOOGLE_FAV_COMBI_STREAMERS` - тип события, определяющий события определённой команды передаваемый в данные обратного вызова. <br/>
+- ` product_uuid` - ключ уникального ID товара передаваемого значением `product_uuid` в данные обратного вызова. <br/>
+- `is_fav: is_fav` - ключ значения состояния товара - "Добавлено" или "Удалено" передаваемый в данные обратного вызова. <br/>
 
-`type: ACTION_TYPE.TOOGLE_FAV_COMBI_STREAMERS`
-` product_uuid: product_uuid`
-`is_fav: is_fav`
-
-Блок кода
-```
-const ACTION_TYPE =  {
-    ...
-    TOOGLE_FAV_COMBI_STREAMERS: 'tfcomstr',
-    ...
-}
-```
+**Реализация кода**
 
 [![1.gif](https://i.postimg.cc/pL47YtkZ/1.gif)](https://postimg.cc/k2Nfqz06)
 
 #### Обработка callback_query
-Блок кода
+callback_data Telegram позволяет передать только порядка 64 байта, поэтому всю логику кода необходимо выносить в отдельную функцию, которая принимает лишь данные обратного вызова. Блок кода принимающая данные обратного вызова и передающая их в функцию переключения актуального продукта показан ниже: <br/>
 ```
 bot.on('callback_query', query => {
     let data
@@ -1171,10 +990,19 @@ bot.on('callback_query', query => {
     } 
 })
 ```
+Где:  <br/>
+- `bot.on('callback_query', query => {})` - прослушка событий реагирующий на события с встроенных клавиатур. <br/>
+- `let data` - объект `callback_data`, который приведен к строке методом JSON.stringify(). <br/>
+- `user_id = query.from.id` - аналог msg.chat.id при событиях 'message'. <br/>
+- `const {type} = data` - деструктуризируем тип данных. <br/>
+- `ACTION_TYPE.TOOGLE_FAV_COMBI_STREAMERS` - уникальный индентификатор ACTION_TYPE, который отправляется в callback_data и сравнивается с ACTION_TYPE комманды. <br/>
+- `toogle_favourite_product(user_id, query.id, data)` - функция переключения актуального товара, которая принимает 3 параметра: <br/>
+    - `user_id` - уникальный ID чата в который бот должен будет ответить. <br/>
+    - `query.id` - уникальный ID чата запроса, который посылается пользователем боту. <br/>
+    - `data` - данные обратного вызова передаваемые в подпараметре callback_data. <br/>
 
-`toogle_favourite_product(user_id, query.id, data)`
 
-Блок кода
+Функция `toogle_favourite_product(user_id, query.id, data)` вынесенная в отдельный файл, код которой указан ниже: <br/>
 ```
 const bot = require('../init')
 const mongoose = require('mongoose')
@@ -1211,33 +1039,34 @@ function toogle_favourite_product(user_id, queryId, {product_uuid, is_fav}) {
 
 module.exports = toogle_favourite_product
 ```
-Блок кода
-```
-User.findOne({telegram_id: user_id})
-```
-Блок кода
-```
-if (user) {
-            if (is_fav) {
-                user.products = user.products.filter(pUuid => pUuid !== product_uuid)
-            } else {
-                user.products.push(product_uuid)
-            }
-            userPromise = user
-```
-Блок кода
-```
-else {
-            userPromise = new User({
-                telegram_id: user_id,
-                products: [product_uuid]
-            })
-        }
-```
+Где: <br/>
+- `const bot = require('../init')` - подключение модуля с классом `bot` для реализации методов `answerCallbackQuery`. <br/>
+- `const mongoose = require('mongoose')` - подключение модуля `mongoose` для возможности работать с моделью `users`. <br/>
+- `require('../models/user.model')` - подключение модуля с моделью `users`. <br/>
+- `const User = mongoose.model('users')` - присваивание переменной для модели `users`. <br/>
+- `function toogle_favourite_product(user_id, queryId, {product_uuid, is_fav}) {})` - функция переключатель состояния актуального или неактуального товара. Принимает 3 параметр: <br/>
+    - `user_id` - обязательный параметр. Уникальный чат ID, по которому бот должен будет ответить. <br/>
+    - `queryId` - обязательный параметр. Уникальный чат ID запроса, который приходит боту от пользователя. <br/>
+    - `data` - обязательный параметр. Данные обратного вызова: `product_uuid` - необходим для определения ID товара, `is_fav` - флаг переключения актуальности товара. <br/>
+- `User.findOne({telegram_id: user_id})` - метод `findOne` модели `User`, который находит пользователя по его ID. <br/>
+- `then(user => {})` - модель `User` возвращает `Promise`, который при `resolve` предоставляет объект - `user`. <br/>
+- `if (user) {})` - условие наличие или отсутствие объекта `user`. <br/>
+- `if (is_fav) {})` - условие проверки наличие или отсутствие товара по его ID. <br/>
+- `userPromise = user` - забирание объекта `user` для последующего складирование данных в массив. <br/>
+- `userPromise = new User({})` - переопределение модели `User` с включением результатов работы функции `toogle_favourite_product`. <br/>
+- `telegram_id: user_id,` - записывание уникального ID чата в ID чата `user`. <br/>
+- `products: [product_uuid]` - массив актуальных товаров. <br/>
+- `const answerText = is_fav ? 'Видалено' : 'Додано'` - строковый текст флага переключателя исходя из состояния товара. <br/>
+- `userPromise.save().then(_ => {})` - метод `save` библиотеки `mongoose` которая сохраняет объект в коллекцию `User`. При успешном сохранении вызывается метод `then`, без параметров, поскольку задача `then` - сделать синхронный участок ответа запроса обратного вызова c помощью метода `answerCallbackQuery` класса `bot`. <br/>
+- `bot.answerCallbackQuery(queryId, {})` - метод класса `bot` отправляющий пользователю ответ, на отработанный запрос обратного вызова. Принимает 2 параметр: <br/>
+  - `callback_query_id` - обязательный параметр. ID запроса. <br/>
+  - `text` - текстовое сообщения, которое бот ответит пользователю в ответ на запрос обратного вызова. <br/>
+
+**Реализация кода**
 
 [![2.gif](https://i.postimg.cc/bwxY4LM1/2.gif)](https://postimg.cc/RW0zH1v0)
 
-#### Кнопка "Актуальні товари"
+#### Клавиша "Актуальні товари"
 
 Блок кода 
 ```
@@ -1369,7 +1198,7 @@ bot.onText(/\/start/, msg => {
 
 [![1.gif](https://i.postimg.cc/5ysSXbk1/1.gif)](https://postimg.cc/y3SZ54Hr)
 
-#### Кнопка "Реєстр об'єктів"
+#### Клавиша "Реєстр об'єктів"
 
 При нажатии на комманду "Реестр об\'єктів" выполняется следующий код:
 ```
@@ -1444,7 +1273,7 @@ bot.onText(/\/start/, msg => {
 
 [![1.gif](https://i.postimg.cc/5ysSXbk1/1.gif)](https://postimg.cc/y3SZ54Hr)
 
-#### Кнопка "Статистика по об'єктам"
+#### Клавиша "Статистика по об'єктам"
 
 При нажатии на комманду "Статистика по об\'єктам" выполняется следующий код:
 
