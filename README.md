@@ -201,18 +201,19 @@ module.exports = {
 
 Подключаем сonfig.js в наш главный файл index.js <br/>
 
-```
+```node
 const config = require('./config')
 ```
 
 Проверяем первый аргумент класса TelegramBot: <br/>
-```
+```node
 const bot = new TelegramBot(config.TOKEN, {
     polling: true
 })
 ```
+
 Проверяем первый аргумент метода connect библиотеки mongoose: <br/>
-```
+```node
 const connect = mongoose.connect(config.DB_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true
@@ -236,7 +237,7 @@ const connect = mongoose.connect(config.DB_URL, {
 
 Каждый файл состоит из подключаемой схем, в которой заполняется форма данных:
 
-```
+```node
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
@@ -258,7 +259,7 @@ mongoose.model('project', ProjectSchema)
 Подключаем все модели (или конкретную, если нужно исправить данные одного раздела) в файл index.js: <br/>
 *В приложении, для дополнительной декомпозиции данных все данные собираются в один index.js, а после, с помощью деструктуризации подключаются к главному файлу index.js*.
 
-```
+```node
 require('./models/project.model')
 const Project = mongoose.model('project')
 ```
@@ -269,7 +270,7 @@ const Project = mongoose.model('project')
 
 [![3.png](https://i.postimg.cc/MK5S50g4/3.png)](https://postimg.cc/ppm4XjWY)
 
-```
+```node
 const db_project__school = require('./db/db_projects/db_projects__school.json')
 db_project__school.projects__school.forEach(p => new Project(p).save().catch(e => console.log(e)))
 ```
@@ -296,7 +297,8 @@ db_project__school.projects__school.forEach(p => new Project(p).save().catch(e =
 Поскольку бот должен быть закрытым, то все комманды покрываются условием, где истинна - это username сотрудников, а ложь - любой username не входящий в перечень сотрудников. <br/>
 
 Логика кнопки Start: 
-```
+
+```node
 bot.onText(/\/start/, msg => {
     if (msg.chat.username !== 'AveCardinal') {
         bot.sendSticker(chat_id, stickers.hot_cherry__cry)
@@ -353,7 +355,8 @@ bot.onText(/\/start/, msg => {
 #### Клавиша "Знайти проект" 
 
 При нажатии на клавишу "Знайти проект" срабатывает следующий блок кода: <br/>
-```
+
+```node
 bot.on('message', msg => {
     const chat_id = function__get_chat_id.get_chat_id(msg)
     switch (msg.text) {
@@ -372,7 +375,7 @@ bot.on('message', msg => {
 Где:  <br/>
 - `bot.on('message', msg => {}` - прослушиватель события "message", экземпляра класса Telegram bot. <br/>
 При срабатывании события emitter Telegram Bot отправляет на сервер следующие данные:  <br/>
-    ```
+    ```node
     {
         message_id: 15818,
         from: {
@@ -427,7 +430,7 @@ bot.on('message', msg => {
 | Проекти | Виставки |
 
 При нажатии на любой из типов проектов, срабатывает следующий блок кода (на примере типа объектов - Объ'єкти Finishing):  <br/>
-```
+```node
 bot.on('message', msg => {
     const chat_id = function__get_chat_id.get_chat_id(msg)
     switch (msg.text) {
@@ -455,7 +458,7 @@ bot.on('message', msg => {
 *Функция `send_project(chat_id, query)`* <br/> 
 
 Функция описана в отдельном файле - send_project__by_query.js, полный блок кода выглядящий так: <br/>
-```
+```node
 const stickers = require('../helpers/stickers')
 const bot = require('../init')
 const text_project_by_type__query = require('../message_text/text_project_by_type__query')
@@ -498,7 +501,7 @@ module.exports = send_project
     - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg). <br/>
     - `stickers.hot_cherry__presents` - обязательный параметр. file_id стикера. <br/>
     *`file_id` - это уникальный идентификатор файла, который является разным для разных чатов, поэтому для формирования собственных file_id для стикеров необходимо добавить следующий код в главный файл index.js и отправить все необходимые стикеры для бота. В результате отправки Вы получите название стикера и его file_id. Также стоит добавить, что Telegram поддерживает различные способы отправки стикера. Подробнее об отправке стикеров смотрите в [официальной документации Telegram](https://core.telegram.org/bots/api#sendsticker)*.<br/>
-    ```
+    ```node
     bot.on('message', msg => {
         console.log(msg.document.file_name)
         console.log(msg.document.file_id)
@@ -523,7 +526,7 @@ module.exports = send_project
 *Команда отправки конкретного проекта исходя из ID* <br/>
 
 Код комманды состоит с включением функции создания активной ссылки и выгляди так: <br/>
-```
+```node
 bot.onText(/\/k(.+)/, (msg, [source]) => {
     const projectUuid = get_item_uuid__function.get_item__with__two_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
@@ -579,7 +582,7 @@ bot.onText(/\/k(.+)/, (msg, [source]) => {
 
 *Создание активной ссылки*
 Активная ссылка создаётся путём вырезания части присылаемой строки, оставляя только текст комманды и ID проекта из коллекции `Project`. Код активной ссылки выглядит так: <br/>
-```
+```node
     get_item__with__two_letter_uuid(source) {
         return source.substr(2, source.length)
     }
@@ -602,7 +605,7 @@ bot.onText(/\/k(.+)/, (msg, [source]) => {
 5. Встроенная клавиатура, которая содержит информацию местоположения объекта в координатах. <br/>
 
 Полный исполняющий код комманды представлен выше, а мы лишь остановимся на куске кода - callback_data: <br/>
-```
+```node
 ...
 inline_keyboard: [
     [
@@ -625,7 +628,7 @@ inline_keyboard: [
 - `lo: project.location.longitude` - данные обратного вызова. Координаты долготы местоположения объекта. <br/>
 
 Данные обратного вызова используются дальше - в прослушке событий `calback_query` екземпляра класса `Telegram Bot`:
-```
+```node
 bot.on('callback_query', query => {
     let data
     const user_id = query.from.id
@@ -667,7 +670,7 @@ bot.on('callback_query', query => {
 Выбираем комманду "Реестр объектов". <br/>
 
 При нажатии на комманду "Реєстр об'єктів" выполняется следующий код: <br/>
-```
+```node
 bot.on('message', msg => {
         case kb.home.analytics:
             bot.sendSticker(chat_id, stickers.hot_cherry__clips)
@@ -697,7 +700,7 @@ bot.on('message', msg => {
 
 #### Полная информация о проекте
 При введении шифра, пользователь получает excel спецификацию, pdf и dwg форматы проектов, которые можно сразу же интегрировать в другие приложения, в том числе почта, месседжеры или устройства, такие как принтеры, которые поддерживают WiFi. Вот, что под капотом:
-```
+```node
 bot.on('message', msg => {
     chat_id = msg.chat.id
     if (msg.text === file_id.p_021_2021.project__name) {
@@ -715,7 +718,7 @@ bot.on('message', msg => {
 - `bot.sendMessage(chat_id, file_id.p_021_2021.caption)` - отправка в определенный чат ID текст сообщения `file_id.p_021_2021.caption`. <br/>
 Строковые значения файла `file_id` выглядят так: <br/>
 
-```
+```node
 const p_021_2021 = {
     project__name: 'П-021-2021',
     dwg__filename: 'Проект в форматі DWG',
@@ -753,7 +756,7 @@ const p_021_2021 = {
 #### Небходимый производитель
 
 Под капотом, логика кода выбора необходимого производителя аналогичная switch case подраздела [Клавиша "Знайти проект](#клавиша-знайти-проект). Разница лишь в переменных, которые касаются не типов объекта, а названий различных производителей. <br/>
-```
+```node
 bot.on('message', msg => {
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
@@ -803,7 +806,7 @@ bot.on('message', msg => {
 
 #### Необходимый тип товаров
 Под капотом, логика кода выбора типа товара аналогичная switch case подраздела [Необходимый тип объекта](#необходимый-тип-объекта). Разница лишь в переменных, которые касаются не типов объекта, а названий различного типа оборудования. <br/>
-```
+```node
 bot.on('message', msg => {
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
@@ -860,7 +863,7 @@ bot.on('message', msg => {
 #### Добавление товара в актуальное
 
 Блок кода выбора конкретного товара исходя из ID скрывает одну тонкость. Весь код: <br/>
-```
+```node
 bot.onText(/\/p(.+)/, (msg, [source]) => {
     const product_uuid = get_item_uuid__function.get_item__with__two_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
@@ -927,7 +930,7 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
 !!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Наш кусочек кода - переключатель флага актуального товара.  <br/>
-```
+```node
         let is_fav = false
         if (user) {
             is_fav = user.products.indexOf(product_uuid) !== -1
@@ -942,7 +945,7 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
 #### Отправка callback_data
 
 Отправка callback_data аналогична отправки callback_data с включением данных геопозиции проекта, который описан в подразделе [Краткая информация о проекте](#краткая-информация-о-проекте) <br/>
-```
+```node
 [
     {
         text: 'На офіційний сайт',
@@ -970,7 +973,7 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
 
 #### Обработка callback_query
 callback_data Telegram позволяет передать только порядка 64 байта, поэтому всю логику кода необходимо выносить в отдельную функцию, которая принимает лишь данные обратного вызова. Блок кода принимающая данные обратного вызова и передающая их в функцию переключения актуального продукта показан ниже: <br/>
-```
+```node
 bot.on('callback_query', query => {
     let data
     const user_id = query.from.id
@@ -1003,7 +1006,7 @@ bot.on('callback_query', query => {
 
 
 Функция `toogle_favourite_product(user_id, query.id, data)` вынесенная в отдельный файл, код которой указан ниже: <br/>
-```
+```node
 const bot = require('../init')
 const mongoose = require('mongoose')
 require('../models/user.model')
@@ -1069,7 +1072,7 @@ module.exports = toogle_favourite_product
 #### Клавиша "Актуальні товари"
 
 Клавиша срабатывает на ранее описаный switch case, по аналогии с клавишами ["Найти проект"](#) или ["Найти товар"](#), но результат отрабатывания функции - вызов функций, которые показывают актуальные товары выбранных пользователем. Блок кода описан ниже:
-```
+```node
 bot.on('message', msg => {
     const chat_id = function__get_chat_id.get_chat_id(msg)
     switch(msg.text) {
@@ -1114,7 +1117,7 @@ bot.on('message', msg => {
 
 *Функция отвечающая за показ данных актуальных товаров* <br/>
 Функция описана в отдельном файле и интегрируется в главный файл. Блок кода описывающий показ актуальных товаров для пароконвектоматов производителя Rational: <br/>
-```
+```node
 const send_html = require('../../function__send_html')
 
 const mongoose = require('mongoose')
@@ -1161,7 +1164,7 @@ module.exports = show_favourite__combi_streamer__rational
 
 *функция-преобразователь sendMessage*
 Функция описанная в отдельном файле и имеет такую структуру кода:
-```
+```node
 const bot = require('../init')
 const keyboard = require('../keyboards/keyboards') 
 
@@ -1202,7 +1205,7 @@ module.exports = send_html
 #### Запуск главного меню
 
 Команда отвечающая за запуск главного меню - `/start`, код которой подробно описан в разделе [Запуск бота](#). Код блока выглядит так: 
-```
+```node
 bot.onText(/\/start/, msg => {
     if (msg.chat.username !== 'AveCardinal') {
         bot.sendSticker(chat_id, stickers.hot_cherry__cry)
@@ -1227,7 +1230,7 @@ bot.onText(/\/start/, msg => {
 #### Клавиша "Реєстр об'єктів"
 
 Логика кода аналогична других клавишах главного меню, таким как [Найти проект](#) или [Найти товар](#). Сам код клавиши "Реєстр об'єктів" представляет из себя следующее:
-```
+```node
 bot.on('message', msg => {
         case kb.home.registry:
             bot.sendSticker(chat_id, stickers.hot_cherry__clips)
@@ -1241,7 +1244,7 @@ bot.on('message', msg => {
 ```
 Где:
 - `command_text__registry` - текст-ссылка на онлайн-Excel таблицу с реестром объектов. Сам код выглядит так:
-```
+```node
 const command_text__registry = `<a href="https://docs.google.com/spreadsheets/d/1rqGGFdBZrPFx9JEMVqT6UoXnjozG1cUxp4TepiKA3wM/edit?usp=sharing">Реєстр об'єктів за 2021 рік  ${emodji.books}</a>`
 
 module.exports = command_text__registry
@@ -1254,7 +1257,7 @@ module.exports = command_text__registry
 ## Статистика по объектам
 
 Логика кода аналогична других клавишах главного меню, таким как [Знайти проект](#), [Знайти товар](#) или [Реєстр об'єктів](#). Сам код клавиши "Статистика по об'єктам" представляет из себя следующее:
-```
+```node
 bot.on('message', msg => {
         case kb.home.statistic:
             bot.sendSticker(chat_id, stickers.hot_cherry__clips)
