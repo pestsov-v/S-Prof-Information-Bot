@@ -1068,7 +1068,7 @@ module.exports = toogle_favourite_product
 
 #### Клавиша "Актуальні товари"
 
-Блок кода 
+Клавиша срабатывает на ранее описаный switch case, по аналогии с клавишами ["Найти проект"](#) или ["Найти товар"](#), но результат отрабатывания функции - вызов функций, которые показывают актуальные товары выбранных пользователем. Блок кода описан ниже:
 ```
 bot.on('message', msg => {
     const chat_id = function__get_chat_id.get_chat_id(msg)
@@ -1105,21 +1105,15 @@ bot.on('message', msg => {
     }
 })
 ```
-Блок кода
-```
-show_favourite__combi_streamer__rational(chat_id, msg.from.id)
-```
-Подключаем блок
-```
-const {
-    show_favourite__combi_streamer__rational,
-    show_favourite__multi_pen__rational,
-    send_combi_streamer,
-    send_multi_pen__rational
-} = require('./functions/product_function/heating_equipment__rational/index')
+Где:
+- `bot.on('message', msg => {})` - прослушиватель события `message`, экземпляра класса `Telegram bot`. <br/>
+- `const chat_id = function__get_chat_id.get_chat_id(msg)` - функция возвращающая `msg.chat.id`. `msg.chat.id` - это уникальный ID чата бота и пользователя. <br/>
+- `switch(msg.text) {})` - переключатель, который реагирует на значение `msg.text`. <br/>
+- `case kb.home.actualy: ` - значение реагирующее на событие `msg.text`, когда `msg.text == 'Актуальні товари'`. <br/>
+- `show_favourite__combi_streamer__rational(chat_id, msg.from.id)` - функция показывающая актуальные товары типа оборудования`combi_streamer__rational`. <br/>
 
-```
-Блок кода
+*Функция отвечающая за показ данных актуальных товаров* <br/>
+Функция описана в отдельном файле и интегрируется в главный файл. Блок кода описывающий показ актуальных товаров для пароконвектоматов производителя Rational: <br/>
 ```
 const send_html = require('../../function__send_html')
 
@@ -1147,27 +1141,59 @@ function show_favourite__combi_streamer__rational(chat_id, telegram_id) {
 
 module.exports = show_favourite__combi_streamer__rational
 ```
-Блок кода
+Где: 
+- `const send_html = require('../../function__send_html')` - подключения модуля с функцией обработчиком, будет описана ниже.
+- `const mongoose = require('mongoose')` - подключение модуля `mongoose` для возможности работать с моделью `users`. <br/>
+- `const {combi_streamer__rational} = require('../../../models/heating_equipment__rational/index')` - подключение модуля модели пароконвектомата `const {combi_streameer__rational}`.
+- `require('../../../models/user.model')` - подключение модуля с моделью `users`. <br/>
+- `const User = mongoose.model('users')` - присваивание переменной для модели `users`. <br/>
+- `function show_favourite__combi_streamer__rational(chat_id, telegram_id) {})` - функция, которая переключает флаг актуальности и показывающая массив актуальных товаров типа `combi_streamer__rational`. Принимающая 2 параметра:
+    - chat_id - ID чата пользователя с ботом.
+    - telegram_id - ID пользователя в модели `User`
+- `User.findOne({telegram_id})` -  метод `findOne` модели `User`, который находит пользователя по его ID. <br/>
+- `then(user => {})` - модель `User` в случае успешного выполнения `Promise` возвращает объект `user` с последующим выполнением кода, написанным внутри метода `then`.
+- `if (user) {}` - условие проверки существования пользователя. Если есть - выполняется код `combi_streamer__rational.find({uuid: {'$in': user.products}})`.
+- `combi_streamer__rational.find({uuid: {'$in': user.products}})` - метод `find` модели `combi_streamer__rational`, который с помощью оператора `$in` выбирает массив данных в модели `user`, который совпадает с ID запроса. 
+- `then(products => {})` - модель `combi_streamer__rational` в случае успешного выполнения `Promise` возвращает объект `user` с последующим выполнением кода, написанным внутри метода `then`. 
+- `if (products.length) {}` - условие проверки длины массива.
+- `html = products.map((p, i)` - строковый текст.
+- `send_html(chat_id, html, 'home')` - функция преобразовывающая переменную `html` в нужный parse_mode и отправляющая сообщения пользователю с помощью метода `sendMessage` класса `bot`. Полный блок кода ниже:
+
+*функция-преобразователь sendMessage*
+Функция описанная в отдельном файле и имеет такую структуру кода:
 ```
-User.findOne({telegram_id})
-    .then(user => {
-        if (user) {
-            combi_streamer__rational.find({uuid: {'$in': user.products}}).then(products => {
-                let html
-                if (products.length) {
-                    html = products.map((p, i) => {
-                        return `${p.form} ${p.manufacturer} ${p.name}  
-Деталі: /p${p.uuid}`}).join('\n')
-                } 
-            })
-        } 
-    })
+const bot = require('../init')
+const keyboard = require('../keyboards/keyboards') 
+
+function send_html(chat_id, html, kb_name = null) {
+    const options = { parse_mode: 'HTML'}
+
+    if (kb_name) {
+        options['reply_markup'] = {
+            keyboard: keyboard[kb_name]
+        }
+    }
+
+    bot.sendMessage(chat_id, html, options)
 }
+
+module.exports = send_html
 ```
-Блок кода
-```
-send_html(chat_id, html, 'home')
-```
+Где: <br/>
+- `const bot = require('../init')` - подключение модуля с классом `bot` для реализации метода `sendMessage`. <br/>
+- `const keyboard = require('../keyboards/keyboards') ` - подключение модуля с интерфейсами клавиатур. <br/>
+- `function send_html(chat_id, html, kb_name = null)` - функция отправляющая клавиатуру. Принимающая 3 параметра: <br/>
+    - `chat_id` - обязательный параметр. ID чата пользователя и бота. <br/>
+    - `html` - обязательный параметр. Строковый текст. <br/>
+    - `kb_name = null` - необязательный параметр. Принимает значение названия клавиатуры. По умолчанию - null. <br/>
+- `const options = { parse_mode: 'HTML'}` - переменная с включение парсера 'HTML'. <br/>
+- `if (kb_name) {}` - если `kb_name !== null`, то отправляет клавиатуру с определенным парсером. <br/>
+- `bot.sendMessage(chat_id, html, options)` - метод `SendMessage` класса `bot` отправляющий пользователю сообщение. Принимающий 3 параметра: <br/>
+    - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg). <br/>
+    - `html` - обязательный параметр. Текст сообщения.  <br/>
+    - `options` - необязательный параметр. Объект принимающий параметры парсера и клавиатуры. <br/>
+
+**Реализация кода**
 
 [![3.gif](https://i.postimg.cc/qMYCpmjY/3.gif)](https://postimg.cc/4m6351Cb)
 
@@ -1175,7 +1201,7 @@ send_html(chat_id, html, 'home')
 
 #### Запуск главного меню
 
-Код отвечающий за выполнение комманды: 
+Команда отвечающая за запуск главного меню - `/start`, код которой подробно описан в разделе [Запуск бота](#). Код блока выглядит так: 
 ```
 bot.onText(/\/start/, msg => {
     if (msg.chat.username !== 'AveCardinal') {
@@ -1192,18 +1218,18 @@ bot.onText(/\/start/, msg => {
     }
 })
 ```
-Детальный разбор блока кода описан выше, в разделе [Функция закрытого бота](#)
 
-**Реализация шага**
+
+**Реализация кода**
 
 [![1.gif](https://i.postimg.cc/5ysSXbk1/1.gif)](https://postimg.cc/y3SZ54Hr)
 
 #### Клавиша "Реєстр об'єктів"
 
-При нажатии на комманду "Реестр об\'єктів" выполняется следующий код:
+Логика кода аналогична других клавишах главного меню, таким как [Найти проект](#) или [Найти товар](#). Сам код клавиши "Реєстр об'єктів" представляет из себя следующее:
 ```
 bot.on('message', msg => {
-        case kb.home.analytics:
+        case kb.home.registry:
             bot.sendSticker(chat_id, stickers.hot_cherry__clips)
             bot.sendMessage(chat_id, command_text__registry, {
                 parse_mode: 'HTML',
@@ -1213,119 +1239,45 @@ bot.on('message', msg => {
     }
 })
 ```
-
-**Пройдёмся по неописанным ранее частям кода:**<br/>
-
-`command_text__registry`:<br/>
-Подключаем текст, который выводится при успешной проверке условия и нажатии на комманду "Реестр об\'єктів". <br/>
-Достаём переменную со значением текста через деструктуризацию файла index.js, который находится в папке с остальными текстами базовых команд которых 4:<br/>
-1. start. <br/>
-2. help. <br/>
-3. statistic. <br/>
-4. registry. <br/>
-
+Где:
+- `command_text__registry` - текст-ссылка на онлайн-Excel таблицу с реестром объектов. Сам код выглядит так:
 ```
-const {command_text__registry} = require('./message_text/command_text__start/index')
-```
-
-Сам код файла `command_text__registry`:<br/>
-
-```
-const emodji = require('../../helpers/emoji')
-
 const command_text__registry = `<a href="https://docs.google.com/spreadsheets/d/1rqGGFdBZrPFx9JEMVqT6UoXnjozG1cUxp4TepiKA3wM/edit?usp=sharing">Реєстр об'єктів за 2021 рік  ${emodji.books}</a>`
 
 module.exports = command_text__registry
 ```
 
-Где прямая ссылка на онлайн-Excel таблицу.
-
-[![2.png](https://i.postimg.cc/NFY1NWTS/2.png)](https://postimg.cc/sQ6QxHT4)
-
-**Реализация шага**
+**Реализация кода**
 
 [![1.gif](https://i.postimg.cc/hG1DgTx6/1.gif)](https://postimg.cc/PLNsQLSQ)
 
 ## Статистика по объектам
 
-#### Запуск главного меню
-
-Код отвечающий за выполнение комманды: 
+Логика кода аналогична других клавишах главного меню, таким как [Знайти проект](#), [Знайти товар](#) или [Реєстр об'єктів](#). Сам код клавиши "Статистика по об'єктам" представляет из себя следующее:
 ```
-bot.onText(/\/start/, msg => {
-    if (msg.chat.username !== 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
-        bot.sendMessage(chat_id, command_text__start__error)
-    } else if (msg.chat.username === 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, command_text__start_success, {
-            reply_markup: {
-                keyboard: keyboard.home,
-                resize_keyboard: true
-            }
-        })
+bot.on('message', msg => {
+        case kb.home.statistic:
+            bot.sendSticker(chat_id, stickers.hot_cherry__clips)
+            bot.sendMessage(chat_id, command_text__statistic, {
+                parse_mode: 'HTML',
+                disable_web_page_preview: true
+            })
+            break
     }
 })
 ```
-Детальный разбор блока кода описан выше, в разделе [Функция закрытого бота](#)
-
-**Реализация шага**
-
-[![1.gif](https://i.postimg.cc/5ysSXbk1/1.gif)](https://postimg.cc/y3SZ54Hr)
-
-#### Клавиша "Статистика по об'єктам"
-
-При нажатии на комманду "Статистика по об\'єктам" выполняется следующий код:
-
+Где:
+- `command_text__statistic` - текст-ссылка на онлайн-Excel таблицу с реестром объектов. Сам код выглядит так:
 ```
-bot.onText(/\/statistic/, msg => {
-    if (msg.chat.username !== 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
-        bot.sendMessage(chat_id, command_text__start__error)
-    } else if (msg.chat.username === 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.hot_cherry__searching)
-        bot.sendMessage(chat_id, command_text__statistic, {
-            parse_mode: 'HTML',
-            disable_web_page_preview: true
-        })
-    }
-})
-```
-**Пройдёмся по неописанным ранее частям кода:**<br/>
-
-`command_text__statistic`:<br/>
-Подключаем текст, который выводится при успешной проверке условия и нажатии на комманду "Реестр об\'єктів". <br/>
-Достаём переменную со значением текста через деструктуризацию файла index.js, который находится в папке с остальными текстами базовых команд которых 4:<br/>
-1. start. <br/>
-2. help. <br/>
-3. statistic. <br/>
-4. registry. <br/>
-
-```
-const {command_text__statistic} = require('./message_text/command_text__start/index')
-```
-
-Сам код файла `command_text__statistic`:<br/>
-
-```
-const emodji = require('../../helpers/emoji')
-
 const command_text__statistic = `<a href="https://docs.google.com/spreadsheets/d/11osrviGjujYOF_7iiMYZmzlf9p1p9TU0384F1R6hCIk/edit?usp=sharing">Загальна статистика за 2021 рік ${emodji.books}</a>`
 
 module.exports = command_text__statistic
 ```
 
-Где прямая ссылка на онлайн-Excel таблицу.
+**Реализация кода**
 
 [![1.gif](https://i.postimg.cc/Vkt1W697/1.gif)](https://postimg.cc/zyq9JqcW)
 
 # **Заключение**
 
-Несмотря на простую реализацию программного кода в результате можно получить довольно серьёзную программу по повышению эффективности бизнес-процессов, но при этом сами боты имеют свою специфику. Эта специфика выражается в том, какие задачи мы ставим перед Telegram ботами. Если эти задачи: чат с возможностью переключения на оператора, выжимка информации или последние этапы в воронках продаж, тогда это удобный сервис, но если мы подходим к чат ботам как к стандартный веб-приложениям, то они имеют ряд недостатков:
-1. Middleware. node-tleegram-bot-api не позволяет писать middleware, а это выливается или в массовое оборачивание методов экземпляра класса TelegramBot или создание собственного костыля-обёртку, через которую необходимо прогонять будет весь код или же писать весь код, связанных с событиями в один файл и формировать большую партянку.
-2. Аналитика и статистика. Если написать свои костыли по сбору информации можно: поставить счётчик кликов, получение первичных данных от пользователя, то эти костыли останутся в рамках одной компании. Это означает, что статистику такого рода не предоставить потенциальному инвестору, на предмет той же рекламы, а если и предоставить, то результат предоставления - это чистого рода вера. Единственный вариант это формировать URL-запросы и видоизменять общение бота с пользователям таким образом, чтобы пользователь сам заполнял все личные данные, а после эти данные прогонять через сторонее приложение.
-3. Отсутствие гигиены. Заполняемые поля пользователем нельзя прогнать через внутренний валидатор Telegram бота, а следовательно это можно сделать в рамках middleware-сервиса или на стороне сервера. Таким образом мы или создаём допольнительное приложение или нагружаем сервер лишней работой, лишь для того, чтобы получить единый и слитный бизнес-процесс.
-
-
-
-
+README.md предполагает лишь разбор всех основных функций кода, чтобы сторонний разработчик мог понять тот или другой блок кода. Предполагается, что сторонний разработчик понимает, что такое module.exports и require, следовательно не нуждается в комментировании подключения различных модулей. За дополнительными вопросами можно обращаться ко мне в Telegram. Мой `username` `@AveCardinal` или писать на почту `vladislav.pestsov@gmail.com`.
