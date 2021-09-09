@@ -373,7 +373,7 @@ bot.on('message', msg => {
 })
 ```
 Где:  <br/>
-- `bot.on('message', msg => {}` - прослушиватель события "message", экземпляра класса Telegram bot. <br/>
+- `bot.on('message', msg => {}`node - прослушиватель события "message", экземпляра класса Telegram bot. <br/>
 При срабатывании события emitter Telegram Bot отправляет на сервер следующие данные:  <br/>
     ```node
     {
