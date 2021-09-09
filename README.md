@@ -188,7 +188,7 @@ Cоздаём файл config.js:
 [![1.png](https://i.postimg.cc/s2VbCfw6/1.png)](https://postimg.cc/hX529nFT)
 
 
-```nodejs
+```node
 module.exports = {
     TOKEN: '1974489742:AAEvwm267ee6duI1FnbozyhHEYxlSs5sEdg',
     DB_URL: 'mongodb+srv://Sproftestbot111:Sproftestbot111@cluster0.b53ub.mongodb.net/Sproftestbot111'
