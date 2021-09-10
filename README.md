@@ -195,11 +195,11 @@ module.exports = {
 }
 ```
 
-Эти данные используются в файле init.js. <br/>
-*Файл init.js это точка входа в приложение.*
+Эти данные используются в файле `init.js`. <br/>
+*Файл `init.js` это точка входа в приложение.*
 
 
-Подключаем сonfig.js в наш главный файл index.js <br/>
+Подключаем `сonfig.js` в наш главный файл `index.js` <br/>
 
 ```node
 const config = require('./config')
@@ -256,15 +256,15 @@ const ProjectSchema = new Schema({
 mongoose.model('project', ProjectSchema)
 ```
 
-Подключаем все модели (или конкретную, если нужно исправить данные одного раздела) в файл index.js: <br/>
-*В приложении, для дополнительной декомпозиции данных все данные собираются в один index.js, а после, с помощью деструктуризации подключаются к главному файлу index.js*.
+Подключаем все модели (или конкретную, если нужно исправить данные одного раздела) в файл `index.js`: <br/>
+*В приложении, для дополнительной декомпозиции данных все данные собираются в один `index.js`, а после, с помощью деструктуризации подключаются к главному файлу `index.js`*.
 
 ```node
 require('./models/project.model')
 const Project = mongoose.model('project')
 ```
 
-Коппируем нужную функцию для конкретной коллекции. в главный файл index.js и сохраняем файл. После этого функция должна пробежаться по всем аргументам db файла и после сохранить их в MongoDB базе данных. <br/>
+Коппируем нужную функцию для конкретной коллекции. в главный файл `index.js` и сохраняем файл. После этого функция должна пробежаться по всем аргументам `db` файла и после сохранить их в MongoDB базе данных. <br/>
 **После успешной загрузки данных, во избежания коппирования данных в базе данных, удалите функцию заполнения данных** <br/>
 *Пример наведён для одного типа раздела данных*
 
@@ -292,11 +292,11 @@ db_project__school.projects__school.forEach(p => new Project(p).save().catch(e =
 
 ## Запуск бота
 
-Вводим название "S-Prof.Інформаційний бот" в поисковик Telegram. Поскольку я уже его запускал, а после удалил чат с ботом, то Telegram предлагает мне перезапустить бота. Вам Telegram предложит начать. Нажимаем кнопку Start. <br/>
+Вводим название "S-Prof.Інформаційний бот" в поисковик Telegram. Поскольку я уже его запускал, а после удалил чат с ботом, то Telegram предлагает мне перезапустить бота. Вам Telegram предложит начать. Нажимаем кнопку `Start`. <br/>
 
-Поскольку бот должен быть закрытым, то все комманды покрываются условием, где истинна - это username сотрудников, а ложь - любой username не входящий в перечень сотрудников. <br/>
+Поскольку бот должен быть закрытым, то все комманды покрываются условием, где истинна - это username сотрудников, а ложь - любой `username` не входящий в перечень сотрудников. <br/>
 
-Логика кнопки Start: 
+Логика кнопки `Start`: 
 
 ```node
 bot.onText(/\/start/, msg => {
@@ -347,7 +347,7 @@ bot.onText(/\/start/, msg => {
 
 ## "Знайти проект"
 
-Если необходимы короткая информация по объекту, в том числе и геоположение необходимо использовать путь через кнопку "Проекты". <br/>
+Если необходимы короткая информация по объекту, в том числе и геоположение необходимо использовать путь через клавишу "Проекты". <br/>
 Если необходимо получить полные данные об проекте необходимо использовать шифр проекта. <br/>
 
 ### Получение короткой информации о проекте
@@ -373,8 +373,8 @@ bot.on('message', msg => {
 })
 ```
 Где:  <br/>
-- `bot.on('message', msg => {}` - прослушиватель события "message", экземпляра класса Telegram bot. <br/>
-При срабатывании события emitter Telegram Bot отправляет на сервер следующие данные:  <br/>
+- `bot.on('message', msg => {}` - прослушиватель события "message", экземпляра класса `Telegram bot`. <br/>
+При срабатывании события emitter `Telegram Bot` отправляет на сервер следующие данные:  <br/>
     ```node
     {
         message_id: 15818,
@@ -397,14 +397,14 @@ bot.on('message', msg => {
         text: 'Проекти'
     }
     ```
-- `function__get_chat_id.get_chat_id(msg)` - функция возвращающая `msg.chat.id`. `msg.chat.id` - это уникальный ID чата бота и пользователя.  <br/>
+- `function__get_chat_id.get_chat_id(msg)` - функция возвращающая `msg.chat.id`. `msg.chat.id` - ID чата бота и пользователя.  <br/>
 - `switch (msg.text)` - переключатель, который реагирует на значение `msg.text`. <br/>
 - `bot.sendMessage(chat_id, command_text__projects, options)` - метод `SendMessage` класса `bot` отправляющий пользователю сообщение. Принимающий 3 параметра:
-    - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg). <br/>
+    - `сhat_id` - обязательный параметр. ID чата бота и пользователя. Он же `msg.chat.id`. Он же `function__get_chat_id.get_chat_id(msg)`. <br/>
     - `command_text__projects` - обязательный параметр. Текст сообщения.  <br/>
     - `options` - необязательный параметр. Объект принимающий ряд параметров. Подробнее о параметрам смотрите [Официальную документацию Telegram](https://core.telegram.org/bots/api#sendmessage).  <br/>
-- `reply_markup` - параметр объекта `options`, добавляющий интерфейс клавиатур.  <br/>
-- `keyboard` - подпараметр параметра `reply_markup` принимающий клавиатуру, в нашем примере `keyboard.projects`. Подробнее о клавиатурах смотрите [Официальную документацию Telegram](https://core.telegram.org/bots/api#replykeyboardmarkup).  <br/>
+- `reply_markup` - параметр объекта `options`, добавляющий интерфейс клавиатур. <br/>
+- `keyboard` - подпараметр параметра `reply_markup` принимающий клавиатуру, в нашем примере `keyboard.projects`. Подробнее о клавиатурах смотрите [Официальную документацию Telegram](https://core.telegram.org/bots/api#replykeyboardmarkup). <br/>
 - `resize_keyboard: true` - Boolean подпараметр параметра `reply_markup` принимающий `true` (по умолчанию `false`) и отвечающий за коректировку размера клавиатур в зависимости от устройства пользователя.  <br/>
 - `one_time_keyboard: true` - Boolean подпараметр параметра `reply_markup` принимающий `true` (по умолчанию `false`) и отвечающий за скрытие клавиатуры после использования.  <br/>
 
@@ -445,19 +445,19 @@ bot.on('message', msg => {
 })
 ```
 Где:  <br/>
-- `bot.on('message', msg => {})` - прослушиватель события "message", экземпляра класса Telegram bot. <br/>
-- `function__get_chat_id.get_chat_id(msg)` - функция возвращающая `msg.chat.id`. `msg.chat.id` - это уникальный ID чата бота и пользователя.  <br/>
+- `bot.on('message', msg => {})` - прослушиватель события `message`, экземпляра класса `TelegramBot`. <br/>
+- `function__get_chat_id.get_chat_id(msg)` - функция возвращающая `msg.chat.id`. `msg.chat.id` - ID чата бота и пользователя.  <br/>
 - `switch (msg.text)` - переключатель, который реагирует на значение `msg.text`.  <br/>
 - `case kb.projects.finishing` - значение реагирующее на событие `msg.text`, когда `msg.text == 'Об\'єкти-Finishing'`.  <br/>
 -  `send_project(chat_id, query)` - функция, отправляющая проект в зависимости от запроса (query). Функция принимает два параметра:  <br/>
-    - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg).  <br/>
+    - `сhat_id` - обязательный параметр. ID чата бота и пользователя. Он же `msg.chat.id`. Он же `function__get_chat_id.get_chat_id(msg)`.  <br/>
     - `query` - обязательный параметр. Строка `msg.text`, которая принимается функцией `send_project` для применения внутри функции.  <br/>
 
-Второй параметр функции `send_project(chat_id, { type: 'Finishing' })` под капотом реализовывает передачу `msg.text` в метод модели `Project` - find, который выполняет запрос в базу данных `Project` и выдаёт результат в виде всех объектов, где значение `'Finishing'` равно для ключа `type`.  <br/>
+Второй параметр функции `send_project(chat_id, { type: 'Finishing' })` под капотом реализовывает передачу `msg.text` в метод модели `Project` - `find`, который выполняет запрос в базу данных `Project` и выдаёт результат в виде всех объектов, где значение `'Finishing'` равно для ключа `type`.  <br/>
 
 *Функция `send_project(chat_id, query)`* <br/> 
 
-Функция описана в отдельном файле - send_project__by_query.js, полный блок кода выглядящий так: <br/>
+Функция описана в отдельном файле - `send_project__by_query.js`, полный блок кода выглядящий так: <br/>
 ```node
 const stickers = require('../helpers/stickers')
 const bot = require('../init')
@@ -488,19 +488,19 @@ module.exports = send_project
 Где: <br/>
 *Подключаемые модули* <br/>
 - `const stickers = require('../helpers/stickers')` - модуль, в котором указаны `file_id` используемых стикеров. <br/>
-- `const bot = require('../init')` - модуль класса bot, который необходим для обработки методов `sendSticker` и `sendMessage`. <br/>
+- `const bot = require('../init')` - модуль класса `bot`, который необходим для обработки методов `sendSticker` и `sendMessage`. <br/>
 - `const text_project_by_type__query = require('../message_text/text_project_by_type__query')` - модуль с текстом, для отправки сообщения с помощью метода `sendMessage`.<br/>
-- `const mongoose = require('mongoose')` - модуль mongoose, который поддерживает методы `model` и `Schema`. <br/>
+- `const mongoose = require('mongoose')` - модуль `mongoose`, который поддерживает методы `model` и `Schema`. <br/>
 - `require('../models/project.model')` - модуль, подключающий `model` проектов. <br/>
 - `const Project = mongoose.model('project')` - присваивание переменной `Project` метода `model`. <br/>
 
-*Методи функции send_project(chat_id, query)* <br/>
-- `Project.find(query)` - метод find формирующий результат выборки из массива объектов, у которых значения запроса совпадает с запросом документа в коллекции `Project`. <br/>
-- `then(project => {})` - модели `mongoose` возвращают Promise. В случае успешного выполнения Promise возвращает resolve с массивом объектов, где название массива - `project`. <br/>
+*Методи функции `send_project(chat_id, query)`* <br/>
+- `Project.find(query)` - метод `find` формирующий результат выборки из массива объектов, у которых значения запроса совпадает с запросом документа в коллекции `Project`. <br/>
+- `then(project => {})` - модели `mongoose` возвращают `Promise`. В случае успешного выполнения `Promise` возвращает `resolve` с массивом объектов, где название массива - `project`. <br/>
 - `bot.sendSticker(chat_id, stickers.hot_cherry__presents)` - метод `sendSticker` класса `bot` отправляющий пользователю стикер. Примающий 2 параметра:  <br/>
-    - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg). <br/>
-    - `stickers.hot_cherry__presents` - обязательный параметр. file_id стикера. <br/>
-    *`file_id` - это уникальный идентификатор файла, который является разным для разных чатов, поэтому для формирования собственных file_id для стикеров необходимо добавить следующий код в главный файл index.js и отправить все необходимые стикеры для бота. В результате отправки Вы получите название стикера и его file_id. Также стоит добавить, что Telegram поддерживает различные способы отправки стикера. Подробнее об отправке стикеров смотрите в [официальной документации Telegram](https://core.telegram.org/bots/api#sendsticker)*.<br/>
+    - `сhat_id` - обязательный параметр. ID чата бота и пользователя. Он же `msg.chat.id`. Он же `function__get_chat_id.get_chat_id(msg)`. <br/>
+    - `stickers.hot_cherry__presents` - обязательный параметр. `file_id` стикера. <br/>
+    *`file_id` - это уникальный идентификатор файла, который является разным для разных чатов, поэтому для формирования собственных `file_id` для стикеров необходимо добавить следующий код в главный файл `index.js` и отправить все необходимые стикеры для бота. В результате отправки Вы получите название стикера и его `file_id`. Также стоит добавить, что `Telegram` поддерживает различные способы отправки стикера. Подробнее об отправке стикеров смотрите в [официальной документации Telegram](https://core.telegram.org/bots/api#sendsticker)*.<br/>
     ```node
     bot.on('message', msg => {
         console.log(msg.document.file_name)
@@ -509,7 +509,7 @@ module.exports = send_project
     ```
 
 - `bot.sendMessage(chat_id, text_project_by_type__query)` - метод `SendMessage` класса `bot` отправляющий пользователю сообщение. Принимающая 2 параметра:
-    - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg). <br/>
+    - `сhat_id` - обязательный параметр. ID чата бота и пользователя. Он же `msg.chat.id`. Он же `function__get_chat_id.get_chat_id(msg)`. <br/>
     - `text_project_by_type__query` - обязательный параметр. Текст сообщения. <br/>
 - `const html = projects.map((k, i) => {})` - текст сообщения, который состоит из строчного текста и значений объектов массива развёрнутых методом `map`. <br/>
 
@@ -562,12 +562,12 @@ bot.onText(/\/k(.+)/, (msg, [source]) => {
 ```
 Где: 
 - `bot.onText(/\/k(.+)/, (msg, [source]) => {})` - функция разворачивающая результата выборки `Project.findOne({ uuid: projectUuid })`. <br/>
-- `get_item_uuid__function.get_item__with__two_letter_uuid(source)` - функция создания активной ссылки принимающая `source` - `msg.text` отправляемый пользователем при нажатии на ссылку уникального ID проекта. *Функция создания активной ссылки описана ниже*. <br/>
-- `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg). <br/>
-- `Project.findOne({ uuid: projectUuid })` - метод findOne формирующий результат выборки из объекта у которого значения запроса совпадает с запросом документа в коллекции `Project`. <br/>
-- `then(project => {})` - модели `mongoose` возвращают Promise. В случае успешного выполнения Promise возвращает resolve с объектом, где название объекта - `project`. <br/>
+- `get_item_uuid__function.get_item__with__two_letter_uuid(source)` - функция создания активной ссылки принимающая `source` - `msg.text` отправляемый пользователем при нажатии на ссылку ID проекта. *Функция создания активной ссылки описана ниже*. <br/>
+- `сhat_id` - обязательный параметр. ID чата бота и пользователя. Он же `msg.chat.id`. Он же `function__get_chat_id.get_chat_id(msg)`. <br/>
+- `Project.findOne({ uuid: projectUuid })` - метод `findOne` формирующий результат выборки из объекта у которого значения запроса совпадает с запросом документа в коллекции `Project`. <br/>
+- `then(project => {})` - модели `mongoose` возвращают `Promise`. В случае успешного выполнения `Promise` возвращает `resolve` с объектом, где название объекта - `project`. <br/>
 - `bot.sendMessage(chat_id, project_text, {})` -  метод `SendMessage` класса `bot` отправляющий пользователю сообщение. Принимающий 3 параметра:
-    - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg). <br/>
+    - `сhat_id` - обязательный параметр. ID чата бота и пользователя. Он же `msg.chat.id`. Он же `function__get_chat_id.get_chat_id(msg)`. <br/>
     - `project_text` - обязательный параметр. Текст сообщения.  <br/>
     - `options` - необязательный параметр. Объект принимающий ряд параметров. Подробнее о параметрам смотрите [Официальную документацию Telegram](https://core.telegram.org/bots/api#sendmessage).  <br/>
 - `text` - ключ принимающий значение сформированого текста `project_text` с данными из объекта `project`. <br/>
@@ -604,7 +604,7 @@ bot.onText(/\/k(.+)/, (msg, [source]) => {
 4. Адрес объекта. <br/>
 5. Встроенная клавиатура, которая содержит информацию местоположения объекта в координатах. <br/>
 
-Полный исполняющий код комманды представлен выше, а мы лишь остановимся на куске кода - callback_data: <br/>
+Полный исполняющий код комманды представлен выше, а мы лишь остановимся на куске кода - `callback_data`: <br/>
 ```node
 ...
 inline_keyboard: [
@@ -648,13 +648,13 @@ bot.on('callback_query', query => {
 ```
 Где: <br/>
 - `bot.on('callback_query', query => {})` - прослушка событий реагирующий на события с встроенных клавиатур. <br/>
-- `let data` - объект `callback_data`, который приведен к строке методом JSON.stringify(). <br/>
-- `user_id = query.from.id` - аналог msg.chat.id при событиях 'message'. <br/>
+- `let data` - объект `callback_data`, который приведен к строке методом `JSON.stringify()`. <br/>
+- `user_id = query.from.id` - аналог `msg.chat.id` при событиях `message`. <br/>
 - `const {type} = data` - деструктуризируем тип данных. <br/>
-- `ACTION_TYPE.SHOW_PROJECTS_MAP` - уникальный индентификатор ACTION_TYPE, который отправляется в callback_data и сравнивается с ACTION_TYPE комманды. <br/>
+- `ACTION_TYPE.SHOW_PROJECTS_MAP` - уникальный индентификатор `ACTION_TYPE`, который отправляется в `callback_data` и сравнивается с `ACTION_TYPE` комманды. <br/>
 - `const {lo, la} = data` - деструктуризируем долготу и широту из `callback_data`. <br/>
 - `bot.sendLocation(query.message.chat.id, lo, la)` - метод `sendLocation` класса `bot` отправляющий пользователю местоположение. Примающий 3 параметра:
-    - `query.message.chat.id` - аналог msg.chat.id при событиях 'message'. <br/>
+    - `query.message.chat.id` - аналог `msg.chat.id` при событиях `message`. <br/>
     - `lo` - данные обратного вызова `project.location.longitude`. Координаты долготы местоположения объекта. <br/>
     - `la` - данные обратного вызова `project.location.latitude`. Координаты ширины местоположения объекта. <br/>
 
@@ -713,7 +713,7 @@ bot.on('message', msg => {
 })
 ```
 Где: <br/>
-- `bot.on('message', msg => {})` - прослушиватель события "message", экземпляра класса Telegram bot. <br/>
+- `bot.on('message', msg => {})` - прослушиватель события `message`, экземпляра класса `Telegram bot`. <br/>
 - `if (msg.text === file_id.p_021_2021.project__name)` - условие, при котором вводимый текст пользователем (название шифра) приравнивается к названию шифра из коллекции `Project`. <br/>
 - `bot.sendMessage(chat_id, file_id.p_021_2021.caption)` - отправка в определенный чат ID текст сообщения `file_id.p_021_2021.caption`. <br/>
 Строковые значения файла `file_id` выглядят так: <br/>
@@ -785,7 +785,7 @@ bot.on('message', msg => {
 ```
 Где: <br/>
 - `bot.sendMessage(chat_id, manufacturer_elframo__text, {})` - метод `SendMessage` класса `bot` отправляющий пользователю сообщение. Принимающий 3 параметра: <br/>
-    - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg). <br/>
+    - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же `msg.chat.id`. Он же `function__get_chat_id.get_chat_id(msg)`. <br/>
     - `command_text__projects` - обязательный параметр. Текст сообщения.  <br/>
     - `options` - необязательный параметр. Объект принимающий ряд параметров. Подробнее о параметрам смотрите [Официальную документацию Telegram](https://core.telegram.org/bots/api#sendmessage).  <br/>
 - `keyboard: keyboard.rational` - подпараметр параметра `reply_markup` принимающий клавиатуру, в нашем примере `keyboard.rational`. Подробнее о клавиатурах смотрите [Официальную документацию Telegram](https://core.telegram.org/bots/api#replykeyboardmarkup).  <br/>
@@ -821,8 +821,8 @@ bot.on('message', msg => {
 })
 ```
 Где:
-- `bot.on('message', msg => {}` - прослушиватель события "message", экземпляра класса Telegram bot. <br/>
-- `send_combi_streamer(chat_id, { form: 'Пароконвектомат' })` - функция работающая аналогично функции send_project, который подробно расписан в подразделе [Необходимый тип объекта](#необходимый-тип-объекта)  <br/>
+- `bot.on('message', msg => {}` - прослушиватель события "message", экземпляра класса `Telegram bot`. <br/>
+- `send_combi_streamer(chat_id, { form: 'Пароконвектомат' })` - функция работающая аналогично функции `send_project`, который подробно расписан в подразделе [Необходимый тип объекта](#необходимый-тип-объекта)  <br/>
 
 Итоговая таблица всех типов оборудования, которые есть у конкретного производителя: <br/>
 
@@ -933,7 +933,7 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
 - `Promise.all([])` - метод `all` выполняющий результат когда лишь после выполения всех `Promise`.
 - `combi_streamer__rational.findOne({ uuid: product_uuid })` -  метод `findOne` формирующий результат выборки из объекта у которого значения запроса совпадает с запросом документа в коллекции `combi_streamer__rational`. <br/>
 - `User.findOne({telegram_id: msg.from.id})` - метод `findOne` формирующий результат выборки из объекта у которого значение `telegram_id` проверяется на совпадение с запросом ID чата пользователя. 
-- `.then(([combi_streamer__rational, user]) => {})` - после успешного завершения всех `Promise` принимает объект `combi_streamer__rational` и `user` в той последовательности, в которой `Promise` написаны в коде
+- `.then(([combi_streamer__rational, user]) => {})` - после успешного завершения всех `Promise` принимает объект `combi_streamer__rational` и `user` в той последовательности, в которой `Promise` написаны в коде.
 - `bot.sendPhoto(chat_id, combi_streamer__rational.picture, {})` - метод `sendPhoto` класса `bot`, который отправляет пользователю фото товара. Принимающий 3 параметра:
     - `chat_id` - ID чата пользователя и бота.
     - `combi_streamer__rational.picture` - динамическая ссылка на картинку `combi_streamer__rational` 
@@ -944,7 +944,7 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
 - `inline_keyboard: []` - объект встроенной клавиатуры.
 - `text: 'На офіційний сайт',` - текст клавиши встроенной клавиатуры.
 - `url: combi_streamer__rational.link` - гиперссылка перенаправляющая пользователя на официальный сайт.
-- `text` - ключ принимающий значение флага `fav_text`
+- `text` - ключ принимающий значение флага `fav_text`.
 - `callback_data: JSON.stringify({})` - данные обратного вызова. Используються для обработки запросов с встроенных клавиатур. <br/>
 - `type: ACTION_TYPE.TOOGLE_FAV_COMBI_STREAMERS` - тип данных обратного вызова. Нужен для обработки запросов с встроенных клавиатур и подробно рассматривается в подразделе [Краткая информация о проекте](#краткая-информация-о-проекте). <br/>
 - `product_uuid` - ключ принимающий значение обратного вызова `product_uuid`. 
@@ -961,7 +961,7 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
 
 ```
 Где:
-- `is_fav` - тернарное выражение переключатель, которое передаётся дополнительно в callback_data. <br/>
+- `is_fav` - тернарное выражение переключатель, которое передаётся дополнительно в `callback_data`. <br/>
 - `fav_text` - изменяемое состояние товара, в зависимости от его флага `is_fav` <br/>
 
 #### Отправка callback_data
@@ -986,7 +986,7 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
 Где:
 - `callback_data` - данные обратного вызова, отправляемые при событиях, которые происходят в встроенных клавиатурах.  <br/>
 - `type: ACTION_TYPE.TOOGLE_FAV_COMBI_STREAMERS` - тип события, определяющий события определённой команды передаваемый в данные обратного вызова. <br/>
-- ` product_uuid` - ключ уникального ID товара передаваемого значением `product_uuid` в данные обратного вызова. <br/>
+- ` product_uuid` - ключ ID товара передаваемого значением `product_uuid` в данные обратного вызова. <br/>
 - `is_fav: is_fav` - ключ значения состояния товара - "Добавлено" или "Удалено" передаваемый в данные обратного вызова. <br/>
 
 **Реализация кода**
@@ -994,7 +994,7 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
 [![1.gif](https://i.postimg.cc/pL47YtkZ/1.gif)](https://postimg.cc/k2Nfqz06)
 
 #### Обработка callback_query
-callback_data Telegram позволяет передать только порядка 64 байта, поэтому всю логику кода необходимо выносить в отдельную функцию, которая принимает лишь данные обратного вызова. Блок кода принимающая данные обратного вызова и передающая их в функцию переключения актуального продукта показан ниже: <br/>
+`callback_data Telegram` позволяет передать только порядка 64 байта, поэтому всю логику кода необходимо выносить в отдельную функцию, которая принимает лишь данные обратного вызова. Блок кода принимающая данные обратного вызова и передающая их в функцию переключения актуального продукта показан ниже: <br/>
 ```node
 bot.on('callback_query', query => {
     let data
@@ -1017,14 +1017,14 @@ bot.on('callback_query', query => {
 ```
 Где:  <br/>
 - `bot.on('callback_query', query => {})` - прослушка событий реагирующий на события с встроенных клавиатур. <br/>
-- `let data` - объект `callback_data`, который приведен к строке методом JSON.stringify(). <br/>
-- `user_id = query.from.id` - аналог msg.chat.id при событиях 'message'. <br/>
+- `let data` - объект `callback_data`, который приведен к строке методом `JSON.stringify()`. <br/>
+- `user_id = query.from.id` - аналог msg.chat.id при событиях `message`. <br/>
 - `const {type} = data` - деструктуризируем тип данных. <br/>
-- `ACTION_TYPE.TOOGLE_FAV_COMBI_STREAMERS` - уникальный индентификатор ACTION_TYPE, который отправляется в callback_data и сравнивается с ACTION_TYPE комманды. <br/>
+- `ACTION_TYPE.TOOGLE_FAV_COMBI_STREAMERS` - уникальный индентификатор `ACTION_TYPE`, который отправляется в `callback_data` и сравнивается с `ACTION_TYPE` комманды. <br/>
 - `toogle_favourite_product(user_id, query.id, data)` - функция переключения актуального товара, которая принимает 3 параметра: <br/>
-    - `user_id` - уникальный ID чата в который бот должен будет ответить. <br/>
-    - `query.id` - уникальный ID чата запроса, который посылается пользователем боту. <br/>
-    - `data` - данные обратного вызова передаваемые в подпараметре callback_data. <br/>
+    - `user_id` - ID чата в который бот должен будет ответить. <br/>
+    - `query.id` - ID чата запроса, который посылается пользователем боту. <br/>
+    - `data` - данные обратного вызова передаваемые в подпараметре `callback_data`. <br/>
 
 
 Функция `toogle_favourite_product(user_id, query.id, data)` вынесенная в отдельный файл, код которой указан ниже: <br/>
@@ -1070,8 +1070,8 @@ module.exports = toogle_favourite_product
 - `require('../models/user.model')` - подключение модуля с моделью `users`. <br/>
 - `const User = mongoose.model('users')` - присваивание переменной для модели `users`. <br/>
 - `function toogle_favourite_product(user_id, queryId, {product_uuid, is_fav}) {})` - функция переключатель состояния актуального или неактуального товара. Принимает 3 параметр: <br/>
-    - `user_id` - обязательный параметр. Уникальный чат ID, по которому бот должен будет ответить. <br/>
-    - `queryId` - обязательный параметр. Уникальный чат ID запроса, который приходит боту от пользователя. <br/>
+    - `user_id` - обязательный параметр. чат ID, по которому бот должен будет ответить. <br/>
+    - `queryId` - обязательный параметр. чат ID запроса, который приходит боту от пользователя. <br/>
     - `data` - обязательный параметр. Данные обратного вызова: `product_uuid` - необходим для определения ID товара, `is_fav` - флаг переключения актуальности товара. <br/>
 - `User.findOne({telegram_id: user_id})` - метод `findOne` модели `User`, который находит пользователя по его ID. <br/>
 - `then(user => {})` - модель `User` возвращает `Promise`, который при `resolve` предоставляет объект - `user`. <br/>
@@ -1093,7 +1093,7 @@ module.exports = toogle_favourite_product
 
 #### Клавиша "Актуальні товари"
 
-Клавиша срабатывает на ранее описаный switch case, по аналогии с клавишами ["Найти проект"](#) или ["Найти товар"](#), но результат отрабатывания функции - вызов функций, которые показывают актуальные товары выбранных пользователем. Блок кода описан ниже:
+Клавиша срабатывает на ранее описаный `switch case`, по аналогии с клавишами ["Найти проект"](#) или ["Найти товар"](#), но результат отрабатывания функции - вызов функций, которые показывают актуальные товары выбранных пользователем. Блок кода описан ниже:
 ```node
 bot.on('message', msg => {
     const chat_id = function__get_chat_id.get_chat_id(msg)
@@ -1132,7 +1132,7 @@ bot.on('message', msg => {
 ```
 Где:
 - `bot.on('message', msg => {})` - прослушиватель события `message`, экземпляра класса `Telegram bot`. <br/>
-- `const chat_id = function__get_chat_id.get_chat_id(msg)` - функция возвращающая `msg.chat.id`. `msg.chat.id` - это уникальный ID чата бота и пользователя. <br/>
+- `const chat_id = function__get_chat_id.get_chat_id(msg)` - функция возвращающая `msg.chat.id`. `msg.chat.id` - ID чата бота и пользователя. <br/>
 - `switch(msg.text) {})` - переключатель, который реагирует на значение `msg.text`. <br/>
 - `case kb.home.actualy: ` - значение реагирующее на событие `msg.text`, когда `msg.text == 'Актуальні товари'`. <br/>
 - `show_favourite__combi_streamer__rational(chat_id, msg.from.id)` - функция показывающая актуальные товары типа оборудования`combi_streamer__rational`. <br/>
@@ -1214,7 +1214,7 @@ module.exports = send_html
 - `const options = { parse_mode: 'HTML'}` - переменная с включение парсера 'HTML'. <br/>
 - `if (kb_name) {}` - если `kb_name !== null`, то отправляет клавиатуру с определенным парсером. <br/>
 - `bot.sendMessage(chat_id, html, options)` - метод `SendMessage` класса `bot` отправляющий пользователю сообщение. Принимающий 3 параметра: <br/>
-    - `сhat_id` - обязательный параметр. Уникальный ID чата бота и пользователя. Он же msg.chat.id. Он же function__get_chat_id.get_chat_id(msg). <br/>
+    - `сhat_id` - обязательный параметр. ID чата бота и пользователя. Он же `msg.chat.id`. Он же `function__get_chat_id.get_chat_id(msg)`. <br/>
     - `html` - обязательный параметр. Текст сообщения.  <br/>
     - `options` - необязательный параметр. Объект принимающий параметры парсера и клавиатуры. <br/>
 
@@ -1243,7 +1243,6 @@ bot.onText(/\/start/, msg => {
     }
 })
 ```
-
 
 **Реализация кода**
 
