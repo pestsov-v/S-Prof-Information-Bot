@@ -127,54 +127,6 @@
                         },
                         "stamp": "П-032-2021",
                         "uuid": "k0032"
-                    },
-                    {
-                        "project_name": "Влаштування технологічного обладнання в приміщеннях Петропавлівсько-Борщагівської загальноосвітньої школи Борщагівської сільської ради Бучанського району Київської область",
-                        "object_name": "Петропавлівсько-Борщагівська загальноосвітня школа",
-                        "type": "Школа",
-                        "city": "с. Борщагівка",
-                        "address": "вул. Соборна, 30",
-                        "dwgLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
-                        "pdfLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
-                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
-                        "location": {
-                            "latitude": 30.656036556087845,
-                            "longitude": 50.42545478804777
-                        },
-                        "stamp": "П-033-2021",
-                        "uuid": "k0033"
-                    },
-                    {
-                        "project_name": "Влаштування технологічного, кухонного, обладнання в загальноосвітній школі № 308 I - III ступенів, яка знаходиться за адресою: вул. Гадинська, 6-Б, Деснянського району м. Києва",
-                        "object_name": "Середня загальноосвітня школа I - III cтупенів № 308",
-                        "type": "Школа",
-                        "city": "м. Київ",
-                        "address": "вул. Гадиська 6б",
-                        "dwgLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
-                        "pdfLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
-                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
-                        "location": {
-                            "latitude": 30.656036556087845,
-                            "longitude": 50.42545478804777
-                        },
-                        "stamp": "П-034-2021",
-                        "uuid": "k0034"
-                    },
-                    {
-                        "project_name": "Чернігівська загальноосвітня школа I - III ступенів № 34 Чернігівської міської ради, Чернігівської області",
-                        "object_name": "Середня загальноосвітня школа I - III cтупенів № 34",
-                        "type": "Школа",
-                        "city": "м. Чернігів",
-                        "address": "вул. Текстильників 27",
-                        "dwgLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
-                        "pdfLinks": "https://drive.google.com/file/d/1a-B0PHoMl4k9pCSI4t2lFH7J4faNGtUK/view?usp=sharing",
-                        "xslsLinks": "https://drive.google.com/file/d/1P3mQUSIuPiUa1QlBP1ab_zGk76TzegOI/view?usp=sharing",
-                        "location": {
-                            "latitude": 30.656036556087845,
-                            "longitude": 50.42545478804777
-                        },
-                        "stamp": "П-035-2021",
-                        "uuid": "k0035"
                     }
     ]
 }

@@ -3,10 +3,9 @@ const mongoose = require('mongoose')
 const bot = require('./init')
 const keyboard = require('../src/keyboards/keyboards')
 const kb = require('../src/keyboards/keyboard-buttons')
-const helper = require('./functions/get_item_uuid__function')
 const stickers = require('./helpers/stickers')
 const file_id = require('./helpers/file_id')
-
+const get_item_uuid__function = require('./functions/get_item_uuid__function')
 const toogle_favourite_product = require('./functions/toogle_favourite__product')
 const send_project = require('./functions/send_project__by_query')
 const function__get_chat_id = require('./functions/get_chat_id__function')
@@ -30,7 +29,7 @@ const {
 
 const {
     command_text__statistic,
-    command_text__analytics,
+    command_text__registry,
     command_text__projects,
     command_text__products
 } = require('./message_text/command_text__start/index')
@@ -201,7 +200,7 @@ bot.onText(/\/help/, msg => {
     }
 })
 
-bot.onText(/\/object/, msg => {
+bot.onText(/\/project/, msg => {
     if (msg.chat.username !== 'AveCardinal') {
         bot.sendSticker(chat_id, stickers.hot_cherry__cry)
         bot.sendMessage(chat_id, command_text__start__error)
@@ -216,7 +215,7 @@ bot.onText(/\/object/, msg => {
     }
 })
 
-bot.onText(/\/products/, msg => {
+bot.onText(/\/product/, msg => {
     if (msg.chat.username !== 'AveCardinal') {
         bot.sendSticker(chat_id, stickers.hot_cherry__cry)
         bot.sendMessage(chat_id, command_text__start__error)
@@ -224,7 +223,10 @@ bot.onText(/\/products/, msg => {
         bot.sendSticker(chat_id, stickers.hot_cherry__searching)
         bot.sendMessage(chat_id, command_text__products, {
             parse_mode: 'HTML',
-            keyboard: keyboard.products
+            reply_markup: {
+                keyboard: keyboard.manufacturer,
+                resize_keyboard: true
+            }
         })
     }
 })
@@ -248,23 +250,15 @@ bot.onText(/\/registry/, msg => {
         bot.sendMessage(chat_id, command_text__start__error)
     } else if (msg.chat.username === 'AveCardinal') {
         bot.sendSticker(chat_id, stickers.hot_cherry__clips)
-        bot.sendMessage(chat_id, command_text__analytics, {
+        bot.sendMessage(chat_id, command_text__registry, {
             parse_mode: 'HTML',
             disable_web_page_preview: true
         })
     }
 })
 
-bot.onText(/\/type/, msg => {
-    if (msg.chat.username !== 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.hot_cherry__cry)
-        bot.sendMessage(chat_id, command_text__start__error)
-    } else if (msg.chat.username === 'AveCardinal') {
-        bot.sendSticker(chat_id, stickers.hot_cherry__looking)
-        bot.sendMessage(chat_id, command_text__type, {
-            parse_mode: 'HTML',
-        })
-    }
+bot.on('message', msg => {
+    console.log(msg)
 })
 
 // switch case keybard_markup to start buttons
@@ -287,9 +281,9 @@ bot.on('message', msg => {
                 disable_web_page_preview: true
             })
             break
-        case kb.home.analytics:
+        case kb.home.registry:
             bot.sendSticker(chat_id, stickers.hot_cherry__clips)
-            bot.sendMessage(chat_id, command_text__analytics, {
+            bot.sendMessage(chat_id, command_text__registry, {
                 parse_mode: 'HTML',
                 disable_web_page_preview: true
             })
@@ -381,7 +375,6 @@ bot.on('message', msg => {
             break
     }
 })
-
 // switch case keyboard_markup elframo equipment product
 bot.on('message', msg => {
     const chat_id = function__get_chat_id.get_chat_id(msg)
@@ -496,6 +489,12 @@ bot.on('message', msg => {
         show_favourite_refrigerated_table__samaref(chat_id, msg.from.id),
         show_favourite_refrigeratior_cabinet__samaref(chat_id, msg.from.id),
         show_favourite_shock_freezer__samaref(chat_id, msg.from.id)
+        bot.sendMessage(chat_id, 'Актуальні товари', {
+            reply_markup: {
+                keyboard: keyboard.home,
+                resize_keyboard: true
+            }
+        })
         break
     }
 })
@@ -558,7 +557,7 @@ bot.on('message', msg => {
 
 // find project by id
 bot.onText(/\/k(.+)/, (msg, [source]) => {
-    const projectUuid = helper.get_item__with__two_letter_uuid(source)
+    const projectUuid = get_item_uuid__function.get_item__with__two_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Project.findOne({ uuid: projectUuid }).then(project => {
@@ -575,16 +574,6 @@ bot.onText(/\/k(.+)/, (msg, [source]) => {
             parse_mode: 'HTML',
             reply_markup: {
                 inline_keyboard: [
-                    [
-                        {
-                            text: 'DWG',
-                            url: project.dwgLinks
-                        },
-                        {
-                            text: 'PDF',
-                            url: project.pdfLinks
-                        }
-                    ],
                     [
                         {
                             text: 'Показати на карті',
@@ -605,9 +594,9 @@ bot.onText(/\/k(.+)/, (msg, [source]) => {
 // heating equipment coomand
 // combiStream command
 bot.onText(/\/p(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__two_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__two_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
-
+    console.log(source)
     Promise.all([
         combi_streamer__rational.findOne({ uuid: product_uuid }),
         User.findOne({telegram_id: msg.from.id})
@@ -669,7 +658,7 @@ bot.onText(/\/p(.+)/, (msg, [source]) => {
 
 // multiPen command
 bot.onText(/\/mp(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__three_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__three_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -735,7 +724,7 @@ bot.onText(/\/mp(.+)/, (msg, [source]) => {
 // ----------------- elframo manufacturer commands ----------------------
 // elframo dishwasher command
 bot.onText(/\/edsw(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__five_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__five_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -793,7 +782,7 @@ bot.onText(/\/edsw(.+)/, (msg, [source]) => {
 
 // elframo glass_washer command
 bot.onText(/\/egw(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -853,7 +842,7 @@ bot.onText(/\/egw(.+)/, (msg, [source]) => {
 
 // elframo warewasher command
 bot.onText(/\/eptm(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__five_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__five_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -914,7 +903,7 @@ bot.onText(/\/eptm(.+)/, (msg, [source]) => {
 // ----------------- samaref manufacturer commands ----------------------
 // samaref refrigerated_table command
 bot.onText(/\/rtsm(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__five_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__five_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -970,7 +959,7 @@ bot.onText(/\/rtsm(.+)/, (msg, [source]) => {
 
 // samaref refrigeratior_cabinet command
 bot.onText(/\/rf(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__three_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__three_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1027,7 +1016,7 @@ bot.onText(/\/rf(.+)/, (msg, [source]) => {
 
 // samaref shock_freezer command
 bot.onText(/\/sf(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__three_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__three_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1085,7 +1074,7 @@ bot.onText(/\/sf(.+)/, (msg, [source]) => {
 // ----------------- rmGastro manufacturer commands ----------------------
 // rmGastro grill command
 bot.onText(/\/gr(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__three_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__three_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1148,7 +1137,7 @@ bot.onText(/\/gr(.+)/, (msg, [source]) => {
 
 // rmGastro bain marie command
 bot.onText(/\/bmr(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1206,7 +1195,7 @@ bot.onText(/\/bmr(.+)/, (msg, [source]) => {
 
 // rmGastro deep fryer command
 bot.onText(/\/dfs(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1264,7 +1253,7 @@ bot.onText(/\/dfs(.+)/, (msg, [source]) => {
 
 // rmGastro food boiler command
 bot.onText(/\/fbs(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1322,7 +1311,7 @@ bot.onText(/\/fbs(.+)/, (msg, [source]) => {
 
 // rmGastro pasta cooker command
 bot.onText(/\/pcs(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1379,7 +1368,7 @@ bot.onText(/\/pcs(.+)/, (msg, [source]) => {
 
 // rmGastro pen command
 bot.onText(/\/pen(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1436,7 +1425,7 @@ bot.onText(/\/pen(.+)/, (msg, [source]) => {
 
 // rmGastro plate command
 bot.onText(/\/plt(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1500,7 +1489,7 @@ bot.onText(/\/plt(.+)/, (msg, [source]) => {
 // ----------------- Robot Coupe manufacturer commands ----------------------
 // Robot Coupe Robot Cook command
 bot.onText(/\/rck(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1556,7 +1545,7 @@ bot.onText(/\/rck(.+)/, (msg, [source]) => {
 
 // Robot Coupe mixer command
 bot.onText(/\/mxr(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1613,7 +1602,7 @@ bot.onText(/\/mxr(.+)/, (msg, [source]) => {
 
 // Robot Coupe vegetable cutters command
 bot.onText(/\/vcr(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1669,7 +1658,7 @@ bot.onText(/\/vcr(.+)/, (msg, [source]) => {
 
 // Robot Coupe food combines command
 bot.onText(/\/fce(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1725,7 +1714,7 @@ bot.onText(/\/fce(.+)/, (msg, [source]) => {
 
 // Robot Coupe blixters command
 bot.onText(/\/blr(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1781,7 +1770,7 @@ bot.onText(/\/blr(.+)/, (msg, [source]) => {
 
 // Robot Coupe blixters command
 bot.onText(/\/ctr(.+)/, (msg, [source]) => {
-    const product_uuid = helper.get_item__with__four_letter_uuid(source)
+    const product_uuid = get_item_uuid__function.get_item__with__four_letter_uuid(source)
     const chat_id = function__get_chat_id.get_chat_id(msg)
 
     Promise.all([
@@ -1910,48 +1899,12 @@ bot.on('message', msg => {
 
 bot.on('message', msg => {
     chat_id = msg.chat.id
-    if (msg.text === file_id.p_002_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_002_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_002_2021.dwg_pz, {caption: file_id.p_002_2021.dwg__filename_pz})
-        bot.sendDocument(chat_id, file_id.p_002_2021.dwg_tx, {caption: file_id.p_002_2021.dwg__filename_tx})
-        bot.sendDocument(chat_id, file_id.p_002_2021.dwg_zz, {caption: file_id.p_002_2021.dwg__filename_zz})       
-        bot.sendDocument(chat_id, file_id.p_002_2021.pdf_pz, {caption: file_id.p_002_2021.pdf__filename_pz})
-        bot.sendDocument(chat_id, file_id.p_002_2021.pdf_tx, {caption: file_id.p_002_2021.pdf__filename_tx})     
-        bot.sendDocument(chat_id, file_id.p_002_2021.xlsx, {caption: file_id.p_002_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_003_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_003_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_003_2021.dwg, {caption: file_id.p_003_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_003_2021.pdf, {caption: file_id.p_003_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_003_2021.xlsx, {caption: file_id.p_003_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
     if (msg.text === file_id.p_004_2021.project__name) {
         bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_004_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_004_2021.dwg, {caption: file_id.p_004_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_004_2021.pdf, {caption: file_id.p_004_2021.pdf__filename})        
         bot.sendDocument(chat_id, file_id.p_004_2021.xlsx, {caption: file_id.p_004_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_005_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_005_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_005_2021.dwg, {caption: file_id.p_005_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_005_2021.pdf, {caption: file_id.p_005_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_005_2021.xlsx, {caption: file_id.p_005_2021.xlsx__filename})
     }
 })
 
@@ -2024,61 +1977,6 @@ bot.on('message', msg => {
 
 bot.on('message', msg => {
     chat_id = msg.chat.id
-    if (msg.text === file_id.p_012_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_012_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_012_2021.dwg, {caption: file_id.p_012_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_012_2021.pdf, {caption: file_id.p_012_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_012_2021.xlsx, {caption: file_id.p_012_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_013_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_013_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_013_2021.dwg, {caption: file_id.p_013_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_013_2021.pdf, {caption: file_id.p_013_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_013_2021.xlsx, {caption: file_id.p_013_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_014_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_014_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_014_2021.dwg, {caption: file_id.p_014_2021.dwg__filename,})       
-        bot.sendDocument(chat_id, file_id.p_014_2021.pdf, {caption: file_id.p_014_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_014_2021.xlsx, {caption: file_id.p_014_2021.xlsx__filename,})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_015_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_015_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_015_2021.dwg, {caption: file_id.p_015_2021.dwg__filename,})       
-        bot.sendDocument(chat_id, file_id.p_015_2021.pdf, {caption: file_id.p_015_2021.pdf__filename,})        
-        bot.sendDocument(chat_id, file_id.p_015_2021.xlsx, {caption: file_id.p_015_2021.xlsx__filename,})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_016_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_016_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_016_2021.dwg, {caption: file_id.p_016_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_016_2021.pdf, {caption: file_id.p_016_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_016_2021.xlsx, {caption: file_id.p_016_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
     if (msg.text === file_id.p_017_2021.project__name) {
         bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_017_2021.caption)        
@@ -2132,17 +2030,6 @@ bot.on('message', msg => {
         bot.sendDocument(chat_id, file_id.p_021_2021.dwg, {caption: file_id.p_021_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_021_2021.pdf, {caption: file_id.p_021_2021.pdf__filename})        
         bot.sendDocument(chat_id, file_id.p_021_2021.xlsx, {caption: file_id.p_021_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_022_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_022_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_022_2021.dwg, {caption: file_id.p_022_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_022_2021.pdf, {caption: file_id.p_022_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_022_2021.xlsx, {caption: file_id.p_022_2021.xlsx__filename})
     }
 })
 
@@ -2203,46 +2090,12 @@ bot.on('message', msg => {
 
 bot.on('message', msg => {
     chat_id = msg.chat.id
-    if (msg.text === file_id.p_028_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_028_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_028_2021.dwg, {caption: file_id.p_028_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_028_2021.pdf, {caption: file_id.p_028_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_028_2021.xlsx, {caption: file_id.p_028_2021.xlsx__filename})
-    }
-})
-
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
     if (msg.text === file_id.p_029_2021.project__name) {
         bot.sendSticker(chat_id, stickers.hot_cherry__hello)
         bot.sendMessage(chat_id, file_id.p_029_2021.caption)        
         bot.sendDocument(chat_id, file_id.p_029_2021.dwg, {caption: file_id.p_029_2021.dwg__filename})       
         bot.sendDocument(chat_id, file_id.p_029_2021.pdf, {caption: file_id.p_029_2021.pdf__filename})        
         bot.sendDocument(chat_id, file_id.p_029_2021.xlsx, {caption: file_id.p_029_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_030_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_030_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_030_2021.dwg, {caption: file_id.p_030_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_030_2021.pdf, {caption: file_id.p_030_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_030_2021.xlsx, {caption: file_id.p_030_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_031_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_031_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_031_2021.dwg, {caption: file_id.p_031_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_031_2021.pdf, {caption: file_id.p_031_2021.pdf__filename,})        
-        bot.sendDocument(chat_id, file_id.p_031_2021.xlsx, {caption: file_id.p_031_2021.xlsx__filename,})
     }
 })
 
@@ -2256,161 +2109,3 @@ bot.on('message', msg => {
         bot.sendDocument(chat_id, file_id.p_032_2021.xlsx, {caption: file_id.p_032_2021.xlsx__filename})
     }
 })
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_033_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_033_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_033_2021.dwg, {caption: file_id.p_033_2021.dwg__filename,})       
-        bot.sendDocument(chat_id, file_id.p_033_2021.pdf, {caption: file_id.p_033_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_033_2021.xlsx, {caption: file_id.p_033_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_034_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_034_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_034_2021.dwg, {caption: file_id.p_034_2021.dwg__filename,})       
-        bot.sendDocument(chat_id, file_id.p_034_2021.pdf, {caption: file_id.p_034_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_034_2021.xlsx, {caption: file_id.p_034_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_035_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_035_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_035_2021.dwg, {caption: file_id.p_035_2021.dwg__filename,})       
-        bot.sendDocument(chat_id, file_id.p_035_2021.pdf, {caption: file_id.p_035_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_035_2021.xlsx, {caption: file_id.p_035_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_036_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_036_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_036_2021.dwg, {caption: file_id.p_036_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_036_2021.pdf, {caption: file_id.p_036_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_036_2021.xlsx, {caption: file_id.p_036_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    if (msg.text === file_id.p_037_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_037_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_037_2021.dwg, {caption: file_id.p_037_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_037_2021.pdf, {caption: file_id.p_037_2021.pdf__filename})       
-        bot.sendDocument(chat_id, file_id.p_037_2021.xlsx, {caption: file_id.p_037_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    chat_id = msg.chat.id
-    if (msg.text === file_id.p_038_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_038_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_038_2021.dwg, {caption: file_id.p_038_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_038_2021.pdf, {caption: file_id.p_038_2021.pdf__filename})        
-        bot.sendDocument(chat_id, file_id.p_038_2021.xlsx_v1, {caption: file_id.p_038_2021.xlsx__filename_v1})
-        bot.sendDocument(chat_id, file_id.p_038_2021.xlsx_v2, {caption: file_id.p_038_2021.xlsx__filename_v2})
-        bot.sendDocument(chat_id, file_id.p_038_2021.xlsx_v3, {caption: file_id.p_038_2021.xlsx__filename_v3})
-        bot.sendDocument(chat_id, file_id.p_038_2021.xlsx_v4, {caption: file_id.p_038_2021.xlsx__filename_v4})
-        bot.sendDocument(chat_id, file_id.p_038_2021.xlsx_v5, {caption: file_id.p_038_2021.xlsx__filename_v5})
-        bot.sendDocument(chat_id, file_id.p_038_2021.xlsx_v6, {caption: file_id.p_038_2021.xlsx__filename_v6})
-        bot.sendDocument(chat_id, file_id.p_038_2021.xlsx_v7, {caption: file_id.p_038_2021.xlsx__filename_v7})
-        bot.sendDocument(chat_id, file_id.p_038_2021.xlsx_v8, {caption: file_id.p_038_2021.xlsx__filename_v8})
-        bot.sendDocument(chat_id, file_id.p_038_2021.xlsx_v8, {caption: file_id.p_038_2021.xlsx__filename_v8})
-    }
-})
-
-bot.on('message', msg => {
-    if (msg.text === file_id.p_039_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_039_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_039_2021.dwg, {caption: file_id.p_039_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_039_2021.pdf, {caption: file_id.p_039_2021.pdf__filename})       
-        bot.sendDocument(chat_id, file_id.p_039_2021.xlsx, {caption: file_id.p_039_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    if (msg.text === file_id.p_040_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_040_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_040_2021.dwg, {caption: file_id.p_040_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_040_2021.pdf, {caption: file_id.p_040_2021.pdf__filename})       
-        bot.sendDocument(chat_id, file_id.p_040_2021.xlsx, {caption: file_id.p_040_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    if (msg.text === file_id.p_041_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_041_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_041_2021.dwg, {caption: file_id.p_041_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_041_2021.pdf, {caption: file_id.p_041_2021.pdf__filename})       
-        bot.sendDocument(chat_id, file_id.p_041_2021.xlsx, {caption: file_id.p_041_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    if (msg.text === file_id.p_042_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_042_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_042_2021.dwg, {caption: file_id.p_042_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_042_2021.pdf, {caption: file_id.p_042_2021.pdf__filename})       
-        bot.sendDocument(chat_id, file_id.p_042_2021.xlsx, {caption: file_id.p_042_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    if (msg.text === file_id.p_043_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_043_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_043_2021.dwg, {caption: file_id.p_043_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_043_2021.pdf, {caption: file_id.p_043_2021.pdf__filename})       
-        bot.sendDocument(chat_id, file_id.p_043_2021.xlsx, {caption: file_id.p_043_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    if (msg.text === file_id.p_044_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_044_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_044_2021.dwg, {caption: file_id.p_044_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_044_2021.pdf, {caption: file_id.p_044_2021.pdf__filename})       
-        bot.sendDocument(chat_id, file_id.p_044_2021.xlsx, {caption: file_id.p_044_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    if (msg.text === file_id.p_045_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_045_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_045_2021.dwg, {caption: file_id.p_045_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_045_2021.pdf, {caption: file_id.p_045_2021.pdf__filename})       
-        bot.sendDocument(chat_id, file_id.p_045_2021.xlsx, {caption: file_id.p_045_2021.xlsx__filename})
-    }
-})
-
-bot.on('message', msg => {
-    if (msg.text === file_id.p_046_2021.project__name) {
-        bot.sendSticker(chat_id, stickers.hot_cherry__hello)
-        bot.sendMessage(chat_id, file_id.p_046_2021.caption)        
-        bot.sendDocument(chat_id, file_id.p_046_2021.dwg, {caption: file_id.p_046_2021.dwg__filename})       
-        bot.sendDocument(chat_id, file_id.p_046_2021.pdf, {caption: file_id.p_046_2021.pdf__filename})       
-        bot.sendDocument(chat_id, file_id.p_046_2021.xlsx, {caption: file_id.p_046_2021.xlsx__filename})
-    }
-})
-
-// bot.on('message', msg => {
-//     console.log(msg.document.file_name)
-//     console.log(msg.document.file_id)
-// })
