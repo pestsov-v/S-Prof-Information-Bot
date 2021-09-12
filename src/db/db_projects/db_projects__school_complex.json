@@ -31,38 +31,6 @@
                 },
                 "stamp": "П-023-2021",
                 "uuid": "k0023"
-            },
-            {
-                "project_name": "Влаштування кухонного обладнання в внутрішніх приміщеннях комунального закладу Зазимської сільської ради Броварського району Київської області \"Пухівське навчально-виховне об'єднання\"",
-                "object_name": "Навчально-виховне об'єднання Зазимьскої сільської ради",
-                "type": "НВК",
-                "city": "с. Зазим'є",
-                "address": "вул. Лісова 61",
-                "dwgLinks": "https://drive.google.com/file/d/1pyhHqcnWkJUnILtY9OJxZFVTYyHZ1-Ml/view?usp=sharing",
-                "pdfLinks": "https://drive.google.com/file/d/1JsgeSjaxs9TKsZJxZqJeXBlCSFuvI3y6/view?usp=sharing",
-                "xslsLinks": "https://drive.google.com/file/d/1lpjq0vrzWjXAYX-eHpTxOHVqS3SGYS_i/view?usp=sharing",
-                "location": {
-                    "latitude": 30.61834109444478,
-                    "longitude": 50.442177863546696
-                },
-                "stamp": "П-030-2021",
-                "uuid": "k0030"
-            },
-            {
-                "project_name": "Влаштування кухонного обладнання в приміщеннях харчоблоку Рожнівського навчально-виховного комплексу \"Загальноосвітня школа I-II cтупенів - дошкільний навчальний заклад\" по вул. Свободи, 70 в с. Рожни Броварського району Київської област",
-                "object_name": "Навчально-виховний комплекс \"Загальноосвітня школа I - II ступенів - дошкільний навчальний заклад\"",
-                "type": "НВК",
-                "city": "с. Рожни",
-                "address": "вул. Лісова 61",
-                "dwgLinks": "https://drive.google.com/file/d/1pyhHqcnWkJUnILtY9OJxZFVTYyHZ1-Ml/view?usp=sharing",
-                "pdfLinks": "https://drive.google.com/file/d/1JsgeSjaxs9TKsZJxZqJeXBlCSFuvI3y6/view?usp=sharing",
-                "xslsLinks": "https://drive.google.com/file/d/1lpjq0vrzWjXAYX-eHpTxOHVqS3SGYS_i/view?usp=sharing",
-                "location": {
-                    "latitude": 30.61834109444478,
-                    "longitude": 50.442177863546696
-                },
-                "stamp": "П-031-2021",
-                "uuid": "k0031"
             }
     ]
 }

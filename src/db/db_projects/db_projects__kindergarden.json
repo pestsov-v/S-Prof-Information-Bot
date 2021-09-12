@@ -47,39 +47,6 @@
             },
             "stamp": "П-021-2021",
             "uuid": "k0021"
-        },
-        {
-            "project_name": "Влаштування технологічного обладнання в приміщеннях дошкільного навчального закладу № 619, який знаходиться за адресою: вул. Сосницька, буд. 8-а",
-            "object_name": "Дошкільний навчальний заклад № 619",
-            "type": "Дитячий садочок",
-            "city": "м. Київ",
-            "address": "вул. Сосницкая 8а",
-            "dwgLinks": "https://drive.google.com/file/d/1eDUHVt31TLiRgESxIDiW_SNL1_3nsxHX/view?usp=sharing",
-            "pdfLinks": "https://drive.google.com/file/d/10O7WXUwOf4dfGdaIjiiEbLe9J6a6aeou/view?usp=sharing",
-            "xslsLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
-            "location": {
-                "latitude": 30.58773108307553,
-                "longitude": 50.48746603939806
-            },
-            "stamp": "П-022-2021",
-            "uuid": "k0022"
-        },
-        {
-            "project_name": "Влаштування технологічного обладнання в приміщеннях комунального дитсадочка № 454, який знаходиться за адресою: вулиця Березняківська, 26-А, м. Київ",
-            "object_name": "Дошкільний навчальний заклад № 619",
-            "type": "Дитячий садочок",
-            "city": "м. Київ",
-            "address": "вул. Березнякивская, 26а",
-            "dwgLinks": "https://drive.google.com/file/d/1FGDJBm7JCyjsfA1c5NkEpG4gs7geHRxR/view?usp=sharing",
-            "pdfLinks": "https://drive.google.com/file/d/1yIlyqgWH_tY9ABOJvMBW31cK1rIG8v7A/view?usp=sharing",
-            "xslsLinks": "https://drive.google.com/file/d/1gFwWQPOiEb6g1mrKq9iDOBhHQbCO2HDl/view?usp=sharing",
-            "location": {
-                "latitude": 30.613089044444408,
-                "longitude": 50.42714560308517
-            },
-            "district": "Киев",
-            "stamp": "П-028-2021",
-            "uuid": "k0028"
         }
     ]
 }
